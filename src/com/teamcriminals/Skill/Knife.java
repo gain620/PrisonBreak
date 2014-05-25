@@ -1,8 +1,8 @@
-package com.teamcriminals.skill;
+package com.teamcriminals.Skill;
 
-public class Pistol extends Z {
-
-	public Pistol() {
+public class Knife extends Z {
+	
+	public Knife() {
 		setSTATUS(this);
 	}
 

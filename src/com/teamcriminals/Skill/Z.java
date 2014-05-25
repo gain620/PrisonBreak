@@ -1,4 +1,4 @@
-package com.teamcriminals.skill;
+package com.teamcriminals.Skill;
 
 public abstract class Z extends Attack {
 	private static Attack STATUS;

@@ -1,4 +1,4 @@
-package com.teamcriminals.skill;
+package com.teamcriminals.Skill;
 
 public class GatlingGun extends C {
 	

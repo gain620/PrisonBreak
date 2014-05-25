@@ -1,13 +1,13 @@
-package com.teamcriminals.skill;
+package com.teamcriminals.Skill;
 
-public class Dash extends X {
+public class ThrowBat extends X {
 	
-	public Dash() {
-		setCoolDown(10);
+	public ThrowBat() {
+		setCoolDown(13);
 	}
 
 	public void attack() {
-		
+
 		if(!isUsed()) {
 			
 			/*

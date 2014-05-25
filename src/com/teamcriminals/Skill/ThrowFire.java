@@ -1,9 +1,9 @@
-package com.teamcriminals.skill;
+package com.teamcriminals.Skill;
 
-public class LegShot extends X {
+public class ThrowFire extends X {
 	
-	public LegShot() {
-		setCoolDown(12);
+	public ThrowFire() {
+		setCoolDown(9);
 	}
 
 	public void attack() {
