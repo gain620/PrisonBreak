@@ -1,6 +1,15 @@
 package com.teamcriminals.skill;
 
 public abstract class C extends Attack {
-	protected int bomb;
-	protected final int MAX_BOMB = 0;
+	
+	private int bomb;
+	
+	public int getBomb() {
+		return this.bomb;
+	}
+	
+	public void setBomb(int bomb) {
+		this.bomb = bomb;
+	}
+	
 }

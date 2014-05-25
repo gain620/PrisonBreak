@@ -1,6 +1,15 @@
 package com.teamcriminals.skill;
 
 public abstract class Item extends Attack {
-	protected int count;
-	protected final int MAX_COUNT = 0;
+	
+	private int count;
+	
+	public int getCount() {
+		return this.count;
+	}
+	
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 }

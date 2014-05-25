@@ -3,10 +3,10 @@ package com.teamcriminals.skill;
 public abstract class Attack {
 	
 	// 속성정의. 공격력, 공격범위, 공격속도, 공격중인지
-	protected int damage;
-	protected int range;
-	protected int speed;
-	protected boolean use;
+	private int damage;
+	private int range;
+	private int speed;
+	private boolean use;
 	
 	public int getDamage() {
 		return this.damage;
@@ -36,5 +36,10 @@ public abstract class Attack {
 		return this.use;
 	}
 	
+	public void using(boolean result) {
+		this.use = result;
+	}
+	
 	public abstract void attack();
+	
 }
