@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import com.teamcriminals.Character.*;
 
 import com.teamcriminals.Game.GamePanel;
 
@@ -58,15 +59,21 @@ public class SelectState extends GameState {
 		}
 
 		if (k == KeyEvent.VK_ENTER) {
+			
+			CharacterPactory cp = new CharacterPactory();
+			
 			if (currentSelection == 0) {
 				// Caesar «√∑π¿Ã
+				cp.getCharacter(0);
 				
 			} else if (currentSelection == 1) {
+				cp.getCharacter(1);
 				
 			} else if (currentSelection == 2) {
+				cp.getCharacter(2);
 				
 			} else if (currentSelection == 3) {
-				
+				cp.getCharacter(3);
 			}
 		}
 		
