@@ -60,20 +60,20 @@ public class SelectState extends GameState {
 
 		if (k == KeyEvent.VK_ENTER) {
 			
-			CharacterPactory cp = new CharacterPactory();
+			CharacterFactory cf = new CharacterFactory();
 			
 			if (currentSelection == 0) {
 				// Caesar «√∑π¿Ã
-				cp.getCharacter(0);
+				cf.getCharacter(0);
 				
 			} else if (currentSelection == 1) {
-				cp.getCharacter(1);
+				cf.getCharacter(1);
 				
 			} else if (currentSelection == 2) {
-				cp.getCharacter(2);
+				cf.getCharacter(2);
 				
 			} else if (currentSelection == 3) {
-				cp.getCharacter(3);
+				cf.getCharacter(3);
 			}
 		}
 		

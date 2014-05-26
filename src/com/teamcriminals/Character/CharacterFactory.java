@@ -2,7 +2,7 @@ package com.teamcriminals.Character;
 
 import com.teamcriminals.Entity.Character;
 
-public class CharacterPactory {
+public class CharacterFactory {
 
 	//우선 캐릭터 선택해서 그에 맞는 int 값 전달로 구현
 	//나중에 매개변수부분은 고칠 예정
