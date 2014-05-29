@@ -37,8 +37,8 @@ public class SelectState extends GameState {
 				g.setColor(Color.BLACK);
 			}
 			
-			// g.drawLine(GamePanel.WIDTH/2, 0, GamePanel.WIDTH/2, GamePanel.HEIGHT); Áß¾Ó¼±
-			g.setFont(new Font("Times", Font.PLAIN, 60));
+			//g.drawLine(GamePanel.WIDTH/2, 0, GamePanel.WIDTH/2, GamePanel.HEIGHT);
+			g.setFont(new Font("Bauhaus 93", Font.PLAIN, 60));
 			g.drawString(options[i], 40 + i*150, 200 + i*150);
 		}
 

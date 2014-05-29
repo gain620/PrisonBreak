@@ -12,7 +12,7 @@ public class MenuState extends GameState{
 	private Background bg;
 	
 	private int currentChoice = 0;
-	private String[] options = { "Start" , "Options" , "Quit"};
+	private String[] options = { "Start" , "Option" , "Quit"};
 	
 	private Color titleColor;
 	private Font titleFont;
@@ -26,10 +26,10 @@ public class MenuState extends GameState{
 			
 			bg = new Background("/Background/prisonbreakMenu.gif");
 			
-			titleColor = new Color(128, 0, 0);
-			titleFont = new Font("Century Gothic",Font.BOLD, 60);
+			titleColor = new Color(100, 0, 150);
+			titleFont = new Font("Bauhaus 93",Font.BOLD, 60);
 			
-			font = new Font("Arial", Font.PLAIN, 25);
+			font = new Font("Bauhaus 93", Font.PLAIN, 30);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -54,7 +54,7 @@ public class MenuState extends GameState{
 		// 타이틀
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("Prison Break", 340, 210);
+		g.drawString("Prison Break", 330, 210);
 		
 		// 메뉴 선택
 		g.setFont(font);
