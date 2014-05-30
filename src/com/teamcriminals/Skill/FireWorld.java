@@ -13,7 +13,7 @@ public class FireWorld extends C {
 			/*
 			 * 공격부분 구현
 			 */
-
+			setBomb(getBomb() - 1);
 		}
 		else {
 			return;
