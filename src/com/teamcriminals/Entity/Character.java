@@ -169,41 +169,41 @@ public class Character extends MapObject {
 }
 */
 
-//Ä³¸¯ÅÍ Å¬·¡½º Ãß»óÅ¬·¡½º
+//Ä³ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½Å¬ï¿½ï¿½ï¿½ï¿½
 
 public abstract class Character {
 
-	//Ä³¸¯ÅÍÀÇ º¯¼öµé
+	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int health; //HP
 	private int maxHealth; //max HP
-	private int life; //¸ñ¼û
-	private int speed; //¼Óµµ
-	private int bomb; //ÃÊ±â±Ã±Ø±â¼³Á¤°¹¼ö
-	private boolean knuckback; //µÚ·Î¹Ð¸®´Â°Í
-	private boolean jumping; //Á¡ÇÁ
+	private int life; //ï¿½ï¿½ï¿½
+	private int speed; //ï¿½Óµï¿½
+	private int bomb; //ï¿½Ê±ï¿½Ã±Ø±â¼³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private boolean knuckback; //ï¿½Ú·Î¹Ð¸ï¿½ï¿½Â°ï¿½
+	private boolean jumping; //ï¿½ï¿½ï¿½ï¿½
 	
-	//Ä³¸¯ÅÍ º¯¼öÀÇ getterµé setter´Â changeState·Î °¡´É
+	//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ getterï¿½ï¿½ setterï¿½ï¿½ changeStateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int getHealth(){return this.health;}
 	public int getLife(){return this.life;}
 	public int getSpeed(){return this.speed;}
 	public int getBomb(){return this.bomb;}
 	
-	//Ä³¸¯ÅÍÀÇ ½ºÅ³ ¸Þ¼Òµåµé
+	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½Þ¼Òµï¿½ï¿½
 	public abstract void skillZ();
 	public abstract void skillX();
 	public abstract void skillC();
 	
-	//Çàµ¿ÈÄ º¯È­·® ¹ÝÈ¯ - ¸ó½ºÅÍ¿Í ºÎµúÈ÷°Å³ª Å°ÀÔ·Â¿¡µû¶ó º¯È­ ¿ì¼± intÁÖ´Â°É·Î ±¸Çö ¼öÁ¤ÀÌÇÊ¿äÇÑºÎºÐ
-	//dx, dy°¡ ÀÖ¾î¾ß Á¤È®ÇÑ ÀÌµ¿À» È¿°ú¸¦ ÁÙ¼öÀÖÀ»µí
+	//ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½È¯ - ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½Å³ï¿½ Å°ï¿½Ô·Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ì¼± intï¿½Ö´Â°É·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ÑºÎºï¿½
+	//dx, dyï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public int action(){
 		
 		if(this.knuckback){
-			System.out.println("³Ë¹éÈ¿°ú ÀÏ¾î³­´Ù");
+			System.out.println("ï¿½Ë¹ï¿½È¿ï¿½ï¿½ ï¿½Ï¾î³­ï¿½ï¿½");
 			return -2;
 		}
 		else if(this.jumping){
-			System.out.println("Á¡ÇÁÈ¿°ú ÀÏ¾î³­´Ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½ ï¿½Ï¾î³­ï¿½ï¿½");
 			return 20;
 		}
 		else{
@@ -213,9 +213,9 @@ public abstract class Character {
 	
 	
 	
-	//Ä³¸¯ÅÍÀÇ ¼³Á¤ ¸Þ¼Òµåµé
+	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½ï¿½
 	
-	//½ÃÀÛ½Ã ¼³Á¤ºÎºÐ
+	//ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½
 	public void start(int h, int mh, int l, int sp, int bo){
 		this.health=h;
 		this.maxHealth=mh;
@@ -225,7 +225,7 @@ public abstract class Character {
 		
 	}
 	
-	//»óÅÂº¯È­ºÎºÐ setterÀÇ ¿ªÈ°µµ °¡´É
+	//ï¿½ï¿½ï¿½Âºï¿½È­ï¿½Îºï¿½ setterï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void changeState(int health, int life, int speed, int bomb){
 		this.health=health;
 		this.life=life;
@@ -233,20 +233,20 @@ public abstract class Character {
 		this.bomb=bomb;
 	}
 	
-	//life°¨¼Ò, Ã¼·Â´Ù½Ã Ç®ÇÇµÇ°Ô Àç¼³Á¤
+	//lifeï¿½ï¿½ï¿½ï¿½, Ã¼ï¿½Â´Ù½ï¿½ Ç®ï¿½ÇµÇ°ï¿½ ï¿½ç¼³ï¿½ï¿½
 	public void reset(){
 		this.health=this.maxHealth;
 		this.life--;
 	}
 	
-	//Á×¾úÀ»°æ¿ì
+	//ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void dead(){
-		//life´Â ³²¾Ò°í health°¡ 0 µÇ¸é ¸®¼ÂµÈ´Ù. life, health¸ðµÎ 0ÀÌ¸é °ÔÀÓÁ¾·á
+		//lifeï¿½ï¿½ ï¿½ï¿½ï¿½Ò°ï¿½ healthï¿½ï¿½ 0 ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ÂµÈ´ï¿½. life, healthï¿½ï¿½ï¿½ 0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(health==0 && life!=0){
 			this.reset();
 		}
 		else if(health==0 && life==0){
-			System.out.println("°ÔÀÓ Á¾·á");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 	

@@ -1,41 +1,43 @@
 package com.teamcriminals.Entity;
 
 import java.awt.*;
+
+import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.TileMap.TileMap;
 
 public abstract class MapObject {
 		
-	// À§Ä¡, º¤ÅÍ Á¤º¸
+	// ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	protected double x, y;
 	protected double dx, dy;
 	
-	// Å©±â Á¤º¸
+	// Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	protected int width, height;
 	
-	// Å¸ÀÏ Á¤º¸
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	protected TileMap tileMap;
 	protected int tileSize;
 	protected double xMap , yMap;
 	
-	// Ãæµ¹ Á¤º¸
+	// ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
 	protected int cWidth, cHeight;
 	protected int currRow, currCol;
 	protected double xDest, yDest;
 	protected double xTemp, yTemp;
 	protected boolean topLeft, topRight, bottomLeft, bottomRight;
 	
-	// ¸ð¼Ç
+	// ï¿½ï¿½ï¿½
 	protected Motion motion;
 	protected int currentMotion;
 	protected int prviousMotion;
 	protected boolean faceRight;
 	
-	// ÀÌµ¿ Á¤º¸
+	// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 	protected boolean left, right;
 	protected boolean up, down;
 	protected boolean jump , fall;
 	
-	// ¹°¸® Á¤º¸
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	protected double moveSpeed;
 	protected double maxSpeed;
 	protected double stopSpeed;
@@ -50,7 +52,7 @@ public abstract class MapObject {
 		tileSize = tm.getTileSize();
 	}
 	
-	public boolean intere
+	//public boolean intere
 	
 	
 }
