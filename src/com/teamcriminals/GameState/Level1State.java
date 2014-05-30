@@ -18,8 +18,8 @@ public class Level1State extends GameState {
 	public void init() {
 		
 		tilemap = new TileMap(30);
-		tilemap.loadTiles("/Tilesets/.gif");
-		tilemap.loadMap("/Maps/");
+		tilemap.loadTiles("Tilesets/testtileset.gif");
+		tilemap.loadMap("Maps/level1.map");
 		tilemap.setPosition(0, 0);
 		
 	}
@@ -31,7 +31,7 @@ public class Level1State extends GameState {
 	public void draw(Graphics2D g) {
 		
 		// 화면 정리
-		g.setColor(Color.black);
+		g.setColor(Color.RED);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		// 타일맵 draw

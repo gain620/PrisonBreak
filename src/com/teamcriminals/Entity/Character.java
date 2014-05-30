@@ -1,5 +1,7 @@
 package com.teamcriminals.Entity;
 
+import com.teamcriminals.GameState.*;
+
 /*package com.teamcriminals.Entity;
 
 import java.util.ArrayList;
@@ -172,6 +174,8 @@ public class Character extends MapObject {
 //캐릭터 클래스 추상클래스
 
 public abstract class Character {
+	// 캐릭터 선택되었을 때, state 변경해준다
+	protected GameStateManager gsm;
 
 	//캐릭터의 변수들
 	private int health; //HP
@@ -223,6 +227,7 @@ public abstract class Character {
 		this.speed=sp;
 		this.bomb=bo;
 		
+		gsm.setState(GameStateManager.LEVEL1STATE);
 	}
 	
 	//상태변화부분 setter의 역활도 가능

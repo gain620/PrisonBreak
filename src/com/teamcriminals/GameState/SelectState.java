@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import com.teamcriminals.Character.*;
 
+import com.teamcriminals.Character.*;
 import com.teamcriminals.Game.GamePanel;
 
 public class SelectState extends GameState {
+	CharacterFactory cf = new CharacterFactory();
 
 	private String[] options = { "Caesar", "Zero", "Fyro", "Draco" };
 
@@ -58,13 +59,9 @@ public class SelectState extends GameState {
 			}
 		}
 
-		if (k == KeyEvent.VK_ENTER) {
-			
-			CharacterFactory cf = new CharacterFactory();
-			
+		if (k == KeyEvent.VK_ENTER) {			
 			if (currentSelection == 0) {
-				// Caesar «√∑π¿Ã
-				cf.getCharacter(0);
+				gsm.setState(GameStateManager.LEVEL1STATE);
 				
 			} else if (currentSelection == 1) {
 				cf.getCharacter(1);
