@@ -227,7 +227,6 @@ public abstract class Character {
 		this.speed=sp;
 		this.bomb=bo;
 		
-		gsm.setState(GameStateManager.LEVEL1STATE);
 	}
 	
 	//상태변화부분 setter의 역활도 가능

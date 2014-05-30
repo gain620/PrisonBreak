@@ -9,7 +9,6 @@ import com.teamcriminals.Character.*;
 import com.teamcriminals.Game.GamePanel;
 
 public class SelectState extends GameState {
-	CharacterFactory cf = new CharacterFactory();
 
 	private String[] options = { "Caesar", "Zero", "Fyro", "Draco" };
 
@@ -64,13 +63,16 @@ public class SelectState extends GameState {
 				gsm.setState(GameStateManager.LEVEL1STATE);
 				
 			} else if (currentSelection == 1) {
-				cf.getCharacter(1);
+
+				gsm.setState(GameStateManager.LEVEL1STATE);
 				
 			} else if (currentSelection == 2) {
-				cf.getCharacter(2);
+
+				gsm.setState(GameStateManager.LEVEL1STATE);
 				
 			} else if (currentSelection == 3) {
-				cf.getCharacter(3);
+
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			}
 		}
 		

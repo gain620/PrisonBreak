@@ -3,17 +3,27 @@ package com.teamcriminals.GameState;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import com.teamcriminals.Character.CharacterFactory;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Level1State extends GameState {
+	CharacterFactory cf = new CharacterFactory();
 
 	private TileMap tilemap;
+
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
 		init();
 	}
+	
+	
+	/* Å×½ºÆ®
+	public void setCharacterState() {
+		cf.getCharacter(characterNum);
+		
+	}*/
 
 	public void init() {
 		
@@ -21,6 +31,7 @@ public class Level1State extends GameState {
 		tilemap.loadTiles("Tilesets/testtileset.gif");
 		tilemap.loadMap("Maps/level1.map");
 		tilemap.setPosition(0, 0);
+		//setCharacterState();
 		
 	}
 
