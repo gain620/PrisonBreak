@@ -4,20 +4,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+
 import com.teamcriminals.GameState.GameStateManager;
 
-
 public class GamePanel extends JPanel implements Runnable, KeyListener {
-	// ï¿½ï¿½ï¿½ï¿½~
+	// °ü½À~
 	private static final long serialVersionUID = 1L;
 
-	// have to change the display resolution
-	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// È­¸é »çÀÌÁî ¼³Á¤
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
 	Dimension dimension = new Dimension(WIDTH, HEIGHT);
 
-	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, FPS ï¿½ï¿½ï¿½ï¿½
+	// ¾²·¹µå, FPS ¼³Á¤
 	private Thread thread;
 	private boolean isRunning = false;
 	private int FPS = 60;
@@ -27,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	private BufferedImage image;
 	private Graphics2D g;
 
-	// ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// °ÔÀÓ½ºÅ×ÀÌÆ®¸Å´ÏÀú °ü·Ã º¯¼ö ¼³Á¤
 	private GameStateManager gsm;
 
 	public GamePanel() {
@@ -65,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		long elapsed;
 		long wait;
 
-		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		// °ÔÀÓ ·çÇÁ ½ÃÀÛ
 		while (isRunning) {
 
 			start = System.nanoTime();

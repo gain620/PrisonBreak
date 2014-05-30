@@ -10,18 +10,18 @@ import com.teamcriminals.Game.GamePanel;
 
 public class TileMap {
 
-	// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+	// À§Ä¡ ¼³Á¤
 	private double x;
 	private double y;
 
-	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// °æ°è ¼³Á¤
 	private int xMin, xMax;
 	private int yMin, yMax;
 
-	// Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// Ä«¸Þ¶ó ¿òÁ÷ÀÓ
 	private double tween;
 
-	// ï¿½ï¿½ ï¿½è¿­ & Å©ï¿½ï¿½
+	// ¸Ê ¹è¿­ & Å©±â
 	private int[][] map;
 	private int tileSize;
 	private int numRows;
@@ -29,12 +29,12 @@ public class TileMap {
 	private int width;
 	private int height;
 
-	// Å¸ï¿½Ï¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// Å¸ÀÏ¼Â Á¤º¸
 	private BufferedImage tileset;
 	private int numTilesAcross;
 	private Tile[][] tiles;
 
-	// ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Í¸ï¿½ ï¿½×¸ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½È­
+	// º¸ÀÌ´Â °Í¸¸ ±×¸®°Ô! ÃÖÀûÈ­
 	private int rowOffset;
 	private int colOffset;
 	private int numRowsToDraw;
@@ -44,10 +44,10 @@ public class TileMap {
 		this.tileSize = tileSize;
 		numRowsToDraw = GamePanel.HEIGHT / tileSize + 2;
 		numColsToDraw = GamePanel.WIDTH / tileSize + 2;
-		tween = 0.06;
+		tween = 0.07;
 	}
 
-	// Å¸ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+	// Å¸ÀÏ ºÒ·¯¿À±â
 	public void loadTiles(String s) {
 		try {
 			
@@ -57,7 +57,6 @@ public class TileMap {
 			tiles = new Tile[2][numTilesAcross];
 			
 			BufferedImage subImage;
-			
 			for(int col = 0; col< numTilesAcross ; col ++) {
 				subImage = tileset.getSubimage(col * tileSize, 0, tileSize, tileSize);
 				
@@ -66,14 +65,15 @@ public class TileMap {
 				subImage = tileset.getSubimage(col * tileSize, tileSize, tileSize, tileSize);
 				
 				tiles[1][col] = new Tile(subImage, Tile.BLOCK);
-			}	
+			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 
-	// ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ¸Ê ºÒ·¯¿À±â
 	public void loadMap(String s) {
 
 		try {

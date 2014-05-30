@@ -7,37 +7,37 @@ import com.teamcriminals.TileMap.TileMap;
 
 public abstract class MapObject {
 		
-	// ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// À§Ä¡, º¤ÅÍ Á¤º¸
 	protected double x, y;
 	protected double dx, dy;
 	
-	// Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// Å©±â Á¤º¸
 	protected int width, height;
 	
-	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// Å¸ÀÏ Á¤º¸
 	protected TileMap tileMap;
 	protected int tileSize;
 	protected double xMap , yMap;
 	
-	// ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
+	// Ãæµ¹ Á¤º¸
 	protected int cWidth, cHeight;
 	protected int currRow, currCol;
 	protected double xDest, yDest;
 	protected double xTemp, yTemp;
 	protected boolean topLeft, topRight, bottomLeft, bottomRight;
 	
-	// ï¿½ï¿½ï¿½
+	// ¸ð¼Ç
 	protected Motion motion;
 	protected int currentMotion;
 	protected int prviousMotion;
 	protected boolean faceRight;
 	
-	// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ÀÌµ¿ Á¤º¸
 	protected boolean left, right;
 	protected boolean up, down;
 	protected boolean jump , fall;
 	
-	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ¹°¸® Á¤º¸
 	protected double moveSpeed;
 	protected double maxSpeed;
 	protected double stopSpeed;

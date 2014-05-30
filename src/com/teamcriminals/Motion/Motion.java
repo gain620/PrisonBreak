@@ -7,7 +7,6 @@ public class Motion {
 	private BufferedImage[] frames;
 	private int currentFrame;
 	
-	private int count;
 	private long startTime;
 	private long delay;
 	
@@ -34,17 +33,9 @@ public class Motion {
 	
 	public void update() {
 		
-		if(delay == -1){
-			return;
-		}
 		
-		count++;
 		
-		if(count == delay) {
-			currentFrame++;
-			count = 0;
 		
-		}
 		
 		
 	}
