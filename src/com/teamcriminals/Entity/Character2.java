@@ -22,6 +22,12 @@ public abstract class Character2 extends MapObject {
 	protected boolean knockback;
 	protected boolean flinching;
 
+
+	/*
+	 *  Sprite 관련 속성도 구현해야함
+	 */
+	
+	
 	// 생성자
 	public Character2(TileMap tm) {
 	
@@ -47,48 +53,34 @@ public abstract class Character2 extends MapObject {
 	public boolean isFlinching()	{ return this.flinching;	}
 	
 	// Set 메소드
-	public void setHealth(int health) {
-		this.health = health;
+	public void setHealth(int health)				{ this.health = health; }
+	public void setMaxHealth(int maxHealth)			{ this.maxHealth = maxHealth; }
+	public void setLife(int life)					{ this.life = life; }
+	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;	}
+	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount; }
+	public void setSkillZ(Z z)						{ this.z = z; }	
+	public void setSkillX(X x)						{ this.x = x; }
+	public void setSkillC(C c)						{ this.c = c; }
+	public void setKnokback(boolean b)				{ this.knockback = b; }
+	public void setFlinching(boolean b)				{ this.flinching = b; }
+	public void setAttacking() {
+		
+		if(knockback) return;
+		attacking = true;
+		
+	}
+	public void setJumping() {
+		
+		if(knockback) return;
+		jump = true;
+		
 	}
 	
-	public void setMaxHealth(int maxHealth)	{
-		this.maxHealth = maxHealth;
-	}
-	public void setLife(int life) {
-		this.life = life;
-	}
 	
-	public void setJump(int jumpHeight) {
-		this.jumpHeight = jumpHeight;
-	}
+	/*
+	 *  Sprite 관련 메소드 구현해야함
+	 */
 	
-	public void setFlinchCount(long flinchCount) {
-		this.flinchCount = flinchCount;
-	}
-	
-	public void setSkillZ(Z z) {
-		this.z = z;
-	}
-	
-	public void setSkillX(X x) {
-		this.x = x;
-	}
-	
-	public void setSkillC(C c) {
-		this.c = c;
-	}
-	
-	public void setAttacking(boolean b) {
-		this.attacking = b;
-	}
-	
-	public void setKnokback(boolean b) {
-		this.knockback = b;
-	}
-	
-	public void setFlinching(boolean b) {
-		this.flinching = b;
-	}
 	
 	// 공격당할 경우
 	public void hit(int damage) {
@@ -136,6 +128,14 @@ public abstract class Character2 extends MapObject {
 	
 	}
 	
+	public void dead() {
+		
+		health = 0;
+		life--;
+		stop();
+	
+	}
+	
 	protected void getNextPosition() {
 		
 		if(knockback) {
@@ -148,6 +148,8 @@ public abstract class Character2 extends MapObject {
 			return;
 		
 		}
+		
+		// double maxSpeed = this.maxSpeed; 이것도 왜있는걸까?
 		
 		// 좌우이동
 		if(left) {
