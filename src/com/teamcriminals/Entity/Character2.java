@@ -1,6 +1,13 @@
 package com.teamcriminals.Entity;
 
-import com.teamcriminals.Skill.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+import com.teamcriminals.Skill.C;
+import com.teamcriminals.Skill.X;
+import com.teamcriminals.Skill.Z;
 import com.teamcriminals.TileMap.TileMap;
 
 public abstract class Character2 extends MapObject {
@@ -23,9 +30,19 @@ public abstract class Character2 extends MapObject {
 	protected boolean flinching;
 
 
-	/*
-	 *  Sprite 관련 속성도 구현해야함
-	 */
+	// Motion 관련
+	private ArrayList<BufferedImage[]> sprites;
+	private final int[] numFrames = {
+			2 ,  8 , 1 , 2, 4 , 4, 1
+	};
+	// Motion 리스트
+	private static final int IDLE = 0;
+	private static final int WALK = 1;
+	private static final int JUMP = 2;
+	private static final int FALL = 3;
+	private static final int ZATTACK = 4;
+	private static final int XATTACK = 5;
+	private static final int CATTACK = 6;
 	
 	
 	// 생성자
@@ -33,9 +50,33 @@ public abstract class Character2 extends MapObject {
 	
 		super(tm);
 
-		/*
-		 *  추가 구현부분
-		 */
+		width = 30;
+		height = 30;
+		cWidth = 20;
+		cHeight = 20;
+		
+		moveSpeed = 0.3;
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
+		maxFallSpeed = 4.0;
+		jumpStart = -4.8;
+		stopJumpSpeed = 0.3;
+		
+		faceRight = true;
+		
+		// sprites 로드
+		try {
+			
+			BufferedImage spritesheet = ImageIO.read(
+					getClass().getResourceAsStream(
+							"/Sprites/Character/.gif"
+							)
+							);
+			for(int i = 0; i<;i++) {
+				BufferedImage[numFrames[i]];
+				for
+			}
+		}
 		
 	}
 

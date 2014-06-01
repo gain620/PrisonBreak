@@ -2,8 +2,9 @@ package com.teamcriminals.Character;
 
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Entity.Character2;
 
-public class Zero extends Character {
+public class Zero extends Character2 {
 	
 	//»ı¼ºÀÚ
 			public Zero(int h, int mh, int l, int sp, int bo){

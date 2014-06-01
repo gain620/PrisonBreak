@@ -12,7 +12,7 @@ public class Motion {
 	
 	private boolean playedOnce;
 	
-	public void Motion() {
+	public Motion() {
 		playedOnce = false;
 	}
 	
@@ -33,12 +33,31 @@ public class Motion {
 	
 	public void update() {
 		
+		if(delay == -1) return;
 		
-		
-		
+		long elapsed = (System.nanoTime() - startTime) / 1000000;
+		if(elapsed> delay) {
+			currentFrame ++;
+			startTime = System.nanoTime();
+		}
+		if(currentFrame == frames.length) {
+			currentFrame = 0;
+			playedOnce = true;
+		}
 		
 		
 	}
 	
-
+	public int getFrmae() {
+		return currentFrame;
+	}
+	
+	public BufferedImage getImage() {
+		return frames[currentFrame];
+	}
+	
+	public boolean hasPlayedOnce() {
+		return playedOnce;
+	}
+	
 }
