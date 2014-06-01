@@ -7,6 +7,7 @@ public class GameStateManager {
 	
 	private ArrayList<GameState> gameStates;
 	private int currentState;
+	private int currentCharacter;
 	
 	public static final int MENUSTATE = 0;
 	public static final int SELECTSTATE = 1;
@@ -27,7 +28,6 @@ public class GameStateManager {
 		gameStates.add(new SelectState(this));
 		gameStates.add(new Level1State(this));
 		
-
 	}
 	
 	public void setState(int state) {
@@ -35,6 +35,13 @@ public class GameStateManager {
 		gameStates.get(currentState).init();
 	}
 	
+	public int getCharacter() {
+		return currentCharacter;
+	}
+	
+	public void setCharacter(int selection) {
+		currentCharacter = selection;
+	}
 	
 	public void update(){
 		gameStates.get(currentState).update();

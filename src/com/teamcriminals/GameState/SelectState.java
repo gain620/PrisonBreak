@@ -70,19 +70,25 @@ public class SelectState extends GameState {
 
 		if (k == KeyEvent.VK_ENTER) {			
 			if (currentSelection == 0) {
+				
 				gsm.setState(GameStateManager.LEVEL1STATE);
+				gsm.setCharacter(currentSelection);
 				
 			} else if (currentSelection == 1) {
 
 				gsm.setState(GameStateManager.LEVEL1STATE);
+				gsm.setCharacter(currentSelection);
 				
 			} else if (currentSelection == 2) {
 
 				gsm.setState(GameStateManager.LEVEL1STATE);
+				gsm.setCharacter(currentSelection);
 				
 			} else if (currentSelection == 3) {
 
 				gsm.setState(GameStateManager.LEVEL1STATE);
+				gsm.setCharacter(currentSelection);
+				
 			}
 		}
 		

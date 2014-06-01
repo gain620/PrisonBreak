@@ -5,17 +5,18 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import com.teamcriminals.Character.CharacterFactory;
-import com.teamcriminals.Entity.TestVerCharacter;
+import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Level1State extends GameState {
-	// CharacterFactory cf = new CharacterFactory();
+	
+	CharacterFactory cf = new CharacterFactory();
 
 	private TileMap tilemap;
 	private Background bg;
-	private TestVerCharacter character;
+	private Character character;
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -23,9 +24,9 @@ public class Level1State extends GameState {
 	}
 
 	/*
-	 * 테스트 public void setCharacterState() { cf.getCharacter(characterNum);
+	 * 테스트 public void setCharacterState() { cf.getCharacter(characterNum); }
 	 * 
-	 * }
+	 * 
 	 */
 
 	public void init() {
@@ -37,7 +38,7 @@ public class Level1State extends GameState {
 		//tilemap.setPosition(0, 0);
 		//tilemap.setTween(1);
 
-		//character = new TestVerCharacter(tilemap);
+		//character = cf.setCharacter(gsm.getCharacter(), tilemap);
 		//character.setPosition(100, 100);
 
 	}
@@ -73,9 +74,9 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) character.setUp(true);
 		if(k == KeyEvent.VK_DOWN) character.setDown(true);
 		if(k == KeyEvent.VK_S) character.setJump(true);
-		if(k == KeyEvent.VK_D) character.setGliding(true);
-		if(k == KeyEvent.VK_Z) character.setScratching();
-		if(k == KeyEvent.VK_X) character.setFiring();
+		//if(k == KeyEvent.VK_D) character.setGliding(true);
+		//if(k == KeyEvent.VK_Z) character.setScratching();
+		//if(k == KeyEvent.VK_X) character.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 
 	}
@@ -86,7 +87,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) character.setUp(false);
 		if(k == KeyEvent.VK_DOWN) character.setDown(false);
 		if(k == KeyEvent.VK_W) character.setJump(false);
-		if(k == KeyEvent.VK_E) character.setGliding(false);
+		//if(k == KeyEvent.VK_E) character.setGliding(false);
 	}
 
 }

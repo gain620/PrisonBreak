@@ -1,27 +1,33 @@
 package com.teamcriminals.Character;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.TileMap.TileMap;
 
 public class Fyro extends Character {
 	
-	//생성자
-			public Fyro(int h, int mh, int l, int sp, int bo){
-				super.start(h, mh, l, sp, bo); //super의 start를 이용
-			}
-			
-	//파이로의 스킬사용 우선 콘솔로구현 나중에 스킬 클래스 가지게되면 그거 사용
-			
-			public void skillZ(){
-				System.out.println("파이로의 스킬 Z사용");
-			}
-			
-			public void skillX(){
-				System.out.println("파이로의 스킬 X사용");
-			}
-			
-			public void skillC(){
-				System.out.println("파이로의 스킬 C사용");
-			}
+	public Fyro(TileMap tm) {
+		
+		super(tm);
+		
+		/*
+		 *  추가 구현
+		 */
+		
+	}
 
+	@Override
+	public void init() {
+		
+	}
+
+	@Override
+	public void update() {
+		
+	}
+
+	@Override
+	public void draw() {
+		
+	}
 
 }

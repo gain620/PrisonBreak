@@ -1,30 +1,33 @@
 package com.teamcriminals.Character;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.TileMap.TileMap;
 
 public class Draco extends Character{
 	
-	//생성자
-		public Draco(int h, int mh, int l, int sp, int bo){
-			super.start(h, mh, l, sp, bo); //super의 start를 이용
-		}
+	public Draco(TileMap tm) {
 		
-	//드라코의 스킬사용 우선 콘솔로구현 나중에 스킬 클래스 가지게되면 그거 사용
+		super(tm);
 		
-		public void skillZ(){
-			System.out.println("드라코의 스킬 Z사용");
-		}
+		/*
+		 *  추가 구현
+		 */
 		
-		public void skillX(){
-			System.out.println("드라코의 스킬 X사용");
-		}
+	}
+
+	@Override
+	public void init() {
 		
-		public void skillC(){
-			System.out.println("드라코의 스킬 C사용");
-		}
+	}
+
+	@Override
+	public void update() {
 		
-		public void kk(){
-			
-		}
+	}
+
+	@Override
+	public void draw() {
+		
+	}
 
 }
