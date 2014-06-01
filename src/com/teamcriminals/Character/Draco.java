@@ -1,16 +1,23 @@
 package com.teamcriminals.Character;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.TileMap.TileMap;
 
 public class Draco extends Character{
 	
-	//생성자
+	/*생성자
 		public Draco(int h, int mh, int l, int sp, int bo){
 			super.start(h, mh, l, sp, bo); //super의 start를 이용
 		}
+		*/
 		
 	//드라코의 스킬사용 우선 콘솔로구현 나중에 스킬 클래스 가지게되면 그거 사용
 		
+		public Draco(TileMap tm) {
+		super(tm);
+		// TODO Auto-generated constructor stub
+	}
+
 		public void skillZ(){
 			System.out.println("드라코의 스킬 Z사용");
 		}
@@ -24,6 +31,24 @@ public class Draco extends Character{
 		}
 		
 		public void kk(){
+			
+		}
+
+		@Override
+		public void init() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void update() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void draw() {
+			// TODO Auto-generated method stub
 			
 		}
 
