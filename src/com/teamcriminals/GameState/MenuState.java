@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 
 public class MenuState extends GameState{
@@ -14,9 +15,6 @@ public class MenuState extends GameState{
 	private int currentChoice = 0;
 	private String[] options = { "Start" , "Option" , "Quit"};
 	
-	private Color titleColor;
-	private Font titleFont;
-	
 	private Font font;
 	
 	public MenuState(GameStateManager gsm){
@@ -24,12 +22,9 @@ public class MenuState extends GameState{
 		
 		try {
 			
-			bg = new Background("/Background/prisonbreakMenu.gif", 0);
+			bg = new Background("/Background/prisonbreakMenu.jpg", 0);
 			
-			titleColor = new Color(100, 0, 150);
-			titleFont = new Font("Bauhaus 93",Font.BOLD, 60);
-			
-			font = new Font("Bauhaus 93", Font.PLAIN, 30);
+			font = new Font("Rosewood Std Regular", Font.PLAIN, 30);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -51,11 +46,6 @@ public class MenuState extends GameState{
 		// 배경 그려주기
 		bg.draw(g);
 		
-		// 타이틀
-		g.setColor(titleColor);
-		g.setFont(titleFont);
-		g.drawString("Prison Break", 330, 210);
-		
 		// 메뉴 선택
 		g.setFont(font);
 		for(int i = 0; i < options.length; i++) {
@@ -63,9 +53,9 @@ public class MenuState extends GameState{
 				g.setColor(Color.RED);
 			}
 			else {
-				g.setColor(Color.BLACK);
+				g.setColor(Color.WHITE);
 			}
-			g.drawString(options[i], 480, 540 + i * 50);
+			g.drawString(options[i], GamePanel.WIDTH/2 - 40, 320 + i * 40);
 		}
 	}
 	

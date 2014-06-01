@@ -7,8 +7,11 @@ import java.awt.event.KeyEvent;
 
 import com.teamcriminals.Character.*;
 import com.teamcriminals.Game.GamePanel;
+import com.teamcriminals.TileMap.Background;
 
 public class SelectState extends GameState {
+	
+	private Background bg;
 
 	private String[] options = { "Caesar", "Zero", "Fyro", "Draco" };
 
@@ -16,10 +19,11 @@ public class SelectState extends GameState {
 
 	public SelectState(GameStateManager gsm) {
 		this.gsm = gsm;
+		init();
 	}
 
 	public void init() {
-
+		bg = new Background("/Background/menuState.png",0);
 	}
 
 	public void update() {
@@ -27,9 +31,11 @@ public class SelectState extends GameState {
 	}
 
 	public void draw(Graphics2D g) {
-		
+		//화면정리(굳이 필요한 코드는 아님!~)
 		g.setColor(new Color(250,250,250));
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		
+		bg.draw(g);
 		
 		for(int i = 0; i < options.length;i++){
 			if(i == currentSelection){
@@ -39,8 +45,12 @@ public class SelectState extends GameState {
 			}
 			
 			//g.drawLine(GamePanel.WIDTH/2, 0, GamePanel.WIDTH/2, GamePanel.HEIGHT);
-			g.setFont(new Font("Bauhaus 93", Font.PLAIN, 60));
-			g.drawString(options[i], 40 + i*150, 200 + i*150);
+			g.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 40));
+			if(i==0){
+				g.drawString(options[i], 10, 430);
+				continue;
+			}
+			g.drawString(options[i], 30 + i * 155, 430);
 		}
 
 	}

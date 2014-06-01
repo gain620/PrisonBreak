@@ -30,11 +30,12 @@ public class Level1State extends GameState {
 
 	public void init() {
 
+		bg = new Background("/Background/Stage1.png", 0);
 		tilemap = new TileMap(30);
-		tilemap.loadTiles("/Tilesets/Stage1Tileset.png");
-		tilemap.loadMap("/Maps/Stage1.map");
-		tilemap.setPosition(0, 0);
-		tilemap.setTween(1);
+		//tilemap.loadTiles("/Tilesets/Stage1Tileset.png");
+		//tilemap.loadMap("/Maps/Stage1.map");
+		//tilemap.setPosition(0, 0);
+		//tilemap.setTween(1);
 
 		//character = new TestVerCharacter(tilemap);
 		//character.setPosition(100, 100);
@@ -57,7 +58,7 @@ public class Level1State extends GameState {
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		// 백그라운드 draw
-		//bg.draw(g);
+		bg.draw(g);
 
 		// 타일맵 draw
 		tilemap.draw(g);
