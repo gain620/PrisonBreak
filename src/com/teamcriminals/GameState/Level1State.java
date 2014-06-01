@@ -31,39 +31,39 @@ public class Level1State extends GameState {
 	public void init() {
 
 		tilemap = new TileMap(30);
-		tilemap.loadTiles("Tilesets/testtileset.gif");
-		tilemap.loadMap("Maps/level1.map");
+		tilemap.loadTiles("/Tilesets/Stage1Tileset.png");
+		tilemap.loadMap("/Maps/Stage1.map");
 		tilemap.setPosition(0, 0);
 		tilemap.setTween(1);
 
-		character = new TestVerCharacter(tilemap);
-		character.setPosition(100, 100);
+		//character = new TestVerCharacter(tilemap);
+		//character.setPosition(100, 100);
 
 	}
 
 	public void update() {
 
 		// 캐릭터 업데이트
-		character.update();
-		tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
-				GamePanel.HEIGHT / 2 - character.getY());
+		//character.update();
+		//tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
+				//GamePanel.HEIGHT / 2 - character.getY());
 
 	}
 
 	public void draw(Graphics2D g) {
 
 		// 화면 정리
-		g.setColor(Color.RED);
+		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		// 백그라운드 draw
-		bg.draw(g);
+		//bg.draw(g);
 
 		// 타일맵 draw
 		tilemap.draw(g);
 		
 		// 캐릭터 draw
-		character.draw(g);
+		//character.draw(g);
 	}
 
 	public void keyPressed(int k) {
@@ -75,6 +75,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_D) character.setGliding(true);
 		if(k == KeyEvent.VK_Z) character.setScratching();
 		if(k == KeyEvent.VK_X) character.setFiring();
+		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 
 	}
 
