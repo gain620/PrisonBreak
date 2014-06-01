@@ -10,7 +10,7 @@ import com.teamcriminals.Skill.X;
 import com.teamcriminals.Skill.Z;
 import com.teamcriminals.TileMap.TileMap;
 
-public abstract class Character2 extends MapObject {
+public abstract class Character extends MapObject {
 
 	// 캐릭터 속성
 	protected int health;
@@ -33,8 +33,9 @@ public abstract class Character2 extends MapObject {
 	// Motion 관련
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-			2 ,  8 , 1 , 2, 4 , 4, 1
+			2, 8, 1, 2, 4, 4, 1
 	};
+	
 	// Motion 리스트
 	private static final int IDLE = 0;
 	private static final int WALK = 1;
@@ -46,7 +47,7 @@ public abstract class Character2 extends MapObject {
 	
 	
 	// 생성자
-	public Character2(TileMap tm) {
+	public Character(TileMap tm) {
 	
 		super(tm);
 
