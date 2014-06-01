@@ -1,258 +1,278 @@
 package com.teamcriminals.Entity;
 
-import com.teamcriminals.GameState.*;
-
-/*package com.teamcriminals.Entity;
-
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import com.teamcriminals.Audio.AudioPlayer;
+import javax.imageio.ImageIO;
+
+import com.teamcriminals.Skill.C;
+import com.teamcriminals.Skill.X;
+import com.teamcriminals.Skill.Z;
 import com.teamcriminals.TileMap.TileMap;
 
-public class Character extends MapObject {
-   
-   // references
-   private ArrayList<Enemy> enemies;
-   
-   // player stuff
-   private int lives;
-   private int health;
-   private int maxHealth;
-   private int damage;
-   private int chargeDamage;
-   private boolean knockback;
-   private boolean flinching;
-   private long flinchCount;
-   
-   // actions
-   private boolean attacking;
-   
-   // animation actions
-   private static final int IDLE = 0;
-   private static final int WALKING = 1;
-   private static final int ATTACKING = 2;
-   private static final int JUMPING = 3;
-   private static final int FALLING = 4;
-   private static final int KNOCKBACK = 8;
-   private static final int DEAD = 9;
-      
-   public Character(TileMap tm) {
-      
-      super(tm);
-      
-      
-      moveSpeed = 1.6;
-      maxSpeed = 1.6;
-      stopSpeed = 1.6;
-      fallSpeed = 0.15;
-      maxFallSpeed = 4.0;
-      jumpStart = -4.8;
-      stopJumpSpeed = 0.3;
-      
-      damage = 10;
-      chargeDamage = 5;
-      
-      facingRight = true;
-      
-      lives = 3;
-      health = maxHealth = 5;
-               
-   }
-      
+public abstract class Character2 extends MapObject {
 
-   public int getHealth() { return health; }
-   public int getMaxHealth() { return maxHealth; }
-
-   public void setJumping(boolean b) {
-      if(knockback) return;
-      jumping = b;
-   }
-   public void setAttacking() {
-      if(knockback) return;
-      else attacking = true;
-   }
-   
-   public void setDead() {
-      health = 0;
-      stop();
-   }
-   
-   public void setHealth(int i) { health = i; }
-   public void setLives(int i) { lives = i; }
-   public void gainLife() { lives++; }
-   public void loseLife() { lives--; }
-   public int getLives() { return lives; }
-      
-   public void hit(int damage) {
-      if(flinching) return;
-      stop();
-      health -= damage;
-      if(health < 0) health = 0;
-      flinching = true;
-      flinchCount = 0;
-      if(facingRight) dx = -1;
-      else dx = 1;
-      dy = -3;
-      knockback = true;
-      falling = true;
-      jumping = false;
-   }
-   
-   public void reset() {
-      health = maxHealth;
-      facingRight = true;
-      currentAction = -1;
-      stop();
-   }
-   
-   public void stop() {
-      left = right = up = down = flinching = jumping = attacking = false;
-   }
-   
-   private void getNextPosition() {
-      
-      if(knockback) {
-         dy += fallSpeed * 2;
-         if(!falling) knockback = false;
-         return;
-      }
-      
-      double maxSpeed = this.maxSpeed;
-      
-      // movement
-      if(left) {
-         dx -= moveSpeed;
-         if(dx < -maxSpeed) {
-            dx = -maxSpeed;
-         }
-      }
-      else if(right) {
-         dx += moveSpeed;
-         if(dx > maxSpeed) {
-            dx = maxSpeed;
-         }
-      }
-      else {
-         if(dx > 0) {
-            dx -= stopSpeed;
-            if(dx < 0) {
-               dx = 0;
-            }
-         }
-         else if(dx < 0) {
-            dx += stopSpeed;
-            if(dx > 0) {
-               dx = 0;
-            }
-         }
-      }
-      
-      // cannot move while attacking, except in air
-      if(attacking && !(jumping || falling)) {
-         dx = 0;
-      }
-      
-      // jumping
-      if(jumping && !falling) {
-         //sfx.get("jump").play();
-         dy = jumpStart;
-         falling = true;
-         JukeBox.play("playerjump");
-      }
-      
-      // falling
-      if(falling) {
-         dy += fallSpeed;
-         if(dy < 0 && !jumping) dy += stopJumpSpeed;
-         if(dy > maxFallSpeed) dy = maxFallSpeed;
-      }
-      
-   }
-}
-*/
-
-//캐릭터 클래스 추상클래스
-
-public abstract class Character {
-	// 캐릭터 선택되었을 때, state 변경해준다
-	protected GameStateManager gsm;
-
-	//캐릭터의 변수들
-	private int health; //HP
-	private int maxHealth; //max HP
-	private int life; //목숨
-	private int speed; //속도
-	private int bomb; //초기궁극기설정갯수
-	private boolean knuckback; //뒤로밀리는것
-	private boolean jumping; //점프
+	// 캐릭터 속성
+	protected int health;
+	protected int maxHealth;
+	protected int life;
+	protected int jumpHeight;
+	protected long flinchCount;
 	
-	//캐릭터 변수의 getter들 setter는 changeState로 가능
-	public int getHealth(){return this.health;}
-	public int getLife(){return this.life;}
-	public int getSpeed(){return this.speed;}
-	public int getBomb(){return this.bomb;}
+	// 캐릭터 스킬
+	protected Z z;
+	protected X x;
+	protected C c;
 	
-	//캐릭터의 스킬 메소드들
-	public abstract void skillZ();
-	public abstract void skillX();
-	public abstract void skillC();
+	// 캐릭터 상태
+	protected boolean attacking;
+	protected boolean knockback;
+	protected boolean flinching;
+
+
+	// Motion 관련
+	private ArrayList<BufferedImage[]> sprites;
+	private final int[] numFrames = {
+			2 ,  8 , 1 , 2, 4 , 4, 1
+	};
+	// Motion 리스트
+	private static final int IDLE = 0;
+	private static final int WALK = 1;
+	private static final int JUMP = 2;
+	private static final int FALL = 3;
+	private static final int ZATTACK = 4;
+	private static final int XATTACK = 5;
+	private static final int CATTACK = 6;
 	
-	//행동후 변화량 반환 - 몬스터와 부딪히거나 키입력에따라 변화 우선 int주는걸로 구현 수정이필요한부분
-	//dx, dy가 있어야 정확한 이동을 효과를 줄수있을듯
 	
-	public int action(){
+	// 생성자
+	public Character2(TileMap tm) {
+	
+		super(tm);
+
+		width = 30;
+		height = 30;
+		cWidth = 20;
+		cHeight = 20;
 		
-		if(this.knuckback){
-			System.out.println("넉백효과 일어난다");
-			return -2;
+		moveSpeed = 0.3;
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
+		maxFallSpeed = 4.0;
+		jumpStart = -4.8;
+		stopJumpSpeed = 0.3;
+		
+		faceRight = true;
+		
+		
+		// sprites 로드
+		try {
+			
+			BufferedImage spritesheet = ImageIO.read(
+					getClass().getResourceAsStream(
+							"/Sprites/Character/.gif"
+							)
+							);
+			
+			for(int i = 0; i<7;i++) {
+				BufferedImage[] bi = new
+				BufferedImage[numFrames[i]];
+				for(int j = 0;j< numFrames[i];j++) {
+					
+					
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width ,height );
+				}
+				
+				sprites.add(bi);
+
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		else if(this.jumping){
-			System.out.println("점프효과 일어난다");
-			return 20;
-		}
-		else{
-			return 0;
-		}
+		
 	}
+
+	// Get 메소드
+	public int getHealth()			{ return this.health;		}
+	public int getMaxHealth()		{ return this.maxHealth;	}
+	public int getLife()			{ return this.life;			}
+	public int getJumpHeight()		{ return this.jumpHeight;	}
+	public long getFlinchCount()	{ return this.flinchCount;	}
+	public Z getSkillZ()			{ return this.z;			}
+	public X getSkillX()			{ return this.x;			}
+	public C getSkillC()			{ return this.c;			}
+	public boolean isAttacking()	{ return this.attacking;	}
+	public boolean isKnokback()		{ return this.knockback;	}
+	public boolean isFlinching()	{ return this.flinching;	}
 	
-	
-	
-	//캐릭터의 설정 메소드들
-	
-	//시작시 설정부분
-	public void start(int h, int mh, int l, int sp, int bo){
-		this.health=h;
-		this.maxHealth=mh;
-		this.life=l;
-		this.speed=sp;
-		this.bomb=bo;
+	// Set 메소드
+	public void setHealth(int health)				{ this.health = health; }
+	public void setMaxHealth(int maxHealth)			{ this.maxHealth = maxHealth; }
+	public void setLife(int life)					{ this.life = life; }
+	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;	}
+	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount; }
+	public void setSkillZ(Z z)						{ this.z = z; }	
+	public void setSkillX(X x)						{ this.x = x; }
+	public void setSkillC(C c)						{ this.c = c; }
+	public void setKnokback(boolean b)				{ this.knockback = b; }
+	public void setFlinching(boolean b)				{ this.flinching = b; }
+	public void setAttacking() {
+		
+		if(knockback) return;
+		attacking = true;
+		
+	}
+	public void setJumping() {
+		
+		if(knockback) return;
+		jump = true;
 		
 	}
 	
-	//상태변화부분 setter의 역활도 가능
-	public void changeState(int health, int life, int speed, int bomb){
-		this.health=health;
-		this.life=life;
-		this.speed=speed;
-		this.bomb=bomb;
+	
+	/*
+	 *  Sprite 관련 메소드 구현해야함
+	 */
+	
+	
+	// 공격당할 경우
+	public void hit(int damage) {
+		
+		if(flinching)
+			return;
+		
+		stop();
+		
+		health -= damage;
+		
+		if(health < 0)
+			health = 0;
+		
+		flinching = true;
+		flinchCount = 0;	// 이거 왜 있는지 모르겠네
+		
+		if(faceRight)
+			dx = -1;
+		else
+			dx = 1;
+		
+		dy = -3;
+		
+		knockback = true;
+		fall = true;
+		jump = false;
+		
 	}
 	
-	//life감소, 체력다시 풀피되게 재설정
-	public void reset(){
-		this.health=this.maxHealth;
-		this.life--;
+	// 초기화
+	public void reset() {
+		
+		health = maxHealth;
+		faceRight = true;
+		// currentAction = -1; ??
+		stop();
+		
 	}
 	
-	//죽었을경우
-	public void dead(){
-		//life는 남았고 health가 0 되면 리셋된다. life, health모두 0이면 게임종료
-		if(health==0 && life!=0){
-			this.reset();
+	// 모든 행동을 멈추게 함
+	public void stop() {
+		
+		up = down = left = right = flinching = jump = attacking = false;
+	
+	}
+	
+	public void dead() {
+		
+		health = 0;
+		life--;
+		stop();
+	
+	}
+	
+	protected void getNextPosition() {
+		
+		if(knockback) {
+			
+			dy += fallSpeed * 2;
+			
+			if(!fall)
+				knockback = false;
+			
+			return;
+		
 		}
-		else if(health==0 && life==0){
-			System.out.println("게임 종료");
-		}
-	}
+		
+		// double maxSpeed = this.maxSpeed; 이것도 왜있는걸까?
+		
+		// 좌우이동
+		if(left) {
 	
+			dx -= moveSpeed;
+	
+			if(dx < -maxSpeed)
+				dx = -maxSpeed;
+		
+		}
+		else if(right) {
+		
+			dx += moveSpeed;
+			
+			if(dx > maxSpeed) 
+				dx = maxSpeed;
+			
+		}
+		else {
+			if(dx > 0) {
+				
+				dx -= stopSpeed;
+			
+				if(dx < 0)
+					dx = 0;
+				
+			}
+			else if(dx < 0) {
+				
+				dx += stopSpeed;
+				
+				if(dx > 0)
+					dx = 0;
 
+			}
+		}
+		
+		// 공격중일땐 움직일 수 없고 점프나 떨어질때는 가능함
+		if(attacking &&	!(jump || fall)) {
+			
+			dx = 0;
+		
+		}
+		
+				
+		// 점프
+		if(jump && !fall) {
+			
+			dy = jumpStart;
+			fall = true;
+		
+		}
+		
+		// 떨어질 때
+		if(fall) {
+			
+			dy += fallSpeed;
+			
+			if(dy < 0 && !jump) 
+				dy += stopJumpSpeed;
+			
+			
+			if(dy > maxFallSpeed) 
+				dy = maxFallSpeed;
+			
+		}
+	}
+	
+	public abstract void init();
+	public abstract void update();
+	public abstract void draw();
 }
