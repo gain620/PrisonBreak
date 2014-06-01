@@ -24,7 +24,7 @@ public class MenuState extends GameState{
 		
 		try {
 			
-			bg = new Background("/Background/prisonbreakMenu.gif");
+			bg = new Background("/Background/prisonbreakMenu.gif", 0);
 			
 			titleColor = new Color(100, 0, 150);
 			titleFont = new Font("Bauhaus 93",Font.BOLD, 60);

@@ -64,6 +64,7 @@ public abstract class Character2 extends MapObject {
 		
 		faceRight = true;
 		
+		
 		// sprites ·Îµå
 		try {
 			
@@ -72,10 +73,22 @@ public abstract class Character2 extends MapObject {
 							"/Sprites/Character/.gif"
 							)
 							);
-			for(int i = 0; i<;i++) {
+			
+			for(int i = 0; i<7;i++) {
+				BufferedImage[] bi = new
 				BufferedImage[numFrames[i]];
-				for
+				for(int j = 0;j< numFrames[i];j++) {
+					
+					
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width ,height );
+				}
+				
+				sprites.add(bi);
+
 			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 		
 	}

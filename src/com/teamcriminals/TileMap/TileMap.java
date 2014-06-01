@@ -50,27 +50,29 @@ public class TileMap {
 	// 타일 불러오기
 	public void loadTiles(String s) {
 		try {
-			
+
 			tileset = ImageIO.read(getClass().getResourceAsStream(s));
-			
+
 			numTilesAcross = tileset.getWidth() / tileSize;
 			tiles = new Tile[2][numTilesAcross];
-			
+
 			BufferedImage subImage;
-			for(int col = 0; col< numTilesAcross ; col ++) {
-				subImage = tileset.getSubimage(col * tileSize, 0, tileSize, tileSize);
-				
+			for (int col = 0; col < numTilesAcross; col++) {
+				subImage = tileset.getSubimage(col * tileSize, 0, tileSize,
+						tileSize);
+
 				tiles[0][col] = new Tile(subImage, Tile.AIR);
-				
-				subImage = tileset.getSubimage(col * tileSize, tileSize, tileSize, tileSize);
-				
+
+				subImage = tileset.getSubimage(col * tileSize, tileSize,
+						tileSize, tileSize);
+
 				tiles[1][col] = new Tile(subImage, Tile.BLOCK);
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	// 맵 불러오기
@@ -129,6 +131,10 @@ public class TileMap {
 		return tiles[r][c].getType();
 	}
 
+	public void setTween(double d) {
+		tween = d;
+	}
+
 	public void setPosition(double x, double y) {
 
 		this.x += (x - this.x) * tween;
@@ -154,33 +160,27 @@ public class TileMap {
 			y = yMax;
 		}
 	}
-	
-	public void draw(Graphics2D g){
-		
-		for(
-			int row = rowOffset;
-			row < rowOffset + numRowsToDraw;
-			row++) {
-			
-			for(
-				int col = colOffset;
-				col< colOffset + numColsToDraw;
-				col++) {
-				
-				if(col >= numCols) break;
-				
-				if(map[row][col] == 0) continue;
-				
+
+	public void draw(Graphics2D g) {
+
+		for (int row = rowOffset; row < rowOffset + numRowsToDraw; row++) {
+
+			for (int col = colOffset; col < colOffset + numColsToDraw; col++) {
+
+				if (col >= numCols)
+					break;
+
+				if (map[row][col] == 0)
+					continue;
+
 				int rc = map[row][col];
 				int r = rc / numTilesAcross;
 				int c = rc % numTilesAcross;
-				
-				g.drawImage(tiles[r][c].getImage(),
-						(int)x + col * tileSize,
-						(int)y + row * tileSize,
-						null);
+
+				g.drawImage(tiles[r][c].getImage(), (int) x + col * tileSize,
+						(int) y + row * tileSize, null);
 			}
-				
+
 		}
 	}
 
