@@ -24,8 +24,7 @@ public class TestVerCharacter extends MapObject {
 	private boolean firing;
 	private int fireCost;
 	private int fireBallDamage;
-	// 화염구 날리는거 아직 미완성 ㅠ
-	//private ArrayList<FireBall> fireBalls;
+	private ArrayList<FireBall> fireBalls;
 	
 	// 할퀴기
 	private boolean scratching;
@@ -51,7 +50,6 @@ public class TestVerCharacter extends MapObject {
 	private static final int SCRATCHING = 6;
 	
 	public TestVerCharacter (TileMap tm) {
-		
 		super(tm);
 		
 		width = 30;
@@ -74,8 +72,7 @@ public class TestVerCharacter extends MapObject {
 		
 		fireCost = 200;
 		fireBallDamage = 5;
-		// 화염구 날리는거 아직 완성못함 ㅠ
-		//fireBalls = new ArrayList<FireBall>();
+		fireBalls = new ArrayList<FireBall>();
 		
 		scratchDamage = 8;
 		scratchRange = 40;
@@ -90,6 +87,7 @@ public class TestVerCharacter extends MapObject {
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
+			
 			for(int i = 0; i < 7; i++) {
 				
 				BufferedImage[] bi =
@@ -97,7 +95,7 @@ public class TestVerCharacter extends MapObject {
 				
 				for(int j = 0; j < numFrames[i]; j++) {
 					
-					if(i != 6) {
+					if(i != SCRATCHING) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
@@ -109,7 +107,7 @@ public class TestVerCharacter extends MapObject {
 						bi[j] = spritesheet.getSubimage(
 								j * width * 2,
 								i * height,
-								width,
+								width * 2,
 								height
 						);
 					}
@@ -124,6 +122,7 @@ public class TestVerCharacter extends MapObject {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 		
 		motion = new Motion();
 		currentMotion = IDLE;
@@ -212,6 +211,47 @@ public class TestVerCharacter extends MapObject {
 		collideTile();
 		setPosition(xTemp, yTemp);
 		
+		// 공격 모션
+		if(currentMotion == SCRATCHING){
+			if(motion.hasPlayedOnce()){
+				scratching = false;
+			}
+		}
+		
+		if(currentMotion == FIREBALL){
+			if(motion.hasPlayedOnce()){
+				firing = false;
+			}
+		}
+		
+		
+		
+		// !!화염구 던지기!!
+		fire +=1;
+		if(fire > maxFire) fire = maxFire;
+		if(firing && currentMotion !=FIREBALL) {
+			if(fire > fireCost) {
+				fire -= fireCost;
+				
+				FireBall fb = new FireBall(tileMap , faceRight);
+				fb.setPosition(x, y);
+				fireBalls.add(fb);
+			}
+		}
+		
+		
+		// 화염구 업데이트
+		for(int i = 0; i<fireBalls.size();i++){
+			fireBalls.get(i).update();
+			if(fireBalls.get(i).shouldRemove()){
+				fireBalls.remove(i);
+				i--;
+			}
+		}
+		
+		
+		
+		
 		// 모션 설정
 		if(scratching) {
 			if(currentMotion != SCRATCHING) {
@@ -283,6 +323,12 @@ public class TestVerCharacter extends MapObject {
 	public void draw(Graphics2D g) {
 		
 		setMapPosition();
+		
+		// 화염구 그림
+		for(int i = 0 ; i<fireBalls.size();i++) {
+			fireBalls.get(i).draw(g);
+		}
+		
 		
 		// 캐릭터 그려줌
 		if(flinching) {

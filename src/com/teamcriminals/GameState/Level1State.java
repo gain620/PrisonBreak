@@ -56,11 +56,6 @@ public class Level1State extends GameState {
 	}
 
 	public void draw(Graphics2D g) {
-
-		// 화면 정리
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-		
 		// 백그라운드 draw
 		bg.draw(g);
 
@@ -77,9 +72,9 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) character.setUp(true);
 		if(k == KeyEvent.VK_DOWN) character.setDown(true);
 		if(k == KeyEvent.VK_S) character.setJump(true);
-		//if(k == KeyEvent.VK_D) character.setGliding(true);
-		//if(k == KeyEvent.VK_Z) character.setScratching();
-		//if(k == KeyEvent.VK_X) character.setFiring();
+		if(k == KeyEvent.VK_D) character.setGliding(true);
+		if(k == KeyEvent.VK_Z) character.setScratching();
+		if(k == KeyEvent.VK_X) character.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 
 	}
@@ -90,7 +85,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) character.setUp(false);
 		if(k == KeyEvent.VK_DOWN) character.setDown(false);
 		if(k == KeyEvent.VK_W) character.setJump(false);
-		//if(k == KeyEvent.VK_E) character.setGliding(false);
+		if(k == KeyEvent.VK_E) character.setGliding(false);
 	}
 
 }
