@@ -7,7 +7,7 @@ public class GameStateManager {
 	
 	private ArrayList<GameState> gameStates;
 	private int currentState;
-	private int currentCharacter;
+	private int currentCharacter;	// 팩토리 연결하기 위해 캐릭터 변수 생성
 	
 	public static final int MENUSTATE = 0;
 	public static final int SELECTSTATE = 1;
@@ -35,11 +35,11 @@ public class GameStateManager {
 		gameStates.get(currentState).init();
 	}
 	
-	public int getCharacter() {
+	public int getCharacter() {	// 팩토리에서 이걸로 캐릭터 생성
 		return currentCharacter;
 	}
 	
-	public void setCharacter(int selection) {
+	public void setCharacter(int selection) { // select state에서 선택하면 이걸로 캐릭터정보 저장
 		currentCharacter = selection;
 	}
 	

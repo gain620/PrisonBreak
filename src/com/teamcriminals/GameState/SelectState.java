@@ -72,7 +72,7 @@ public class SelectState extends GameState {
 			if (currentSelection == 0) {
 				
 				gsm.setState(GameStateManager.LEVEL1STATE);
-				gsm.setCharacter(currentSelection);
+				gsm.setCharacter(currentSelection);	// 캐릭터 정보 gsm에 저장
 				
 			} else if (currentSelection == 1) {
 
