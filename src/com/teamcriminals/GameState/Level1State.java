@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 
 import com.teamcriminals.Character.CharacterFactory;
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Entity.TestVerCharacter;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 import com.teamcriminals.TileMap.TileMap;
@@ -16,7 +17,7 @@ public class Level1State extends GameState {
 
 	private TileMap tilemap;
 	private Background bg;
-	private Character character;
+	private TestVerCharacter character;
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -39,16 +40,18 @@ public class Level1State extends GameState {
 		tilemap.setTween(1);
 
 		//character = cf.setCharacter(gsm.getCharacter(), tilemap); 테스트하려고 잠깐 바꿧음
-		//character.setPosition(100, 100);
+		
+		character = new TestVerCharacter(tilemap);
+		character.setPosition(300, 200);
 
 	}
 
 	public void update() {
 
 		// 캐릭터 업데이트
-		//character.update();
-		//tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
-				//GamePanel.HEIGHT / 2 - character.getY());
+		character.update();
+		tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
+				GamePanel.HEIGHT / 2 - character.getY());
 
 	}
 
@@ -65,7 +68,7 @@ public class Level1State extends GameState {
 		tilemap.draw(g);
 		
 		// 캐릭터 draw
-		//character.draw(g);
+		character.draw(g);
 	}
 
 	public void keyPressed(int k) {
