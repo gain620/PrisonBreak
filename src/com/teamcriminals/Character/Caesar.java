@@ -17,15 +17,15 @@ public class Caesar extends Character {
 		
 	}
 
-	@Override
-	public void init(ArrayList<Enemy> enemies, Boss boss) {
+	
+	/*public void init(ArrayList<Enemy> enemies, Boss boss) {
 		
 		this.enemies = enemies;
 		this.boss = boss;
 		
-	}
+	}*/
 
-	@Override
+	
 	public void update() {
 		
 		// 위치 갱신
@@ -175,6 +175,13 @@ public class Caesar extends Character {
 		}
 		
 		super.draw(g);
+		
+	}
+
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
 		
 	}
 
