@@ -8,7 +8,7 @@ import com.teamcriminals.Game.GamePanel;
 
 public class TileMap {
 	// 위치 설정
-	private double x,y;
+	private double x, y;
 
 	// 경계 설정
 	private int xMin;
@@ -51,7 +51,7 @@ public class TileMap {
 		try {
 
 			tileset = ImageIO.read(getClass().getResourceAsStream(s));
-			
+
 			numTilesAcross = tileset.getWidth() / tileSize;
 			tiles = new Tile[2][numTilesAcross];
 
@@ -59,12 +59,12 @@ public class TileMap {
 			for (int col = 0; col < numTilesAcross; col++) {
 				subImage = tileset.getSubimage(col * tileSize, 0, tileSize,
 						tileSize);
-				
+
 				tiles[0][col] = new Tile(subImage, Tile.AIR);
-				
+
 				subImage = tileset.getSubimage(col * tileSize, tileSize,
 						tileSize, tileSize);
-				
+
 				tiles[1][col] = new Tile(subImage, Tile.BLOCK);
 			}
 
@@ -112,12 +112,12 @@ public class TileMap {
 		return tileSize;
 	}
 
-	public int getx() {
-		return (int) x;
+	public double getx() {
+		return x;
 	}
 
-	public int gety() {
-		return (int) y;
+	public double gety() {
+		return y;
 	}
 
 	public int getWidth() {
