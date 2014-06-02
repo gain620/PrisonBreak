@@ -12,7 +12,7 @@ import com.teamcriminals.TileMap.TileMap;
 
 public class Level1State extends GameState {
 	
-	CharacterFactory cf = new CharacterFactory();
+	// CharacterFactory cf = new CharacterFactory();
 
 	private TileMap tilemap;
 	private Background bg;
@@ -38,7 +38,7 @@ public class Level1State extends GameState {
 		//tilemap.setPosition(0, 0);
 		//tilemap.setTween(1);
 
-		//character = cf.setCharacter(gsm.getCharacter(), tilemap);
+		//character = cf.setCharacter(gsm.getCharacter(), tilemap); 테스트하려고 잠깐 바꿧음
 		//character.setPosition(100, 100);
 
 	}
