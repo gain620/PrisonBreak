@@ -1,7 +1,6 @@
 package com.teamcriminals.Character;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.TileMap.TileMap;
@@ -19,13 +18,11 @@ public class Caesar extends Character {
 	}
 
 	@Override
-	public void init() {
-		/*?????????????????????
-		ArrayList<Enemy> enemies,
-		ArrayList<EnergyParticle> energyParticles) {
+	public void init(ArrayList<Enemy> enemies, Boss boss) {
+		
 		this.enemies = enemies;
-		this.energyParticles = energyParticles;
-		*/
+		this.boss = boss;
+		
 	}
 
 	@Override

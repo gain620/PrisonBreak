@@ -3,7 +3,9 @@ package com.teamcriminals.Game;
 import javax.swing.JFrame;
 
 public class Game {
+	
 	public static void main(String[] args){
+		
 		JFrame frame = new JFrame("Prison Break");
 		frame.setContentPane(new GamePanel());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -11,6 +13,7 @@ public class Game {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
 	}
 
 }
