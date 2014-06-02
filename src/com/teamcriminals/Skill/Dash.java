@@ -6,7 +6,7 @@ public class Dash extends X {
 		setCoolDown(10);
 	}
 
-	public void attack() {
+	public int attack() {
 		
 		if(!isUsed()) {
 			

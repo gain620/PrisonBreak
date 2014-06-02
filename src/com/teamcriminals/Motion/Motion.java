@@ -48,7 +48,7 @@ public class Motion {
 		
 	}
 	
-	public int getFrmae() {
+	public int getFrame() {
 		return currentFrame;
 	}
 	

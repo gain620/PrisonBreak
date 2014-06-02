@@ -1,5 +1,7 @@
 package com.teamcriminals.Entity;
 
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -20,31 +22,49 @@ public abstract class Character extends MapObject {
 	protected long flinchCount;
 	
 	// 캐릭터 스킬
-	protected Z z;
-	protected X x;
-	protected C c;
+	protected Z skillZ;
+	protected X skillX;
+	protected C skillC;
 	
 	// 캐릭터 상태
 	protected boolean attacking;
 	protected boolean knockback;
 	protected boolean flinching;
 
-
+	// 충돌 사각형인듯?
+	protected Rectangle ar;
+	protected Rectangle aur;
+	protected Rectangle cr;
+	
 	// Motion 관련
-	private ArrayList<BufferedImage[]> sprites;
-	private final int[] numFrames = {
+	protected ArrayList<BufferedImage[]> sprites;
+	protected final int[] numFrames = {
 			2, 8, 1, 2, 4, 4, 1
 	};
 	
-	// Motion 리스트
-	private static final int IDLE = 0;
-	private static final int WALK = 1;
-	private static final int JUMP = 2;
-	private static final int FALL = 3;
-	private static final int ZATTACK = 4;
-	private static final int XATTACK = 5;
-	private static final int CATTACK = 6;
+	/* 이건 뭐임 우린 필요없나??
+	protected final int[] FRAMEWIDTHS = {
+			40, 40, 80, 40, 40, 40, 80, 40, 40, 40, 40
+	};
+	protected final int[] FRAMEHEIGHTS = {
+			40, 40, 40, 40, 40, 80, 40, 40, 40, 40, 40
+	};
+	protected final int[] SPRITEDELAYS = {
+			-1, 3, 2, 6, 5, 2, 2, 2, 1, -1, 1
+	};
+	*/
 	
+	
+	// Motion 리스트
+	protected static final int IDLE = 0;
+	protected static final int WALK = 1;
+	protected static final int JUMP = 2;
+	protected static final int FALL = 3;
+	protected static final int ZATTACK = 4;
+	protected static final int XATTACK = 5;
+	protected static final int CATTACK = 6;
+	protected static final int KNOCKBACK = 7;
+	protected static final int DEAD = 8;
 	
 	// 생성자
 	public Character(TileMap tm) {
@@ -75,14 +95,12 @@ public abstract class Character extends MapObject {
 							)
 							);
 			
-			for(int i = 0; i<7;i++) {
-				BufferedImage[] bi = new
-				BufferedImage[numFrames[i]];
-				for(int j = 0;j< numFrames[i];j++) {
-					
-					
-					bi[j] = spritesheet.getSubimage(j * width, i * height, width ,height );
-				}
+			for(int i = 0; i < 7; i++) {
+
+				BufferedImage[] bi = new BufferedImage[numFrames[i]];
+				
+				for(int j = 0;j< numFrames[i];j++)
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 				
 				sprites.add(bi);
 
@@ -100,9 +118,9 @@ public abstract class Character extends MapObject {
 	public int getLife()			{ return this.life;			}
 	public int getJumpHeight()		{ return this.jumpHeight;	}
 	public long getFlinchCount()	{ return this.flinchCount;	}
-	public Z getSkillZ()			{ return this.z;			}
-	public X getSkillX()			{ return this.x;			}
-	public C getSkillC()			{ return this.c;			}
+	public Z getSkillZ()			{ return this.skillZ;		}
+	public X getSkillX()			{ return this.skillX;		}
+	public C getSkillC()			{ return this.skillC;		}
 	public boolean isAttacking()	{ return this.attacking;	}
 	public boolean isKnokback()		{ return this.knockback;	}
 	public boolean isFlinching()	{ return this.flinching;	}
@@ -113,9 +131,9 @@ public abstract class Character extends MapObject {
 	public void setLife(int life)					{ this.life = life; }
 	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;	}
 	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount; }
-	public void setSkillZ(Z z)						{ this.z = z; }	
-	public void setSkillX(X x)						{ this.x = x; }
-	public void setSkillC(C c)						{ this.c = c; }
+	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ; }	
+	public void setSkillX(X skillX)					{ this.skillX = skillX; }
+	public void setSkillC(C skillC)					{ this.skillC = skillC; }
 	public void setKnokback(boolean b)				{ this.knockback = b; }
 	public void setFlinching(boolean b)				{ this.flinching = b; }
 	public void setAttacking() {
@@ -135,6 +153,17 @@ public abstract class Character extends MapObject {
 	/*
 	 *  Sprite 관련 메소드 구현해야함
 	 */
+	
+	
+	protected void setMotion(int i) {
+		currentMotion = i;
+		motion.setFrames(sprites.get(currentMotion));
+		/*
+		motion.setDelay(SPRITEDELAYS[currentMotion]);
+		width = FRAMEWIDTHS[currentMotion];
+		height = FRAMEHEIGHTS[currentMotion];
+		*/
+	}
 	
 	
 	// 공격당할 경우
@@ -275,5 +304,26 @@ public abstract class Character extends MapObject {
 	
 	public abstract void init();
 	public abstract void update();
-	public abstract void draw();
+	public void draw(Graphics2D g) {
+		
+		setMapPosition();
+		if(faceRight) {
+			g.drawImage(
+				motion.getImage(),
+				(int)(x + xMap - width / 2),
+				(int)(y + yMap - height / 2),
+				null
+			);
+		}
+		else {
+			g.drawImage(
+				motion.getImage(),
+				(int)(x + xMap - width / 2 + width),
+				(int)(y + yMap - height / 2),
+				-width,
+				height,
+				null
+			);
+		}
+	}
 }

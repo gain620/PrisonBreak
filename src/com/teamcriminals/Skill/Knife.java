@@ -6,7 +6,7 @@ public class Knife extends Z {
 		setSTATUS(this);
 	}
 
-	public void attack() {
+	public int attack() {
 		if(getSTATUS() != null) {
 			if(getSTATUS() == this) {
 				/*

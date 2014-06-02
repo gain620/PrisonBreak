@@ -40,6 +40,6 @@ public abstract class Attack {
 		this.use = result;
 	}
 	
-	public abstract void attack();
+	public abstract int attack();
 	
 }
