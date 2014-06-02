@@ -42,19 +42,6 @@ public abstract class Character extends MapObject {
 			2, 8, 1, 2, 4, 4, 1
 	};
 	
-	/* 이건 뭐임 우린 필요없나??
-	protected final int[] FRAMEWIDTHS = {
-			40, 40, 80, 40, 40, 40, 80, 40, 40, 40, 40
-	};
-	protected final int[] FRAMEHEIGHTS = {
-			40, 40, 40, 40, 40, 80, 40, 40, 40, 40, 40
-	};
-	protected final int[] SPRITEDELAYS = {
-			-1, 3, 2, 6, 5, 2, 2, 2, 1, -1, 1
-	};
-	*/
-	
-	
 	// Motion 리스트
 	protected static final int IDLE = 0;
 	protected static final int WALK = 1;
@@ -148,21 +135,11 @@ public abstract class Character extends MapObject {
 		jump = true;
 		
 	}
-	
-	
-	/*
-	 *  Sprite 관련 메소드 구현해야함
-	 */
-	
-	
+
 	protected void setMotion(int i) {
 		currentMotion = i;
 		motion.setFrames(sprites.get(currentMotion));
-		/*
-		motion.setDelay(SPRITEDELAYS[currentMotion]);
-		width = FRAMEWIDTHS[currentMotion];
-		height = FRAMEHEIGHTS[currentMotion];
-		*/
+		
 	}
 	
 	
@@ -180,7 +157,7 @@ public abstract class Character extends MapObject {
 			health = 0;
 		
 		flinching = true;
-		flinchCount = 0;	// 이거 왜 있는지 모르겠네
+		flinchCount = 0;
 		
 		if(faceRight)
 			dx = -1;
@@ -200,7 +177,7 @@ public abstract class Character extends MapObject {
 		
 		health = maxHealth;
 		faceRight = true;
-		// currentAction = -1; ??
+		currentMotion = -1;
 		stop();
 		
 	}

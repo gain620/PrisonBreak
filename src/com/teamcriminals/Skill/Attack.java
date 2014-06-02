@@ -1,12 +1,15 @@
 package com.teamcriminals.Skill;
 
+import java.awt.Graphics2D;
+
 public abstract class Attack {
 	
-	// 속성정의. 공격력, 공격범위, 공격속도, 공격중인지
-	private int damage;
-	private int range;
-	private int speed;
-	private boolean use;
+	// 속성정의. 공격력, 공격범위, 공격속도, 공격중인지, 맞았는지
+	protected int damage;
+	protected int range;
+	protected int speed;
+	protected boolean use;
+	protected boolean hit;
 	
 	public int getDamage() {
 		return this.damage;
@@ -41,5 +44,8 @@ public abstract class Attack {
 	}
 	
 	public abstract int attack();
+	public abstract void init();
+	public abstract void update();
+	public abstract void draw(Graphics2D g);
 	
 }

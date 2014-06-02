@@ -1,5 +1,7 @@
 package com.teamcriminals.Skill;
 
+import java.awt.Graphics2D;
+
 public class Knife extends Z {
 	
 	public Knife() {
@@ -37,6 +39,18 @@ public class Knife extends Z {
 
 	public void toItem_3() {
 		setSTATUS(new Item_3());
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

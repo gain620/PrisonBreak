@@ -1,5 +1,7 @@
 package com.teamcriminals.Skill;
 
+import java.awt.Graphics2D;
+
 public class Item_3 extends Item {
 	
 	private final int MAX_COUNT = 10;
@@ -19,5 +21,23 @@ public class Item_3 extends Item {
 			Z.setSTATUS(null);	// Z의 item_3을 소진할 경우 소멸시키는 방법 >> 이거 좀 애매함
 		}
 		return 0;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics2D g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
 	}
 }
