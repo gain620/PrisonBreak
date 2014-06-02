@@ -6,7 +6,7 @@ public class ThrowFire extends X {
 		setCoolDown(9);
 	}
 
-	public void attack() {
+	public int attack() {
 
 		if(!isUsed()) {
 			
@@ -27,7 +27,8 @@ public class ThrowFire extends X {
 
 		}
 		else
-			return;
+			return 0;
+		return 0;
 	}
 	
 }

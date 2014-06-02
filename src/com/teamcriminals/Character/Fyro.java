@@ -1,5 +1,7 @@
 package com.teamcriminals.Character;
 
+import java.awt.Graphics2D;
+
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.TileMap.TileMap;
 
@@ -26,7 +28,7 @@ public class Fyro extends Character {
 	}
 
 	@Override
-	public void draw() {
+	public void draw(Graphics2D g) {
 		
 	}
 

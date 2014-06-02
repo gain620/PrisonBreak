@@ -6,7 +6,7 @@ public class Punch extends Z {
 		setSTATUS(this);
 	}
 
-	public void attack() {
+	public int attack() {
 		if(getSTATUS() != null) {
 			if(getSTATUS() == this) {
 				/*
@@ -19,7 +19,8 @@ public class Punch extends Z {
 		else {
 			init();
 			attack();
-		}	
+		}
+		return 0;	
 	}
 
 	public void init() {

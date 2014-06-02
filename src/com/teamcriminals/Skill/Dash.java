@@ -27,7 +27,8 @@ public class Dash extends X {
 
 		}
 		else
-			return;
+			return 0;
+		return 0;
 	}
 	
 }

@@ -6,7 +6,7 @@ public class WolfKing extends C {
 		setBomb(3);
 	}
 
-	public void attack() {
+	public int attack() {
 
 		if(getBomb() > 0) {
 			
@@ -16,9 +16,9 @@ public class WolfKing extends C {
 
 		}
 		else {
-			return;
+			return 0;
 		}
-		
+		return 0;		
 	}
 	
 }

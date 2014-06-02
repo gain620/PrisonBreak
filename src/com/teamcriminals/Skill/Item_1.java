@@ -8,7 +8,7 @@ public class Item_1 extends Item {
 		setCount(MAX_COUNT);
 	}
 
-	public void attack() {
+	public int attack() {
 		
 		/*
 		 *  구현해야 할 부분
@@ -18,6 +18,7 @@ public class Item_1 extends Item {
 		if(getCount() < 1) {
 			Z.setSTATUS(null);	// Z의 item_1을 소진할 경우 소멸시키는 방법 >> 이거 좀 애매함
 		}
+		return 0;
 		
 	}
 	

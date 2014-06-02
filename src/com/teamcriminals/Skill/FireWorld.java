@@ -6,7 +6,7 @@ public class FireWorld extends C {
 		setBomb(3);
 	}
 
-	public void attack() {
+	public int attack() {
 
 		if(getBomb() > 0) {
 			
@@ -16,8 +16,9 @@ public class FireWorld extends C {
 			setBomb(getBomb() - 1);
 		}
 		else {
-			return;
+			return 0;
 		}
+		return 0;
 		
 	}
 	

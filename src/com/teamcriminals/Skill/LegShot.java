@@ -6,7 +6,7 @@ public class LegShot extends X {
 		setCoolDown(12);
 	}
 
-	public void attack() {
+	public int attack() {
 
 		if(!isUsed()) {
 			
@@ -27,7 +27,8 @@ public class LegShot extends X {
 
 		}
 		else
-			return;
+			return 0;
+		return 0;
 	}
 	
 }

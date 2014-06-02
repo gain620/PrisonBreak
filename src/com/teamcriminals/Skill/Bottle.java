@@ -19,7 +19,8 @@ public class Bottle extends Z {
 		else {
 			init();
 			attack();
-		}	
+		}
+		return 0;	
 	}
 
 	public void init() {
