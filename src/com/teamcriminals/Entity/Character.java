@@ -164,6 +164,7 @@ public abstract class Character extends MapObject {
 	}
 
 	protected void setMotion(int i) {
+		
 		currentMotion = i;
 		motion.setFrames(sprites.get(currentMotion));
 		

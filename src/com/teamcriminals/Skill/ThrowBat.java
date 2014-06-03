@@ -1,11 +1,31 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import com.teamcriminals.Entity.FireBall;
 
 public class ThrowBat extends X {
 	
+	private int bat;
+	private int maxBat;
+	private int batUse;
+	private int batDamage;
+	private ArrayList<Bat> bats;
+	
+	private boolean throwing;
+	
 	public ThrowBat() {
-		setCoolDown(13);
+		
+		cooldown = 13;
+		
+		bat = maxBat = 60 * cooldown;
+		
+		batUse = 60 * cooldown;
+		batDamage = 5;
+		bats = new ArrayList<Bat>();
+		
+		
 	}
 
 	public int attack() {

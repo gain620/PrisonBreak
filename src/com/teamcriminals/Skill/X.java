@@ -2,13 +2,13 @@ package com.teamcriminals.Skill;
 
 public abstract class X extends Attack {
 	
-	private long cooldown;
+	protected int cooldown;
 	
-	public long getCoolDown() {
+	public int getCoolDown() {
 		return this.cooldown;
 	}
 	
-	public void setCoolDown(long cooldown) {
+	public void setCoolDown(int cooldown) {
 		this.cooldown = cooldown;
 	}
 }
