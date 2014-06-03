@@ -53,65 +53,97 @@ public abstract class MapObject {
 		tileSize = tm.getTileSize();
 	}
 
-	public int getX() {
-		return (int) x;
-	}
-
-	public int getY() {
-		return (int) y;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
+	// Get 메소드
+	public int getX() 											{ return (int)x; }
+	public int getY() 											{ return (int)y;}
+	public int getDX() 											{ return (int)dx; }
+	public int getDY() 											{ return (int)dy;}
+	public int getWidth() 										{ return width; }
+	public int getHeight() 										{ return height; }
+	public int getCWidth() 										{ return cWidth; }
+	public int getCHeight() 									{ return cHeight; }
+	public TileMap getTileMap() 								{ return tileMap; }
+	public int getTileSize() 									{ return tileSize; }
+	public Motion getMotion() 									{ return motion; }
+	public int getCurrentMotion() 								{ return currentMotion; }
+	public int getPrviousMotion() 								{ return prviousMotion; }
+	public boolean isFaceRight() 								{ return faceRight; }
+	public double getxMap() 									{ return xMap; }
+	public double getyMap() 									{ return yMap; }
+	public int getCurrRow() 									{ return currRow; }
+	public int getCurrCol() 									{ return currCol; }
+	public double getxDest() 									{ return xDest; }
+	public double getyDest() 									{ return yDest; }
+	public double getxTemp() 									{ return xTemp; }
+	public double getyTemp() 									{ return yTemp; }
+	public boolean isTopLeft() 									{ return topLeft; }
+	public boolean isTopRight() 								{ return topRight; }
+	public boolean isBottomLeft() 								{ return bottomLeft; }
+	public boolean isBottomRight() 								{ return bottomRight; }
+	public boolean isFall() 									{ return fall; }
+	public double getMoveSpeed() 								{ return moveSpeed; }
+	public double getMaxSpeed() 								{ return maxSpeed; }
+	public double getStopSpeed() 								{ return stopSpeed; }
+	public double getFallSpeed() 								{ return fallSpeed; }
+	public double getMaxFallSpeed() 							{ return maxFallSpeed; }
+	public double getJumpStart() 								{ return jumpStart; }
+	public double getStopJumpSpeed() 							{ return stopJumpSpeed; }
+	public boolean isLeft() 									{ return left; }
+	public boolean isRight() 									{ return right; }
+	public boolean isUp() 										{ return up; }
+	public boolean isDown() 									{ return down; }
+	public boolean isJump() 									{ return jump; }
 	
-	public int getCWidth() {
-		return cWidth;
-	}
+	// Set 메소드
+	public void setX(double x)									{ this.x = x; }
+	public void setY(double y) 									{ this.y = y; }
+	public void setDx(double dx) 								{ this.dx = dx;}
+	public void setDy(double dy)								{ this.dy = dy;}
+	public void setTileSize(int tileSize) 						{ this.tileSize = tileSize; }
+	public void setxMap(double xMap) 							{ this.xMap = xMap; }
+	public void setyMap(double yMap)							{ this.yMap = yMap; }
+	public void setcWidth(int cWidth) 							{ this.cWidth = cWidth; }
+	public void setcHeight(int cHeight) 						{ this.cHeight = cHeight; }
+	public void setCurrRow(int currRow) 						{ this.currRow = currRow; }
+	public void setCurrCol(int currCol) 						{ this.currCol = currCol; }
+	public void setxDest(double xDest) 							{ this.xDest = xDest; }
+	public void setyDest(double yDest) 							{ this.yDest = yDest; }
+	public void setxTemp(double xTemp)							{ this.xTemp = xTemp; }
+	public void setyTemp(double yTemp) 							{ this.yTemp = yTemp; }
+	public void setTopLeft(boolean topLeft) 					{ this.topLeft = topLeft; }
+	public void setTopRight(boolean topRight) 					{ this.topRight = topRight; }
+	public void setBottomLeft(boolean bottomLeft) 				{ this.bottomLeft = bottomLeft; }
+	public void setBottomRight(boolean bottomRight) 			{ this.bottomRight = bottomRight; }
+	public void setPrviousMotion(int prviousMotion) 			{ this.prviousMotion = prviousMotion; }
+	public void setFall(boolean fall) 							{ this.fall = fall; }
+	public void setMaxSpeed(double maxSpeed) 					{ this.maxSpeed = maxSpeed; }
+	public void setMoveSpeed(double moveSpeed)					{ this.moveSpeed = moveSpeed; }
+	public void setStopSpeed(double stopSpeed) 					{ this.stopSpeed = stopSpeed; }
+	public void setFallSpeed(double fallSpeed) 					{ this.fallSpeed = fallSpeed; }
+	public void setMaxFallSpeed(double maxFallSpeed) 			{ this.maxFallSpeed = maxFallSpeed; }
+	public void setJumpStart(double jumpStart) 					{ this.jumpStart = jumpStart; }
+	public void setStopJumpSpeed(double stopJumpSpeed) 			{ this.stopJumpSpeed = stopJumpSpeed; }
+	public void setWidth(int width) 							{ this.width = width; }
+	public void setHeight(int height) 							{ this.height = height; }
+	public void setTileMap(TileMap tileMap) 					{ this.tileMap = tileMap; }
+	public void setMotion(Motion motion) 						{ this.motion = motion; }
+	public void setCurrentMotion(int currentMotion) 			{ this.currentMotion = currentMotion; }
+	public void setFaceRight(boolean faceRight) 				{ this.faceRight = faceRight; }
 	
-	public int getCHeight() {
-		return cHeight;
-	}
 	
+	// 좌표 메소드
 	public void setPosition(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
-	
 	public void setVector(double dx, double dy) {
 		this.dx = dx;
 		this.dy = dy;
 	}
-	
 	public void setMapPosition() {
 		xMap = tileMap.getx();
 		yMap = tileMap.gety();
 	}
-	
-	public void setLeft(boolean b) {
-		left = b;
-	}
-	
-	public void setRight(boolean b) {
-		right = b;
-	}
-	
-	public void setUp(boolean b) {
-		up = b;
-	}
-	
-	public void setDown(boolean b) {
-		down = b;
-	}
-	
-	public void setJump(boolean b) {
-		jump = b;
-	}
-	
 	
 	// 맵 오브젝트가 스크린에 존재하는지 판정
 	public boolean onScreen() {

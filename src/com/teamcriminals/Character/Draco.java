@@ -10,6 +10,8 @@ import com.teamcriminals.TileMap.TileMap;
 
 public class Draco extends Character{
 	
+	
+	
 	public Draco(TileMap tm) {
 		
 		super(tm);
@@ -23,7 +25,7 @@ public class Draco extends Character{
 	public void init() {
 		
 		skillZ = new Knife();
-		skillX = new ThrowBat();
+		skillX = new ThrowBat(this);
 		skillC = new SummonBats();
 		/*
 		this.enemies = enemies;

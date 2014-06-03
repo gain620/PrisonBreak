@@ -48,16 +48,16 @@ public abstract class Character extends MapObject {
 			2, 8, 1, 2, 4, 4, 1
 	};
 	
-	// Motion 리스트
-	protected static final int IDLE = 0;
-	protected static final int WALK = 1;
-	protected static final int JUMP = 2;
-	protected static final int FALL = 3;
-	protected static final int ZATTACK = 4;
-	protected static final int XATTACK = 5;
-	protected static final int CATTACK = 6;
-	protected static final int KNOCKBACK = 7;
-	protected static final int DEAD = 8;
+	// Motion 리스트 -----> PUBLIC으로 변경했음!
+	public static final int IDLE = 0;
+	public static final int WALK = 1;
+	public static final int JUMP = 2;
+	public static final int FALL = 3;
+	public static final int ZATTACK = 4;
+	public static final int XATTACK = 5;
+	public static final int CATTACK = 6;
+	public static final int KNOCKBACK = 7;
+	public static final int DEAD = 8;
 	
 	// 생성자
 	public Character(TileMap tm) {
@@ -113,31 +113,32 @@ public abstract class Character extends MapObject {
 	}
 
 	// Get 메소드
-	public int getHealth()			{ return this.health;		}
-	public int getMaxHealth()		{ return this.maxHealth;	}
-	public int getLife()			{ return this.life;			}
-	public int getJumpHeight()		{ return this.jumpHeight;	}
-	public long getFlinchCount()	{ return this.flinchCount;	}
-	public Z getSkillZ()			{ return this.skillZ;		}
-	public X getSkillX()			{ return this.skillX;		}
-	public C getSkillC()			{ return this.skillC;		}
-	public boolean isZattacking()	{ return this.Zattacking;	}
-	public boolean isXattacking()	{ return this.Xattacking;	}
-	public boolean isCattacking()	{ return this.Cattacking;	}
-	public boolean isKnokback()		{ return this.knockback;	}
-	public boolean isFlinching()	{ return this.flinching;	}
+	public int getHealth()							{ return this.health;		}
+	public int getMaxHealth()						{ return this.maxHealth;	}
+	public int getLife()							{ return this.life;			}
+	public int getJumpHeight()						{ return this.jumpHeight;	}
+	public long getFlinchCount()					{ return this.flinchCount;	}
+	public Z getSkillZ()							{ return this.skillZ;		}
+	public X getSkillX()							{ return this.skillX;		}
+	public C getSkillC()							{ return this.skillC;		}
+	public boolean isZattacking()					{ return this.Zattacking;	}
+	public boolean isXattacking()					{ return this.Xattacking;	}
+	public boolean isCattacking()					{ return this.Cattacking;	}
+	public boolean isKnokback()						{ return this.knockback;	}
+	public boolean isFlinching()					{ return this.flinching;	}
+	public ArrayList<BufferedImage[]> getSprites() 	{ return this.sprites;		}
 	
 	// Set 메소드
-	public void setHealth(int health)				{ this.health = health; }
-	public void setMaxHealth(int maxHealth)			{ this.maxHealth = maxHealth; }
-	public void setLife(int life)					{ this.life = life; }
-	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;	}
-	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount; }
-	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ; }	
-	public void setSkillX(X skillX)					{ this.skillX = skillX; }
-	public void setSkillC(C skillC)					{ this.skillC = skillC; }
-	public void setKnokback(boolean b)				{ this.knockback = b; }
-	public void setFlinching(boolean b)				{ this.flinching = b; }
+	public void setHealth(int health)				{ this.health = health;				}
+	public void setMaxHealth(int maxHealth)			{ this.maxHealth = maxHealth; 		}
+	public void setLife(int life)					{ this.life = life;					}
+	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;		}
+	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount;	}
+	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ;				}	
+	public void setSkillX(X skillX)					{ this.skillX = skillX;				}
+	public void setSkillC(C skillC)					{ this.skillC = skillC;				}
+	public void setKnokback(boolean b)				{ this.knockback = b;				}
+	public void setFlinching(boolean b)				{ this.flinching = b;				}
 	public void setZattacking() {
 		
 		if(knockback) return;
