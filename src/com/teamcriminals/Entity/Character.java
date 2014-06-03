@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Skill.C;
 import com.teamcriminals.Skill.X;
 import com.teamcriminals.Skill.Z;
@@ -29,9 +30,9 @@ public abstract class Character extends MapObject {
 	protected C skillC;
 	
 	// 캐릭터 상태
-	protected boolean zAttacking;
-	protected boolean xAttacking;
-	protected boolean cAttacking;
+	protected boolean Zattacking;
+	protected boolean Xattacking;
+	protected boolean Cattacking;
 	protected boolean knockback;
 	protected boolean flinching;
 	protected boolean dead;
@@ -67,6 +68,8 @@ public abstract class Character extends MapObject {
 		height = 30;
 		cWidth = 20;
 		cHeight = 20;
+
+		// 이부분은 각자 다르게할수도 있으나 우선은 그냥 놔두겠음
 		
 		moveSpeed = 0.3;
 		stopSpeed = 0.4;
@@ -85,7 +88,7 @@ public abstract class Character extends MapObject {
 					getClass().getResourceAsStream(
 							"/Sprites/Character/" + name + ".gif"
 							)
-							);
+						);
 			
 			for(int i = 0; i < 7; i++) {
 
@@ -102,6 +105,11 @@ public abstract class Character extends MapObject {
 			e.printStackTrace();
 		}
 		
+		motion = new Motion();
+		currentMotion = IDLE;
+		motion.setFrames(sprites.get(IDLE));
+		motion.setDelay(400);
+		
 	}
 
 	// Get 메소드
@@ -113,7 +121,9 @@ public abstract class Character extends MapObject {
 	public Z getSkillZ()			{ return this.skillZ;		}
 	public X getSkillX()			{ return this.skillX;		}
 	public C getSkillC()			{ return this.skillC;		}
-	public boolean isAttacking()	{ return this.attacking;	}
+	public boolean isZattacking()	{ return this.Zattacking;	}
+	public boolean isXattacking()	{ return this.Xattacking;	}
+	public boolean isCattacking()	{ return this.Cattacking;	}
 	public boolean isKnokback()		{ return this.knockback;	}
 	public boolean isFlinching()	{ return this.flinching;	}
 	
@@ -128,11 +138,23 @@ public abstract class Character extends MapObject {
 	public void setSkillC(C skillC)					{ this.skillC = skillC; }
 	public void setKnokback(boolean b)				{ this.knockback = b; }
 	public void setFlinching(boolean b)				{ this.flinching = b; }
-	public void setAttacking() {
+	public void setZattacking() {
 		
 		if(knockback) return;
-		attacking = true;
+		Zattacking = true;
 		
+	}
+	public void setXattacking() {
+		
+		if(knockback) return;
+		Xattacking = true;
+		
+	}
+	public void setCattacking() {
+	
+		if(knockback) return;
+		Cattacking = true;
+	
 	}
 	public void setJumping() {
 		
@@ -190,7 +212,7 @@ public abstract class Character extends MapObject {
 	// 모든 행동을 멈추게 함
 	public void stop() {
 		
-		up = down = left = right = flinching = jump = attacking = false;
+		up = down = left = right = flinching = jump = Zattacking = Xattacking = Cattacking = false;
 	
 	}
 	
@@ -215,7 +237,7 @@ public abstract class Character extends MapObject {
 		
 		}
 		
-		// double maxSpeed = this.maxSpeed; 이것도 왜있는걸까?
+		double maxSpeed = this.maxSpeed;
 		
 		// 좌우이동
 		if(left) {
@@ -254,7 +276,7 @@ public abstract class Character extends MapObject {
 		}
 		
 		// 공격중일땐 움직일 수 없고 점프나 떨어질때는 가능함
-		if(attacking &&	!(jump || fall)) {
+		if((Zattacking || Xattacking || Cattacking) && !(jump || fall)) {	// (currentMotion == ZATTACK ... 이런식으로 해야하나?)
 			
 			dx = 0;
 		
@@ -282,30 +304,11 @@ public abstract class Character extends MapObject {
 				dy = maxFallSpeed;
 			
 		}
+		
 	}
 	
 	public abstract void init();
 	public abstract void update();
-	public void draw(Graphics2D g) {
-		
-		setMapPosition();
-		if(faceRight) {
-			g.drawImage(
-				motion.getImage(),
-				(int)(x + xMap - width / 2),
-				(int)(y + yMap - height / 2),
-				null
-			);
-		}
-		else {
-			g.drawImage(
-				motion.getImage(),
-				(int)(x + xMap - width / 2 + width),
-				(int)(y + yMap - height / 2),
-				-width,
-				height,
-				null
-			);
-		}
-	}
+	public abstract void draw(Graphics2D g);
+	
 }
