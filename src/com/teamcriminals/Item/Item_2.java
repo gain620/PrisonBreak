@@ -1,6 +1,8 @@
-package com.teamcriminals.Skill;
+package com.teamcriminals.Item;
 
 import java.awt.Graphics2D;
+
+import com.teamcriminals.Skill.Z;
 
 public class Item_2 extends Item {
 	

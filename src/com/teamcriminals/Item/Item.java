@@ -1,4 +1,6 @@
-package com.teamcriminals.Skill;
+package com.teamcriminals.Item;
+
+import com.teamcriminals.Skill.Attack;
 
 public abstract class Item extends Attack {
 	

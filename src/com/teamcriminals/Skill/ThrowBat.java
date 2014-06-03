@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import com.teamcriminals.Entity.FireBall;
+import com.teamcriminals.Projectile.Bat;
 
 public class ThrowBat extends X {
 	

@@ -2,6 +2,10 @@ package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
 
+import com.teamcriminals.Item.Item_1;
+import com.teamcriminals.Item.Item_2;
+import com.teamcriminals.Item.Item_3;
+
 public class Punch extends Z {
 	
 	public Punch() {
