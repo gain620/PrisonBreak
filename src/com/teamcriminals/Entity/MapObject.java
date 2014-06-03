@@ -1,6 +1,7 @@
 package com.teamcriminals.Entity;
 
 import java.awt.*;
+
 import com.teamcriminals.TileMap.*;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.Motion.Motion;
@@ -120,7 +121,7 @@ public abstract class MapObject {
 			   y + yMap - height > GamePanel.HEIGHT;
 	}
 
-	// 124번 라인 기준으로 이하 모두 충돌 함수 관련
+	// 62번 라인 기준으로 이하 모두 충돌 함수 관련
 
 	// 충돌 판정 함수(사각형 모양)
 	public boolean collide(MapObject o) {
@@ -187,27 +188,6 @@ public abstract class MapObject {
 		calculateCorners(xDest, y);
 
 		// 왼쪽으로 갈 때
-
-	      if (dx < 0) {
-	         if (topLeft || bottomLeft) {
-	            dx = 0;
-	            xTemp = currCol * tileSize + cWidth / 2;
-	         } else {
-	            xTemp += dx;
-	         }
-
-	      }
-
-	      // 오른쪽으로 갈 때
-	      if (dx > 0) {
-	         if (topRight || bottomRight) {
-	            dx = 0;
-	            xTemp = (currCol + 1) * tileSize - cWidth;
-	         } else {
-	            xTemp += dx;
-	         }
-	      }
-
 		if (dx < 0) {
 			if (topLeft || bottomLeft) {
 				dx = 0;
@@ -222,12 +202,11 @@ public abstract class MapObject {
 		if (dx > 0) {
 			if (topRight || bottomRight) {
 				dx = 0;
-				xTemp = (currCol + 1) * tileSize - cWidth / 2 ;
+				xTemp = (currCol + 1) * tileSize - cWidth / 2;
 			} else {
 				xTemp += dx;
 			}
 		}
-
 
 	}
 
