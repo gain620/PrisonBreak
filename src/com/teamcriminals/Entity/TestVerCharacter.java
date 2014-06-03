@@ -37,7 +37,7 @@ public class TestVerCharacter extends MapObject {
 	// 모션
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 8, 1, 2, 4, 2, 5
+		2, 4, 1, 2, 2, 2
 	};
 	
 	// 모션 리스트
@@ -52,10 +52,10 @@ public class TestVerCharacter extends MapObject {
 	public TestVerCharacter (TileMap tm) {
 		super(tm);
 		
-		width = 30;
-		height = 30;
-		cWidth = 20;
-		cHeight = 20;
+		width = 80;
+		height = 80;
+		cWidth = 70;
+		cHeight = 70;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
@@ -82,36 +82,25 @@ public class TestVerCharacter extends MapObject {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Sprites/Character/playersprites.gif"
+					"/Sprites/Character/caesar.png"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
 			
-			for(int i = 0; i < 7; i++) {
+			for(int i = 0; i < 6; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
 				
 				for(int j = 0; j < numFrames[i]; j++) {
-					
-					if(i != SCRATCHING) {
 						bi[j] = spritesheet.getSubimage(
 								j * width,
 								i * height,
 								width,
 								height
 						);
-					}
-					else {
-						bi[j] = spritesheet.getSubimage(
-								j * width * 2,
-								i * height,
-								width * 2,
-								height
-						);
-					}
-					
+						
 				}
 				
 				sprites.add(bi);
