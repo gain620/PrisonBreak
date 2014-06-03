@@ -80,7 +80,6 @@ public abstract class MapObject {
 	public boolean isTopRight() 								{ return topRight; }
 	public boolean isBottomLeft() 								{ return bottomLeft; }
 	public boolean isBottomRight() 								{ return bottomRight; }
-	public boolean isFall() 									{ return fall; }
 	public double getMoveSpeed() 								{ return moveSpeed; }
 	public double getMaxSpeed() 								{ return maxSpeed; }
 	public double getStopSpeed() 								{ return stopSpeed; }
@@ -93,6 +92,7 @@ public abstract class MapObject {
 	public boolean isUp() 										{ return up; }
 	public boolean isDown() 									{ return down; }
 	public boolean isJump() 									{ return jump; }
+	public boolean isFall() 									{ return fall; }
 	
 	// Set 메소드
 	public void setX(double x)									{ this.x = x; }
@@ -115,7 +115,6 @@ public abstract class MapObject {
 	public void setBottomLeft(boolean bottomLeft) 				{ this.bottomLeft = bottomLeft; }
 	public void setBottomRight(boolean bottomRight) 			{ this.bottomRight = bottomRight; }
 	public void setPrviousMotion(int prviousMotion) 			{ this.prviousMotion = prviousMotion; }
-	public void setFall(boolean fall) 							{ this.fall = fall; }
 	public void setMaxSpeed(double maxSpeed) 					{ this.maxSpeed = maxSpeed; }
 	public void setMoveSpeed(double moveSpeed)					{ this.moveSpeed = moveSpeed; }
 	public void setStopSpeed(double stopSpeed) 					{ this.stopSpeed = stopSpeed; }
@@ -129,6 +128,12 @@ public abstract class MapObject {
 	public void setMotion(Motion motion) 						{ this.motion = motion; }
 	public void setCurrentMotion(int currentMotion) 			{ this.currentMotion = currentMotion; }
 	public void setFaceRight(boolean faceRight) 				{ this.faceRight = faceRight; }
+	public void setLeft(boolean b) 								{ left = b; }
+	public void setRight(boolean b) 							{ right = b; }
+	public void setUp(boolean b) 								{ up = b; }
+	public void setDown(boolean b) 								{ down = b; }
+	public void setJump(boolean b) 								{ jump = b; }
+	public void setFall(boolean b) 								{ fall = b; }
 	
 	
 	// 좌표 메소드
