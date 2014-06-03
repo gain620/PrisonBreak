@@ -202,7 +202,9 @@ public abstract class MapObject {
 		if (dx > 0) {
 			if (topRight || bottomRight) {
 				dx = 0;
-				xTemp = (currCol + 1) * tileSize - cWidth;
+				xTemp = (currCol + 1) * tileSize - cWidth / 2;
+			} else {
+				xTemp += dx;
 			}
 		}
 

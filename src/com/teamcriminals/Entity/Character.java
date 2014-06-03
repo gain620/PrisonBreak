@@ -14,6 +14,8 @@ import com.teamcriminals.TileMap.TileMap;
 
 public abstract class Character extends MapObject {
 
+	protected String name;
+	
 	// 캐릭터 속성
 	protected int health;
 	protected int maxHealth;
@@ -27,9 +29,12 @@ public abstract class Character extends MapObject {
 	protected C skillC;
 	
 	// 캐릭터 상태
-	protected boolean attacking;
+	protected boolean zAttacking;
+	protected boolean xAttacking;
+	protected boolean cAttacking;
 	protected boolean knockback;
 	protected boolean flinching;
+	protected boolean dead;
 
 	// 충돌 사각형인듯?
 	protected Rectangle ar;
@@ -78,7 +83,7 @@ public abstract class Character extends MapObject {
 			
 			BufferedImage spritesheet = ImageIO.read(
 					getClass().getResourceAsStream(
-							"/Sprites/Character/.gif"
+							"/Sprites/Character/" + name + ".gif"
 							)
 							);
 			
