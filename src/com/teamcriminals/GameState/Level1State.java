@@ -37,7 +37,7 @@ public class Level1State extends GameState {
 		tilemap.loadTiles("/Tilesets/Stage1Tileset.png");
 		tilemap.loadMap("/Maps/Stage1.map");
 		tilemap.setPosition(0, 0);
-		tilemap.setTween(1);
+		tilemap.setTween(0.07);
 
 		//character = cf.setCharacter(gsm.getCharacter(), tilemap); 테스트하려고 잠깐 바꿧음
 		

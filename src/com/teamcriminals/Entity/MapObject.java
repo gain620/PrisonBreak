@@ -188,23 +188,25 @@ public abstract class MapObject {
 		calculateCorners(xDest, y);
 
 		// 왼쪽으로 갈 때
-		if (dx < 0) {
-			if (topLeft || bottomLeft) {
-				dx = 0;
-				xTemp = currCol * tileSize + cWidth / 2;
-			} else {
-				xTemp += dx;
-			}
+	      if (dx < 0) {
+	         if (topLeft || bottomLeft) {
+	            dx = 0;
+	            xTemp = currCol * tileSize + cWidth / 2;
+	         } else {
+	            xTemp += dx;
+	         }
 
-		}
+	      }
 
-		// 오른쪽으로 갈 때
-		if (dx > 0) {
-			if (topRight || bottomRight) {
-				dx = 0;
-				xTemp = (currCol + 1) * tileSize - cWidth;
-			}
-		}
+	      // 오른쪽으로 갈 때
+	      if (dx > 0) {
+	         if (topRight || bottomRight) {
+	            dx = 0;
+	            xTemp = (currCol + 1) * tileSize - cWidth;
+	         } else {
+	            xTemp += dx;
+	         }
+	      }
 
 	}
 
