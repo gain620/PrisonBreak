@@ -54,11 +54,12 @@ public class Level1State extends GameState {
 		
 		hud = new HUD(testCharacter);
 		
+		
 		enemy = new ArrayList<Enemy>();
-		ZombieSoldier zombie;
-		zombie = new ZombieSoldier(tilemap);
-		zombie.setPosition(100, 300);
-		enemy.add(zombie);
+		ZombieSoldier zombie1;
+		zombie1 = new ZombieSoldier(tilemap);
+		zombie1.setPosition(100, 300);
+		enemy.add(zombie1);
 
 	}
 
@@ -99,8 +100,8 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) testCharacter.setUp(true);
 		if(k == KeyEvent.VK_DOWN) testCharacter.setDown(true);
 		if(k == KeyEvent.VK_S) testCharacter.setJump(true);
-		//if(k == KeyEvent.VK_D) character.setGliding(true);
-		//if(k == KeyEvent.VK_Z) character.setScratching();
+		if(k == KeyEvent.VK_D) testCharacter.setGliding(true);
+		if(k == KeyEvent.VK_Z) testCharacter.setScratching();
 		if(k == KeyEvent.VK_X) testCharacter.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 
@@ -112,7 +113,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_UP) testCharacter.setUp(false);
 		if(k == KeyEvent.VK_DOWN) testCharacter.setDown(false);
 		if(k == KeyEvent.VK_W) testCharacter.setJump(false);
-		//if(k == KeyEvent.VK_E) character.setGliding(false);
+		if(k == KeyEvent.VK_E) testCharacter.setGliding(false);
 	}
 
 }
