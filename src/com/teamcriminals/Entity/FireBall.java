@@ -21,6 +21,8 @@ public class FireBall extends MapObject {
 		
 		super(tm);
 		
+		faceRight = true;
+		
 		moveSpeed = 3.8;
 		if(right) dx = moveSpeed;
 		else dx = -moveSpeed;

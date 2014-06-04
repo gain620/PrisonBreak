@@ -341,7 +341,7 @@ public class TestVerCharacter extends MapObject {
 				motion.getImage(),
 				(int)(x + xMap - width / 2 + width),
 				(int)(y + yMap - height / 2),
-				-width,
+				(- width) * 2,
 				height,
 				null
 			);

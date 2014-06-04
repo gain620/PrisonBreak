@@ -2,8 +2,11 @@ package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import com.teamcriminals.Character.CharacterFactory;
+import com.teamcriminals.Enemy.ZombieSoldier;
+import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.HUD;
 import com.teamcriminals.Entity.TestVerCharacter;
 import com.teamcriminals.Game.GamePanel;
@@ -21,6 +24,8 @@ public class Level1State extends GameState {
 	//private Character character;
 	
 	private TestVerCharacter testCharacter;
+	
+	private ArrayList<Enemy> enemy;
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -48,6 +53,12 @@ public class Level1State extends GameState {
 		testCharacter.setPosition(300, 200);
 		
 		hud = new HUD(testCharacter);
+		
+		enemy = new ArrayList<Enemy>();
+		ZombieSoldier zombie;
+		zombie = new ZombieSoldier(tilemap);
+		zombie.setPosition(100, 300);
+		enemy.add(zombie);
 
 	}
 
@@ -58,6 +69,9 @@ public class Level1State extends GameState {
 		tilemap.setPosition(GamePanel.WIDTH / 2 - testCharacter.getX(),
 				GamePanel.HEIGHT / 2 - testCharacter.getY());
 
+		for(int i = 0 ;i<enemy.size(); i++){
+			enemy.get(i).update();
+		}
 	}
 
 	public void draw(Graphics2D g) {
@@ -72,6 +86,11 @@ public class Level1State extends GameState {
 		
 		// HUD draw
 		hud.draw(g);
+		
+		// Àû draw
+		for(int i = 0; i< enemy.size(); i++) {
+			enemy.get(i).draw(g);
+		}
 	}
 
 	public void keyPressed(int k) {
@@ -82,7 +101,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_S) testCharacter.setJump(true);
 		//if(k == KeyEvent.VK_D) character.setGliding(true);
 		//if(k == KeyEvent.VK_Z) character.setScratching();
-		//if(k == KeyEvent.VK_X) character.setFiring();
+		if(k == KeyEvent.VK_X) testCharacter.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 
 	}
