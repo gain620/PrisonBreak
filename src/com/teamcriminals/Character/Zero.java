@@ -15,6 +15,8 @@ public class Zero extends Character {
 		
 		super(tm);
 		
+		name = "Zero";
+		
 		/*
 		 *  추가 구현
 		 */

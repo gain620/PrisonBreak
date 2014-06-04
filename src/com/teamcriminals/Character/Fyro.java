@@ -14,6 +14,8 @@ public class Fyro extends Character {
 		
 		super(tm);
 		
+		name = "Fyro";
+		
 		/*
 		 *  추가 구현
 		 */

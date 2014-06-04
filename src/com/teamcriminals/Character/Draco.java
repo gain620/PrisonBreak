@@ -16,6 +16,8 @@ public class Draco extends Character{
 		
 		super(tm);
 		
+		name = "Draco";
+		
 		/*
 		 *  추가 구현
 		 */
