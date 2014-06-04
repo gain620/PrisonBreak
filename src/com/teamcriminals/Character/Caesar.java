@@ -14,6 +14,8 @@ public class Caesar extends Character {
 		
 		super(tm);
 		
+		name = "Caesar";
+		
 		/*
 		 *  추가 구현이 필요할 경우 작성
 		 */
