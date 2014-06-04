@@ -247,7 +247,6 @@ public class TestVerCharacter extends MapObject {
 				currentMotion = SCRATCHING;
 				motion.setFrames(sprites.get(SCRATCHING));
 				motion.setDelay(50);
-				width = 60;
 			}
 		}
 		else if(firing) {
@@ -255,7 +254,6 @@ public class TestVerCharacter extends MapObject {
 				currentMotion = FIREBALL;
 				motion.setFrames(sprites.get(FIREBALL));
 				motion.setDelay(100);
-				width = 30;
 			}
 		}
 		else if(dy > 0) {
@@ -264,14 +262,12 @@ public class TestVerCharacter extends MapObject {
 					currentMotion = GLIDING;
 					motion.setFrames(sprites.get(GLIDING));
 					motion.setDelay(100);
-					width = 30;
 				}
 			}
 			else if(currentMotion != FALLING) {
 				currentMotion = FALLING;
 				motion.setFrames(sprites.get(FALLING));
 				motion.setDelay(100);
-				width = 30;
 			}
 		}
 		else if(dy < 0) {
@@ -279,7 +275,6 @@ public class TestVerCharacter extends MapObject {
 				currentMotion = JUMPING;
 				motion.setFrames(sprites.get(JUMPING));
 				motion.setDelay(-1);
-				width = 30;
 			}
 		}
 		else if(left || right) {
@@ -287,7 +282,6 @@ public class TestVerCharacter extends MapObject {
 				currentMotion = WALKING;
 				motion.setFrames(sprites.get(WALKING));
 				motion.setDelay(40);
-				width = 30;
 			}
 		}
 		else {
@@ -295,7 +289,6 @@ public class TestVerCharacter extends MapObject {
 				currentMotion = IDLE;
 				motion.setFrames(sprites.get(IDLE));
 				motion.setDelay(400);
-				width = 30;
 			}
 		}
 		
@@ -333,6 +326,8 @@ public class TestVerCharacter extends MapObject {
 				motion.getImage(),
 				(int)(x + xMap - width / 2),
 				(int)(y + yMap - height / 2),
+				this.width,
+				height,
 				null
 			);
 		}
@@ -341,7 +336,7 @@ public class TestVerCharacter extends MapObject {
 				motion.getImage(),
 				(int)(x + xMap - width / 2 + width),
 				(int)(y + yMap - height / 2),
-				(- width) * 2,
+				-this.width,
 				height,
 				null
 			);
