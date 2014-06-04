@@ -54,8 +54,8 @@ public class TestVerCharacter extends MapObject {
 		
 		width = 80;
 		height = 80;
-		cWidth = 70;
-		cHeight = 70;
+		cWidth = 20;
+		cHeight = 20;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
