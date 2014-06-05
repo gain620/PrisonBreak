@@ -37,8 +37,8 @@ public class TestVerCharacter extends MapObject {
 	// 모션
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 4, 1, 2, 2, 2
-	};
+		1, 4, 1, 1, 1, 2 ,2
+	} ;
 	
 	// 모션 리스트
 	private static final int IDLE = 0;
@@ -46,8 +46,8 @@ public class TestVerCharacter extends MapObject {
 	private static final int JUMPING = 2;
 	private static final int FALLING = 2;
 	private static final int GLIDING = 4;
-	private static final int FIREBALL = 5;
-	private static final int SCRATCHING = 6;
+	private static final int FIRE = 5;
+	private static final int PUNCH = 6;
 	
 	public TestVerCharacter (TileMap tm) {
 		super(tm);
@@ -70,7 +70,7 @@ public class TestVerCharacter extends MapObject {
 		health = maxHealth = 5;
 		fire = maxFire = 2500;
 		
-		fireCost = 200;
+		fireCost = 100;
 		fireBallDamage = 5;
 		fireBalls = new ArrayList<FireBall>();
 		
@@ -82,13 +82,13 @@ public class TestVerCharacter extends MapObject {
 			
 			BufferedImage spritesheet = ImageIO.read(
 				getClass().getResourceAsStream(
-					"/Sprites/Character/caesar.png"
+					"/Sprites/Character/caesar.gif"
 				)
 			);
 			
 			sprites = new ArrayList<BufferedImage[]>();
 			
-			for(int i = 0; i < 6; i++) {
+			for(int i = 0; i < 7; i++) {
 				
 				BufferedImage[] bi =
 					new BufferedImage[numFrames[i]];
@@ -167,7 +167,7 @@ public class TestVerCharacter extends MapObject {
 		
 		// 공격 도중에는 이동이 불가능, 단 점프 중일때는 가능
 		if(
-		(currentMotion == SCRATCHING || currentMotion == FIREBALL) &&
+		(currentMotion == PUNCH || currentMotion == FIRE) &&
 		!(jump || fall)) {
 			dx = 0;
 		}
@@ -184,6 +184,7 @@ public class TestVerCharacter extends MapObject {
 			dy += fallSpeed;
 			
 			if(dy > 0) jump = false;
+			
 			if(dy < 0 && !jump) dy += stopJumpSpeed;
 			if(dy > maxFallSpeed) dy = maxFallSpeed;
 			
@@ -198,13 +199,13 @@ public class TestVerCharacter extends MapObject {
 		setPosition(xTemp, yTemp);
 		
 		// 공격 모션
-		if(currentMotion == SCRATCHING){
+		if(currentMotion == PUNCH){
 			if(motion.hasPlayedOnce()){
 				scratching = false;
 			}
 		}
 		
-		if(currentMotion == FIREBALL){
+		if(currentMotion == FIRE){
 			if(motion.hasPlayedOnce()){
 				firing = false;
 			}
@@ -215,7 +216,7 @@ public class TestVerCharacter extends MapObject {
 		// !!화염구 던지기!!
 		fire +=1;
 		if(fire > maxFire) fire = maxFire;
-		if(firing && currentMotion !=FIREBALL) {
+		if(firing && currentMotion !=FIRE) {
 			if(fire > fireCost) {
 				fire -= fireCost;
 				
@@ -240,16 +241,16 @@ public class TestVerCharacter extends MapObject {
 		
 		// 모션 설정
 		if(scratching) {
-			if(currentMotion != SCRATCHING) {
-				currentMotion = SCRATCHING;
-				motion.setFrames(sprites.get(SCRATCHING));
+			if(currentMotion != PUNCH) {
+				currentMotion = PUNCH;
+				motion.setFrames(sprites.get(PUNCH));
 				motion.setDelay(50);
 			}
 		}
 		else if(firing) {
-			if(currentMotion != FIREBALL) {
-				currentMotion = FIREBALL;
-				motion.setFrames(sprites.get(FIREBALL));
+			if(currentMotion != FIRE) {
+				currentMotion = FIRE;
+				motion.setFrames(sprites.get(FIRE));
 				motion.setDelay(100);
 			}
 		}
@@ -285,7 +286,7 @@ public class TestVerCharacter extends MapObject {
 		motion.update();
 		
 		// 위치 방향 결정
-		if(currentMotion != SCRATCHING && currentMotion != FIREBALL) {
+		if(currentMotion != PUNCH && currentMotion != FIRE) {
 			if(right) faceRight = true;
 			if(left) faceRight = false;
 		}
