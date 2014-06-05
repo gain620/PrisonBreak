@@ -44,7 +44,7 @@ public class TestVerCharacter extends MapObject {
 	private static final int IDLE = 0;
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
-	private static final int FALLING = 3;
+	private static final int FALLING = 2;
 	private static final int GLIDING = 4;
 	private static final int FIREBALL = 5;
 	private static final int SCRATCHING = 6;
@@ -54,8 +54,8 @@ public class TestVerCharacter extends MapObject {
 		
 		width = 80;
 		height = 80;
-		cWidth = 20;
-		cHeight = 20;
+		cWidth = 35;
+		cHeight = 60;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
@@ -181,16 +181,13 @@ public class TestVerCharacter extends MapObject {
 		// ³«ÇÏ
 		if(fall) {
 			
-			if(dy > 0 && gliding) dy += fallSpeed * 0.1;
-			else dy += fallSpeed;
+			dy += fallSpeed;
 			
 			if(dy > 0) jump = false;
 			if(dy < 0 && !jump) dy += stopJumpSpeed;
-			
 			if(dy > maxFallSpeed) dy = maxFallSpeed;
 			
 		}
-		
 	}
 	
 	public void update() {
@@ -256,25 +253,18 @@ public class TestVerCharacter extends MapObject {
 				motion.setDelay(100);
 			}
 		}
-		else if(dy > 0) {
-			if(gliding) {
-				if(currentMotion != GLIDING) {
-					currentMotion = GLIDING;
-					motion.setFrames(sprites.get(GLIDING));
-					motion.setDelay(100);
-				}
-			}
-			else if(currentMotion != FALLING) {
-				currentMotion = FALLING;
-				motion.setFrames(sprites.get(FALLING));
-				motion.setDelay(100);
-			}
-		}
 		else if(dy < 0) {
 			if(currentMotion != JUMPING) {
 				currentMotion = JUMPING;
 				motion.setFrames(sprites.get(JUMPING));
 				motion.setDelay(-1);
+			}
+		}
+		else if(dy > 0) {
+			if(currentMotion != FALLING) {
+				currentMotion = FALLING;
+				motion.setFrames(sprites.get(FALLING));
+				motion.setDelay(100);
 			}
 		}
 		else if(left || right) {
@@ -326,8 +316,6 @@ public class TestVerCharacter extends MapObject {
 				motion.getImage(),
 				(int)(x + xMap - width / 2),
 				(int)(y + yMap - height / 2),
-				this.width,
-				height,
 				null
 			);
 		}
@@ -336,7 +324,7 @@ public class TestVerCharacter extends MapObject {
 				motion.getImage(),
 				(int)(x + xMap - width / 2 + width),
 				(int)(y + yMap - height / 2),
-				-this.width,
+				-width,
 				height,
 				null
 			);
