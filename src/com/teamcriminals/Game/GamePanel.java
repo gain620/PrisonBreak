@@ -3,8 +3,10 @@ package com.teamcriminals.Game;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 
+import com.teamcriminals.Enemy.ZombieSoldier;
 import com.teamcriminals.GameState.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
@@ -54,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		isRunning = true;
 
 		gsm = new GameStateManager();
+		
 	}
 
 	public void run() {

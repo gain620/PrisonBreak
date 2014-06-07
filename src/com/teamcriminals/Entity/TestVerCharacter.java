@@ -26,10 +26,10 @@ public class TestVerCharacter extends MapObject {
 	private int fireBallDamage;
 	private ArrayList<FireBall> fireBalls;
 	
-	// 할퀴기
-	private boolean scratching;
-	private int scratchDamage;
-	private int scratchRange;
+	// 펀치
+	private boolean punch;
+	private int punchDamage;
+	private int punchRange;
 	
 	// 글라이딩
 	private boolean gliding;
@@ -54,7 +54,7 @@ public class TestVerCharacter extends MapObject {
 		
 		width = 80;
 		height = 80;
-		cWidth = 40;
+		cWidth = 35;
 		cHeight = 40;
 		
 		moveSpeed = 0.3;
@@ -74,8 +74,8 @@ public class TestVerCharacter extends MapObject {
 		fireBallDamage = 5;
 		fireBalls = new ArrayList<FireBall>();
 		
-		scratchDamage = 8;
-		scratchRange = 40;
+		punchDamage = 8;
+		punchRange = 40;
 		
 		// 스프라이트 불러오기
 		try {
@@ -128,11 +128,49 @@ public class TestVerCharacter extends MapObject {
 	public void setFiring() { 
 		firing = true;
 	}
-	public void setScratching() {
-		scratching = true;
+	public void setPunch() {
+		punch = true;
 	}
 	public void setGliding(boolean b) { 
 		gliding = b;
+	}
+	
+	public void checkAttack(ArrayList<Enemy> enemy) {
+		
+		// 모든 가능한 적 불러오기
+		for(int i = 0; i< enemy.size(); i++) {
+			Enemy e = enemy.get(i);
+			
+			// 펀치 공격 판정
+			if(punch) {
+				if(faceRight) {
+						if(e.getX() > x && 
+							e.getX() < x + punchRange &&
+							e.getY() > y - height / 2 && 
+							e.getY() < y + height / 2) {
+							e.hit(punchDamage);
+						}
+					}
+				} else {
+						if(e.getX() < x && 
+							e.getX() > x - punchRange && 
+							e.getY() > y - height / 2 && 
+							e.getY() < y - height / 2) {
+							e.hit(punchDamage);
+						}
+					}
+			
+			// 화염구 공격 판정
+			for(int j = 0; j <fireBalls.size(); j++) {
+				if(fireBalls.get(i).intersects(e)) {
+					e.hit(fireBallDamage);
+					fireBalls.get(j).setHit();
+					break;
+				}
+			}
+			
+			
+				}	
 	}
 	
 	private void getNextPosition() {
@@ -204,7 +242,7 @@ public class TestVerCharacter extends MapObject {
 		// 공격 모션
 		if(currentMotion == PUNCH){
 			if(motion.hasPlayedOnce()){
-				scratching = false;
+				punch = false;
 			}
 		}
 		
@@ -243,7 +281,7 @@ public class TestVerCharacter extends MapObject {
 		
 		
 		// 모션 설정
-		if(scratching) {
+		if(punch) {
 			if(currentMotion != PUNCH) {
 				currentMotion = PUNCH;
 				motion.setFrames(sprites.get(PUNCH));

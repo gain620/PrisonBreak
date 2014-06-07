@@ -69,10 +69,22 @@ public class Level1State extends GameState {
 		testCharacter.update();
 		tilemap.setPosition(GamePanel.WIDTH / 2 - testCharacter.getX(),
 				GamePanel.HEIGHT / 2 - testCharacter.getY());
+		
 
+
+		
+		// 적 정보 업데이트
 		for(int i = 0 ;i<enemy.size(); i++){
 			enemy.get(i).update();
+			if(enemy.get(i).isDead()) {
+				enemy.remove(i);
+				i --;
+			}
 		}
+		
+		// 적 공격
+		testCharacter.checkAttack(enemy);
+		
 	}
 
 	public void draw(Graphics2D g) {
@@ -101,7 +113,7 @@ public class Level1State extends GameState {
 		if(k == KeyEvent.VK_DOWN) testCharacter.setDown(true);
 		if(k == KeyEvent.VK_S) testCharacter.setJump(true);
 		if(k == KeyEvent.VK_D) testCharacter.setGliding(true);
-		if(k == KeyEvent.VK_Z) testCharacter.setScratching();
+		if(k == KeyEvent.VK_Z) testCharacter.setPunch();
 		if(k == KeyEvent.VK_X) testCharacter.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
 

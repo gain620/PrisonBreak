@@ -118,9 +118,6 @@ public class ZombieSoldier extends Enemy {
 	
 	public void draw(Graphics2D g) {
 		
-		// 맵 화면에 보이지 않을 경우 미리 그려주는 것을 방지하여, 메모리 관리
-		if(onScreen()) return ;
-		
 		setMapPosition();
 		
 		if(faceRight) {

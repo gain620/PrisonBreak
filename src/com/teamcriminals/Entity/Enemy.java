@@ -25,7 +25,8 @@ public abstract class Enemy extends MapObject {
 	
 	public int getDamgage() {return damage;}
 	
-	public void hit(int damgage) {
+	public void hit(int damage) {
+		health -= damage;
 		
 		if(dead||flinch) return;
 		
