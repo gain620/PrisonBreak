@@ -1,11 +1,13 @@
 package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import com.teamcriminals.Character.CharacterFactory;
 import com.teamcriminals.Enemy.ZombieSoldier;
+import com.teamcriminals.Entity.Death;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.HUD;
 import com.teamcriminals.Entity.TestVerCharacter;
@@ -26,6 +28,7 @@ public class Level1State extends GameState {
 	private TestVerCharacter testCharacter;
 	
 	private ArrayList<Enemy> enemy;
+	private ArrayList<Death> death;
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -50,18 +53,33 @@ public class Level1State extends GameState {
 		//character = cf.setCharacter(gsm.getCharacter(), tilemap);
 		
 		testCharacter = new TestVerCharacter(tilemap);
-		testCharacter.setPosition(300, 200);
+		testCharacter.setPosition(60, 400);
 		
 		hud = new HUD(testCharacter);
 		
+		populateEnemy();
 		
-		enemy = new ArrayList<Enemy>();
-		ZombieSoldier zombie1;
-		zombie1 = new ZombieSoldier(tilemap);
-		zombie1.setPosition(100, 300);
-		enemy.add(zombie1);
+		death = new ArrayList<Death>();
 
 	}
+	
+	private void populateEnemy() {
+		enemy = new ArrayList<Enemy>();
+		
+		ZombieSoldier zs;
+		
+		Point[] points = new Point[] {
+				new Point(100, 200)
+		};
+		
+		for(int i = 0; i< points.length; i ++) {
+			zs = new ZombieSoldier(tilemap);
+			zs.setPosition(points[i].x, points[i].y);
+			enemy.add(zs);
+		}
+	}
+	
+	
 
 	public void update() {
 
@@ -70,15 +88,23 @@ public class Level1State extends GameState {
 		tilemap.setPosition(GamePanel.WIDTH / 2 - testCharacter.getX(),
 				GamePanel.HEIGHT / 2 - testCharacter.getY());
 		
-
-
 		
 		// 적 정보 업데이트
 		for(int i = 0 ;i<enemy.size(); i++){
-			enemy.get(i).update();
-			if(enemy.get(i).isDead()) {
+			Enemy e = enemy.get(i);
+			e.update();
+			if(e.isDead()) {
 				enemy.remove(i);
 				i --;
+				death.add(new Death(e.getX() , e.getY()));
+			}
+		}
+		
+		for(int i = 0; i< death.size(); i++) {
+			death.get(i).update();
+			if(death.get(i).shouldRemove()) {
+				death.remove(i);
+				i--;
 			}
 		}
 		
@@ -103,6 +129,12 @@ public class Level1State extends GameState {
 		// 적 draw
 		for(int i = 0; i< enemy.size(); i++) {
 			enemy.get(i).draw(g);
+		}
+		// death draw
+		for(int i = 0; i < death.size(); i ++) {
+			death.get(i).setMapPosition(
+					(int) tilemap.getx(),(int) tilemap.gety());
+			death.get(i).draw(g);
 		}
 	}
 
