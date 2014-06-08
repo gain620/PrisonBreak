@@ -44,7 +44,7 @@ public abstract class Character extends MapObject {
 	// Motion 관련
 	protected ArrayList<BufferedImage[]> sprites;
 	protected final int[] numFrames = {
-			2, 8, 1, 2, 4, 4, 1
+			2, 4, 1, 1, 1, 2, 2, 2
 	};
 	
 	// Motion 리스트 -----> PUBLIC으로 변경했음!
@@ -68,8 +68,6 @@ public abstract class Character extends MapObject {
 		cWidth = 20;
 		cHeight = 20;
 
-		// 이부분은 각자 다르게할수도 있으나 우선은 그냥 놔두겠음
-		
 		moveSpeed = 0.3;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
@@ -78,36 +76,6 @@ public abstract class Character extends MapObject {
 		stopJumpSpeed = 0.3;
 		
 		faceRight = true;
-		
-		
-		// sprites 로드
-		try {
-			
-			BufferedImage spritesheet = ImageIO.read(
-					getClass().getResourceAsStream(
-							"/Sprites/Character/" + this.getClass().getName() + ".gif"
-							)
-						);
-			
-			for(int i = 0; i < 7; i++) {
-
-				BufferedImage[] bi = new BufferedImage[numFrames[i]];
-				
-				for(int j = 0;j< numFrames[i];j++)
-					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
-				
-				sprites.add(bi);
-
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		motion = new Motion();
-		currentMotion = IDLE;
-		motion.setFrames(sprites.get(IDLE));
-		motion.setDelay(400);
 		
 	}
 

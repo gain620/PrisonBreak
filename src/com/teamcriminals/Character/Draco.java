@@ -1,8 +1,12 @@
 package com.teamcriminals.Character;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Skill.Knife;
 import com.teamcriminals.Skill.SummonBats;
 import com.teamcriminals.Skill.ThrowBat;
@@ -16,9 +20,34 @@ public class Draco extends Character{
 		
 		super(tm);
 		
-		/*
-		 *  추가 구현
-		 */
+		// sprites 로드
+		try {
+			
+			BufferedImage spritesheet = ImageIO.read(
+					getClass().getResourceAsStream(
+							"/Sprites/Character/" + this.getClass().getName() + ".gif"
+							)
+						);
+			
+			for(int i = 0; i < 7; i++) {
+
+				BufferedImage[] bi = new BufferedImage[numFrames[i]];
+				
+				for(int j = 0;j< numFrames[i];j++)
+					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
+				
+				sprites.add(bi);
+
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		motion = new Motion();
+		currentMotion = IDLE;
+		motion.setFrames(sprites.get(IDLE));
+		motion.setDelay(400);
 		
 	}
 

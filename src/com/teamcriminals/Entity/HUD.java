@@ -16,23 +16,23 @@ public class HUD {
 	public HUD(Character character){
 		this.character = character;
 		
-		try{
-			hudImage = ImageIO.read(getClass().getResourceAsStream("/HUD/hud.gif"));
-			
-			font = new Font("Arial", Font.PLAIN, 12);
-			
+		try {
+			hudImage = ImageIO.read(getClass().getResourceAsStream("/HUD/hud1.png"));
+			font = new Font("Arial", Font.PLAIN, 16);
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+
 	public void draw(Graphics2D g) {
 		g.drawImage(hudImage, 0, 30, null);
 		g.setFont(font);
 		g.setColor(Color.white);
-		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 30, 45);
-		//g.drawString(testCharacter.getFire()/100 +"/"+ testCharacter.getMaxFire()/100, 30, 65);
-		
+		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 68, 50);
+		//g.drawString(testCharacter.getFire() / 100 + "/"	+ testCharacter.getMaxFire() / 100 , 58, 82);
+
 	}
 
 }

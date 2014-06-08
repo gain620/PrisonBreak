@@ -35,8 +35,6 @@ public abstract class Enemy extends MapObject {
 		flinch = true;
 		
 		flinchTimer = System.nanoTime();
-		
-		
 	}
 	
 	public void update(){
