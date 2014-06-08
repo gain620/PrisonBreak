@@ -73,6 +73,8 @@ public class Level1State extends GameState {
 
 	public void update() {
 
+		handleInput();
+		
 		// 캐릭터 업데이트
 		character.update();
 		tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),

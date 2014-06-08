@@ -2,11 +2,15 @@ package com.teamcriminals.Character;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Entity.Enemy;
+import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
+import com.teamcriminals.Projectile.Projectile;
 import com.teamcriminals.Skill.Knife;
 import com.teamcriminals.Skill.SummonBats;
 import com.teamcriminals.Skill.ThrowBat;
@@ -14,54 +18,250 @@ import com.teamcriminals.TileMap.TileMap;
 
 public class Draco extends Character{
 	
-	
-	
 	public Draco(TileMap tm) {
 		
 		super(tm);
 		
-		// sprites 로드
+		init();
+		
+		width = 80;
+		height = 80;
+		cWidth = 35;
+		cHeight = 40;
+		
+		health = maxHealth = 100;
+		life = 3;
+
+		moveSpeed = 0.3;
+		stopSpeed = 0.4;
+		fallSpeed = 0.15;
+		maxFallSpeed = 4.0;
+		jumpStart = -4.8;
+		stopJumpSpeed = 0.3;
+		
+		faceRight = true;
+		
 		try {
-			
+
 			BufferedImage spritesheet = ImageIO.read(
-					getClass().getResourceAsStream(
-							"/Sprites/Character/" + this.getClass().getName() + ".gif"
-							)
-						);
+				getClass().getResourceAsStream("/Sprites/Character/Caesar.gif")
+			);
 			
-			for(int i = 0; i < 7; i++) {
+			for(int i = 0; i < 8; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
-				for(int j = 0;j< numFrames[i];j++)
+				for(int j = 0; j < numFrames[i]; j++)
 					bi[j] = spritesheet.getSubimage(j * width, i * height, width, height);
 				
 				sprites.add(bi);
 
 			}
 			
-		}catch(Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		motion = new Motion();
 		currentMotion = IDLE;
 		motion.setFrames(sprites.get(IDLE));
-		motion.setDelay(400);
+		motion.setDelay(400);	// 이건 딜레이 왜주는거임? 무슨의미지?
 		
 	}
 
+	// 객체 생성 전담
 	public void init() {
 		
 		skillZ = new Knife();
 		skillX = new ThrowBat(this);
 		skillC = new SummonBats();
+		sprites = new ArrayList<BufferedImage[]>();
+		motion = new Motion();
+		
 		/*
 		this.enemies = enemies;
 		this.boss = boss;
 		*/
 	}
+	
 
+	// 공격당할 경우
+	public void hit(int damage) {
+		
+		if(flinching)
+			return;
+		
+		stop();
+		
+		health -= damage;
+		
+		if(health < 0)
+			health = 0;
+		
+		flinching = true;
+		flinchCount = 0;
+		
+		if(faceRight)
+			dx = -1;
+		else
+			dx = 1;
+		
+		dy = -3;
+		
+		knockback = true;
+		fall = true;
+		jump = false;
+		
+	}
+	
+	// 초기화
+	public void reset() {
+		
+		health = maxHealth;
+		faceRight = true;
+		currentMotion = -1;
+		stop();
+		
+	}
+	
+	// 모든 행동을 멈추게 함
+	public void stop() {
+		
+		up = down = left = right = flinching = jump = Zattacking = Xattacking = Cattacking = false;
+	
+	}
+	
+	public void dead() {
+		
+		health = 0;
+		life--;
+		stop();
+	
+	}
+
+	public void checkAttack(ArrayList<Enemy> enemy) {
+		
+		// 모든 가능한 적 불러오기
+		for(int i = 0; i< enemy.size(); i++) {
+			Enemy e = enemy.get(i);
+			
+			// Z 공격 판정
+			if(Zattacking) {
+				if(faceRight) {
+					if(e.getX() > x && 
+						e.getX() < x + skillZ.getRange() &&
+						e.getY() > y - height / 2 && 
+						e.getY() < y + height / 2) {
+						e.hit(skillZ.getDamage());
+					}
+				}
+			} else {
+				if(e.getX() < x && 
+					e.getX() > x - skillZ.getRange() && 
+					e.getY() > y - height / 2 && 
+					e.getY() < y - height / 2) {
+					e.hit(skillZ.getDamage());
+				}
+			}
+			
+			// 화염구 공격 판정
+			for(int j = 0; j < skillX.getObjs().size(); j++) {
+				if(((MapObject)skillX.getObjs().get(i)).intersects(e)) {
+					e.hit(skillX.getDamage());
+					((Projectile)skillX.getObjs().get(j)).setHit();
+					break;
+				}
+			}
+			
+			/*
+			 *  추가 구현
+			 */
+			
+		}	
+		
+	}
+	
+	public void getNextPosition() {
+		
+		if(knockback) {
+			
+			dy += fallSpeed * 2;
+			
+			if(!fall)
+				knockback = false;
+			
+			return;
+		
+		}
+		
+		double maxSpeed = this.maxSpeed;
+		
+		// 좌우이동
+		if(left) {
+	
+			dx -= moveSpeed;
+	
+			if(dx < -maxSpeed)
+				dx = -maxSpeed;
+		
+		}
+		else if(right) {
+		
+			dx += moveSpeed;
+			
+			if(dx > maxSpeed) 
+				dx = maxSpeed;
+			
+		}
+		else {
+			if(dx > 0) {
+				
+				dx -= stopSpeed;
+			
+				if(dx < 0)
+					dx = 0;
+				
+			}
+			else if(dx < 0) {
+				
+				dx += stopSpeed;
+				
+				if(dx > 0)
+					dx = 0;
+
+			}
+		}
+		
+		// 공격중일땐 움직일 수 없고 점프나 떨어질때는 가능함
+		if((Zattacking || Xattacking || Cattacking) && !(jump || fall)) {	// (currentMotion == ZATTACK ... 이런식으로 해야하나?)
+			
+			dx = 0;
+		
+		}
+		
+		// 점프
+		if(jump && !fall) {
+			
+			dy = jumpStart;
+			fall = true;
+		
+		}
+		
+		// 떨어질 때
+		if(fall) {
+			
+			dy += fallSpeed;
+			
+			if(dy < 0 && !jump) 
+				dy += stopJumpSpeed;
+			
+			
+			if(dy > maxFallSpeed) 
+				dy = maxFallSpeed;
+			
+		}
+		
+	}
 	
 	public void update() {
 		
