@@ -14,8 +14,6 @@ public class Fyro extends Character {
 		
 		super(tm);
 		
-		name = "Fyro";
-		
 		/*
 		 *  추가 구현
 		 */
@@ -25,7 +23,7 @@ public class Fyro extends Character {
 	public void init() {
 		
 		skillZ = new Bottle();
-		skillX = new ThrowFire();
+		skillX = new ThrowFire(this);
 		skillC = new FireWorld();
 		/*
 		this.enemies = enemies;

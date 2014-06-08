@@ -15,8 +15,6 @@ public class Zero extends Character {
 		
 		super(tm);
 		
-		name = "Zero";
-		
 		/*
 		 *  추가 구현
 		 */
@@ -26,7 +24,7 @@ public class Zero extends Character {
 	public void init() {
 		
 		skillZ = new Pistol();
-		skillX = new LegShot();
+		skillX = new LegShot(this);
 		skillC = new GatlingGun();
 		/*
 		this.enemies = enemies;

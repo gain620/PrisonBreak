@@ -12,11 +12,10 @@ import com.teamcriminals.Skill.C;
 import com.teamcriminals.Skill.X;
 import com.teamcriminals.Skill.Z;
 import com.teamcriminals.TileMap.TileMap;
+import com.teamcriminals.Projectile.Projectile;
 
 public abstract class Character extends MapObject {
 
-	protected String name;
-	
 	// 캐릭터 속성
 	protected int health;
 	protected int maxHealth;
@@ -86,7 +85,7 @@ public abstract class Character extends MapObject {
 			
 			BufferedImage spritesheet = ImageIO.read(
 					getClass().getResourceAsStream(
-							"/Sprites/Character/" + name + ".gif"
+							"/Sprites/Character/" + this.getClass().getName() + ".gif"
 							)
 						);
 			
@@ -132,7 +131,6 @@ public abstract class Character extends MapObject {
 	public void setHealth(int health)				{ this.health = health;				}
 	public void setMaxHealth(int maxHealth)			{ this.maxHealth = maxHealth; 		}
 	public void setLife(int life)					{ this.life = life;					}
-	public void setJump(int jumpHeight)				{ this.jumpHeight = jumpHeight;		}
 	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount;	}
 	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ;				}	
 	public void setSkillX(X skillX)					{ this.skillX = skillX;				}
@@ -224,6 +222,44 @@ public abstract class Character extends MapObject {
 		life--;
 		stop();
 	
+	}
+	
+	public void checkAttack(ArrayList<Enemy> enemy) {
+		
+		// 모든 가능한 적 불러오기
+		for(int i = 0; i< enemy.size(); i++) {
+			Enemy e = enemy.get(i);
+			
+			// 펀치 공격 판정
+			if(Zattacking) {
+				if(faceRight) {
+					if(e.getX() > x && 
+						e.getX() < x + skillZ.getRange() &&
+						e.getY() > y - height / 2 && 
+						e.getY() < y + height / 2) {
+						e.hit(skillZ.getDamage());
+					}
+				}
+			} else {
+				if(e.getX() < x && 
+					e.getX() > x - skillZ.getRange() && 
+					e.getY() > y - height / 2 && 
+					e.getY() < y - height / 2) {
+					e.hit(skillZ.getDamage());
+				}
+			}
+			
+			// 화염구 공격 판정
+			for(int j = 0; j < skillX.getObjs().size(); j++) {
+				if(((MapObject)skillX.getObjs().get(i)).intersects(e)) {
+					e.hit(skillX.getDamage());
+					((Projectile)skillX.getObjs().get(j)).setHit();
+					break;
+				}
+			}
+			
+		}	
+		
 	}
 	
 	protected void getNextPosition() {

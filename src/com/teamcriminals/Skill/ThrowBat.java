@@ -8,48 +8,39 @@ import com.teamcriminals.Projectile.Bat;
 
 public class ThrowBat extends X {
 	
-	private Character c;
-	private int bat;
-	private int maxBat;
-	private int batUse;
-	private int batDamage;
-	private ArrayList<Bat> bats;
-	
-	private boolean throwing;
-	
 	public ThrowBat(Character c) {
 		
-		this.c = c;
+		super(c);
 		
 		cooldown = 13;
 		
-		bat = maxBat = 60 * cooldown;
-		batUse = 60 * cooldown;
-		batDamage = 5;
-		bats = new ArrayList<Bat>();
+		obj = maxObj = 60 * cooldown;
+		objUse = 60 * cooldown;
+		objDamage = 5;
+		objs = new ArrayList<Bat>();
 		
 	}
 
 	@Override
 	public void update() {
 
-		bat +=1;
-		if(bat > maxBat)
-			bat = maxBat;
+		obj +=1;
+		if(obj > maxObj)
+			obj = maxObj;
 		if(throwing && c.getCurrentMotion() != c.XATTACK) {
-			if(bat > batUse) {
-				bat -= batUse;
+			if(obj > objUse) {
+				obj -= objUse;
 				
 				Bat b = new Bat(c.getTileMap(), c.isFaceRight());
 				b.setPosition(c.getX(), c.getY());
-				bats.add(b);
+				objs.add(b);
 			}
 		}
 		
-		for(int i = 0; i < bats.size(); i++){
-			bats.get(i).update();
-			if(bats.get(i).shouldRemove()){
-				bats.remove(i);
+		for(int i = 0; i < objs.size(); i++){
+			((Character) objs.get(i)).update();
+			if(((Bat) objs.get(i)).shouldRemove()){
+				objs.remove(i);
 				i--;
 			}
 		}
@@ -68,20 +59,18 @@ public class ThrowBat extends X {
 	@Override
 	public void draw(Graphics2D g) {
 
-		for(int i = 0; i < bats.size(); i++)
-			bats.get(i).draw(g);
+		for(int i = 0; i < objs.size(); i++)
+			((Bat)objs.get(i)).draw(g);
 						
 	}
 
 	@Override
 	public int attack() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		
 	}
 

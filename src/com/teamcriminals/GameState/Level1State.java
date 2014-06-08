@@ -4,11 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.teamcriminals.Character.CharacterFactory;
-import com.teamcriminals.Enemy.ZombieSoldier;
-import com.teamcriminals.Entity.Enemy;
-import com.teamcriminals.Entity.HUD;
-import com.teamcriminals.Entity.TestVerCharacter;
+import com.teamcriminals.Handlers.Keys;
+import com.teamcriminals.Character.*;
+import com.teamcriminals.Enemy.*;
+import com.teamcriminals.Entity.*;
+import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 import com.teamcriminals.TileMap.TileMap;
@@ -21,9 +21,7 @@ public class Level1State extends GameState {
 
 	private TileMap tilemap;
 	private Background bg;
-	//private Character character;
-	
-	private TestVerCharacter testCharacter;
+	private Character character;
 	
 	private ArrayList<Enemy> enemy;
 
@@ -31,12 +29,6 @@ public class Level1State extends GameState {
 		this.gsm = gsm;
 		init();
 	}
-
-	/*
-	 * 테스트 public void setCharacterState() { cf.getCharacter(characterNum); }
-	 * 
-	 * 
-	 */
 
 	public void init() {
 
@@ -47,12 +39,10 @@ public class Level1State extends GameState {
 		tilemap.setPosition(0, 0);
 		tilemap.setTween(0.07);
 
-		//character = cf.setCharacter(gsm.getCharacter(), tilemap);
+		character = cf.setCharacter(gsm.getCharacter(), tilemap);
+		character.setPosition(300, 200);
 		
-		testCharacter = new TestVerCharacter(tilemap);
-		testCharacter.setPosition(300, 200);
-		
-		hud = new HUD(testCharacter);
+		hud = new HUD(character);
 		
 		
 		enemy = new ArrayList<Enemy>();
@@ -66,9 +56,9 @@ public class Level1State extends GameState {
 	public void update() {
 
 		// 캐릭터 업데이트
-		testCharacter.update();
-		tilemap.setPosition(GamePanel.WIDTH / 2 - testCharacter.getX(),
-				GamePanel.HEIGHT / 2 - testCharacter.getY());
+		character.update();
+		tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
+				GamePanel.HEIGHT / 2 - character.getY());
 		
 
 
@@ -83,7 +73,7 @@ public class Level1State extends GameState {
 		}
 		
 		// 적 공격
-		testCharacter.checkAttack(enemy);
+		character.checkAttack(enemy);
 		
 	}
 
@@ -95,7 +85,7 @@ public class Level1State extends GameState {
 		tilemap.draw(g);
 		
 		// 캐릭터 draw
-		testCharacter.draw(g);
+		character.draw(g);
 		
 		// HUD draw
 		hud.draw(g);
@@ -106,26 +96,43 @@ public class Level1State extends GameState {
 		}
 	}
 
+	public void handleInput() {
+		if(Keys.isPressed(Keys.ESCAPE)) gsm.setState(GameStateManager.MENUSTATE);//gsm.setPaused(true);
+		if(/*blockInput ||*/ character.getHealth() == 0) return;
+		character.setUp(Keys.keyState[Keys.UP]);
+		character.setLeft(Keys.keyState[Keys.LEFT]);
+		character.setDown(Keys.keyState[Keys.DOWN]);
+		character.setRight(Keys.keyState[Keys.RIGHT]);
+		character.setJump(Keys.keyState[Keys.SPACE]);
+		if(Keys.isPressed(Keys.Z)) character.setZattacking();
+		if(Keys.isPressed(Keys.X)) character.setXattacking();
+		if(Keys.isPressed(Keys.C)) character.setCattacking();
+		
+	}
+	
 	public void keyPressed(int k) {
-		if(k == KeyEvent.VK_LEFT) testCharacter.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) testCharacter.setRight(true);
-		if(k == KeyEvent.VK_UP) testCharacter.setUp(true);
-		if(k == KeyEvent.VK_DOWN) testCharacter.setDown(true);
-		if(k == KeyEvent.VK_S) testCharacter.setJump(true);
-		if(k == KeyEvent.VK_D) testCharacter.setGliding(true);
-		if(k == KeyEvent.VK_Z) testCharacter.setPunch();
-		if(k == KeyEvent.VK_X) testCharacter.setFiring();
+		/* Keys덕분에 필요없을듯한데
+		if(k == KeyEvent.VK_LEFT) character.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT) character.setRight(true);
+		if(k == KeyEvent.VK_UP) character.setUp(true);
+		if(k == KeyEvent.VK_DOWN) character.setDown(true);
+		if(k == KeyEvent.VK_S) character.setJump(true);
+		//if(k == KeyEvent.VK_D) character.setGliding(true);
+		//if(k == KeyEvent.VK_Z) character.setPunch();
+		//if(k == KeyEvent.VK_X) character.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
-
+		 */
 	}
 
 	public void keyReleased(int k) {
-		if(k == KeyEvent.VK_LEFT) testCharacter.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) testCharacter.setRight(false);
-		if(k == KeyEvent.VK_UP) testCharacter.setUp(false);
-		if(k == KeyEvent.VK_DOWN) testCharacter.setDown(false);
-		if(k == KeyEvent.VK_W) testCharacter.setJump(false);
-		if(k == KeyEvent.VK_E) testCharacter.setGliding(false);
+		/*
+		if(k == KeyEvent.VK_LEFT) character.setLeft(false);
+		if(k == KeyEvent.VK_RIGHT) character.setRight(false);
+		if(k == KeyEvent.VK_UP) character.setUp(false);
+		if(k == KeyEvent.VK_DOWN) character.setDown(false);
+		if(k == KeyEvent.VK_W) character.setJump(false);
+		//if(k == KeyEvent.VK_E) character.setGliding(false);
+		 */
 	}
-
+	
 }

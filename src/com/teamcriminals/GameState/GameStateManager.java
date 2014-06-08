@@ -58,5 +58,5 @@ public class GameStateManager {
 	public void KeyReleased(int k){
 		gameStates.get(currentState).keyReleased(k);
 	}
-
+	
 }

@@ -14,8 +14,6 @@ public class Caesar extends Character {
 		
 		super(tm);
 		
-		name = "Caesar";
-		
 		/*
 		 *  추가 구현이 필요할 경우 작성
 		 */
@@ -26,7 +24,7 @@ public class Caesar extends Character {
 	public void init() {
 		
 		skillZ = new Punch();
-		skillX = new Dash();
+		skillX = new Dash(this);
 		skillC = new WolfKing();
 		/*
 		this.enemies = enemies;

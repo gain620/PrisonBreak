@@ -9,12 +9,12 @@ import javax.imageio.ImageIO;
 
 public class HUD {
 	
-	private TestVerCharacter testCharacter;
+	private Character character;
 	private BufferedImage hudImage;
 	private Font font;
 	
-	public HUD(TestVerCharacter testCharacter){
-		this.testCharacter = testCharacter;
+	public HUD(Character character){
+		this.character = character;
 		
 		try{
 			hudImage = ImageIO.read(getClass().getResourceAsStream("/HUD/hud.gif"));
@@ -30,8 +30,8 @@ public class HUD {
 		g.drawImage(hudImage, 0, 30, null);
 		g.setFont(font);
 		g.setColor(Color.white);
-		g.drawString(testCharacter.getHealth() + "/" + testCharacter.getMaxHealth(), 30, 45);
-		g.drawString(testCharacter.getFire()/100 +"/"+ testCharacter.getMaxFire()/100, 30, 65);
+		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 30, 45);
+		//g.drawString(testCharacter.getFire()/100 +"/"+ testCharacter.getMaxFire()/100, 30, 65);
 		
 	}
 

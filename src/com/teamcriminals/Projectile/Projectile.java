@@ -9,19 +9,18 @@ import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.TileMap.TileMap;
 
-public class Bat extends Projectile {
-
-	/*
-	private boolean hit;
-	private boolean remove;
-	private BufferedImage[] sprites;
-	private BufferedImage[] hitSprites;
-	*/
+public class Projectile extends MapObject{
 	
-	public Bat(TileMap tm, boolean right) {
+	protected boolean hit;
+	protected boolean remove;
+	protected BufferedImage[] sprites;
+	protected BufferedImage[] hitSprites;
+	
+	
+	public Projectile(TileMap tm, boolean right) {
 		
-		super(tm, right);
-	/*	
+		super(tm);
+		
 		moveSpeed = 3.8;
 		if(right)
 			dx = moveSpeed;
@@ -55,10 +54,8 @@ public class Bat extends Projectile {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		*/
 	}
 	
-	/*
 	public void setHit() {
 	
 		if(hit)
@@ -116,5 +113,5 @@ public class Bat extends Projectile {
 		}
 		
 	}
-	*/
+	
 }
