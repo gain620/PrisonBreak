@@ -3,12 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/lib/ext/prisonbreak/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/lib/ext/prisonbreak/mp3spi1.9.5.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/lib/ext/prisonbreak/tritonus_share.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre7/lib/ext/prisonbreak/jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre7/lib/ext/prisonbreak/mp3spi1.9.5.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Java/jre7/lib/ext/prisonbreak/tritonus_share.jar"/>
->>>>>>> 0e551c915f24e9e50c74b4bb5f848aa143189c66
 	<classpathentry kind="output" path="bin"/>
 </classpath>
