@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import com.teamcriminals.Enemy.*;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Character.CharacterFactory;
