@@ -2,9 +2,9 @@ package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.teamcriminals.Handlers.Keys;
 import com.teamcriminals.Enemy.*;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Character.CharacterFactory;
@@ -17,10 +17,8 @@ import com.teamcriminals.TileMap.TileMap;
 
 public class Level1State extends GameState {
 	
-	CharacterFactory cf = new CharacterFactory();
-	
 	private HUD hud;
-
+	private CharacterFactory cf;
 	private TileMap tilemap;
 	private Background bg;
 	private Character character;
@@ -35,6 +33,7 @@ public class Level1State extends GameState {
 
 	public void init() {
 
+		cf = new CharacterFactory();
 		bg = new Background("/Background/Stage1.png", 0);
 		tilemap = new TileMap(30);
 		tilemap.loadTiles("/Tilesets/Stage1Tileset.png");
@@ -43,7 +42,7 @@ public class Level1State extends GameState {
 		tilemap.setTween(0.07);
 
 		character = cf.setCharacter(gsm.getCharacter(), tilemap);
-		character.setPosition(60, 400);
+		character.setPosition(300.0, 200.0);
 		
 		hud = new HUD(character);
 		
@@ -69,12 +68,8 @@ public class Level1State extends GameState {
 		}
 	}
 	
-	
-
 	public void update() {
 
-		handleInput();
-		
 		// 캐릭터 업데이트
 		character.update();
 		tilemap.setPosition(GamePanel.WIDTH / 2 - character.getX(),
@@ -87,7 +82,7 @@ public class Level1State extends GameState {
 			e.update();
 			if(e.isDead()) {
 				enemy.remove(i);
-				i --;
+				i--;
 				death.add(new Death(e.getX() , e.getY()));
 			}
 		}
@@ -129,44 +124,25 @@ public class Level1State extends GameState {
 			death.get(i).draw(g);
 		}
 	}
-
-	public void handleInput() {
-		if(Keys.isPressed(Keys.ESCAPE)) gsm.setState(GameStateManager.MENUSTATE);//gsm.setPaused(true);
-		if(/*blockInput ||*/ character.getHealth() == 0) return;
-		character.setUp(Keys.keyState[Keys.UP]);
-		character.setLeft(Keys.keyState[Keys.LEFT]);
-		character.setDown(Keys.keyState[Keys.DOWN]);
-		character.setRight(Keys.keyState[Keys.RIGHT]);
-		character.setJump(Keys.keyState[Keys.SPACE]);
-		if(Keys.isPressed(Keys.Z)) character.setZattacking();
-		if(Keys.isPressed(Keys.X)) character.setXattacking();
-		if(Keys.isPressed(Keys.C)) character.setCattacking();
-		
-	}
 	
 	public void keyPressed(int k) {
-		/* Keys덕분에 필요없을듯한데
-		if(k == KeyEvent.VK_LEFT) character.setLeft(true);
-		if(k == KeyEvent.VK_RIGHT) character.setRight(true);
 		if(k == KeyEvent.VK_UP) character.setUp(true);
 		if(k == KeyEvent.VK_DOWN) character.setDown(true);
-		if(k == KeyEvent.VK_S) character.setJump(true);
-		//if(k == KeyEvent.VK_D) character.setGliding(true);
-		//if(k == KeyEvent.VK_Z) character.setPunch();
-		//if(k == KeyEvent.VK_X) character.setFiring();
+		if(k == KeyEvent.VK_LEFT) character.setLeft(true);
+		if(k == KeyEvent.VK_RIGHT) character.setRight(true);
+		if(k == KeyEvent.VK_SPACE) character.setJump(true);
+		if(k == KeyEvent.VK_Z) character.setZattacking();
+		if(k == KeyEvent.VK_X) character.setXattacking();
+		if(k == KeyEvent.VK_C) character.setCattacking();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
-		 */
 	}
 
 	public void keyReleased(int k) {
-		/*
-		if(k == KeyEvent.VK_LEFT) character.setLeft(false);
-		if(k == KeyEvent.VK_RIGHT) character.setRight(false);
 		if(k == KeyEvent.VK_UP) character.setUp(false);
 		if(k == KeyEvent.VK_DOWN) character.setDown(false);
-		if(k == KeyEvent.VK_W) character.setJump(false);
-		//if(k == KeyEvent.VK_E) character.setGliding(false);
-		 */
+		if(k == KeyEvent.VK_LEFT) character.setLeft(false);
+		if(k == KeyEvent.VK_RIGHT) character.setRight(false);
+		if(k == KeyEvent.VK_SPACE) character.setJump(false);
 	}
 	
 }

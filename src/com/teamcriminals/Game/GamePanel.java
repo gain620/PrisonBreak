@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import com.teamcriminals.Enemy.ZombieSoldier;
 import com.teamcriminals.GameState.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {

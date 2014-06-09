@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import com.teamcriminals.Motion.Motion;
 
 public class Death {
+	
 	private int x ,y ;
 	private int width, height;
 	private int xMap, yMap;
