@@ -1,7 +1,6 @@
 package com.teamcriminals.Character;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -24,11 +23,6 @@ public class Draco extends Character{
 		super(tm);
 		
 		init();
-		
-		ar.width = 30;
-		ar.height = 20;
-		cr.width = 50;
-		cr.height = 40;
 
 		width = 80;
 		height = 80;
@@ -83,9 +77,6 @@ public class Draco extends Character{
 		skillC = new SummonBats();
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
-		ar = new Rectangle(0, 0, 0, 0);
-		aur = new Rectangle((int)x - 15, (int)y - 45, 30, 30);
-		cr = new Rectangle(0, 0, 0, 0);
 	}
 	
 	// 공격당할 경우

@@ -1,7 +1,6 @@
 package com.teamcriminals.Entity;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -30,11 +29,6 @@ public abstract class Character extends MapObject {
 	protected boolean flinching;
 	protected boolean dead;
 	
-	// 이건 뭐지?
-	protected Rectangle ar;
-	protected Rectangle aur;
-	protected Rectangle cr;
-
 	// Motion 관련
 	protected ArrayList<BufferedImage[]> sprites;
 	protected final int[] numFrames = {2, 4, 1, 1, 1, 2, 2, 2};
@@ -76,9 +70,9 @@ public abstract class Character extends MapObject {
 	public void setSkillX(X<?> skillX)				{ this.skillX = skillX;				}
 	public void setSkillC(C skillC)					{ this.skillC = skillC;				}
 	public void setFlinching(boolean b)				{ this.flinching = b;				}
-	public void setZattacking()						{ Zattacking = true; }
-	public void setXattacking()						{ Xattacking = true; }
-	public void setCattacking()						{ Cattacking = true; }
+	public void setZattacking()						{ this.Zattacking = true; }
+	public void setXattacking()						{ this.Xattacking = true; }
+	public void setCattacking()						{ this.Cattacking = true; }
 		public void setMotion(int i) {
 		currentMotion = i;
 		motion.setFrames(sprites.get(currentMotion));
