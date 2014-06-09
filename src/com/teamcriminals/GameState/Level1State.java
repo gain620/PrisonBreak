@@ -4,9 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import com.teamcriminals.Enemy.*;
-import com.teamcriminals.Entity.Character;
+
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Character.CharacterFactory;
+import com.teamcriminals.Enemy.ZombieSoldier;
+import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Death;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.HUD;

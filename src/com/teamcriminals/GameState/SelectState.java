@@ -31,11 +31,7 @@ public class SelectState extends GameState {
 	
 	public void handleInput() {}
 
-	public void draw(Graphics2D g) {
-		//화면정리(굳이 필요한 코드는 아님!~)
-		g.setColor(new Color(250,250,250));
-		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-		
+	public void draw(Graphics2D g) {	
 		bg.draw(g);
 		
 		for(int i = 0; i < options.length;i++){
