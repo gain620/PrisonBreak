@@ -11,7 +11,6 @@ public abstract class X<T> extends Attack {
 	protected int obj;
 	protected int maxObj;
 	protected int objUse;
-	protected int objDamage;
 	protected ArrayList<T> objs;
 	protected boolean throwing;
 	
@@ -22,7 +21,6 @@ public abstract class X<T> extends Attack {
 	public int getObj() { return obj; }
 	public int getMaxObj() { return maxObj; }
 	public int getObjUse() { return objUse; }
-	public int getObjDamage() { return objDamage; }
 	public ArrayList<T> getObjs() { return objs; }
 	public boolean isThrowing() { return throwing; }
 	public int getCoolDown() { return this.cooldown; }
@@ -30,7 +28,6 @@ public abstract class X<T> extends Attack {
 	public void setObj(int obj) { this.obj = obj; }
 	public void setMaxObj(int maxObj) { this.maxObj = maxObj; }
 	public void setObjUse(int objUse) { this.objUse = objUse; }
-	public void setObjDamage(int objDamage) { this.objDamage = objDamage; }
 	public void setObjs(ArrayList<T> objs) { this.objs = objs; }
 	public void setThrowing(boolean throwing) { this.throwing = throwing; }
 	public void setCoolDown(int cooldown) { this.cooldown = cooldown; }

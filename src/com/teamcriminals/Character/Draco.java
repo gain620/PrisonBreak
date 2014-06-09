@@ -11,9 +11,9 @@ import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Projectile.Projectile;
-import com.teamcriminals.Skill.Dash;
-import com.teamcriminals.Skill.Punch;
-import com.teamcriminals.Skill.WolfKing;
+import com.teamcriminals.Skill.Knife;
+import com.teamcriminals.Skill.SummonBats;
+import com.teamcriminals.Skill.ThrowBat;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Draco extends Character {
@@ -72,9 +72,9 @@ public class Draco extends Character {
 	
 	// 객체 생성 전담
 	public void init() {
-		skillZ = new Punch();
-		skillX = new Dash(this);
-		skillC = new WolfKing();
+		skillZ = new Knife();
+		skillX = new ThrowBat(this);
+		skillC = new SummonBats(this);
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
 	}
@@ -146,11 +146,13 @@ public class Draco extends Character {
 					break;
 				}
 			}
-			
-			/*
-			 *  추가 구현
-			 */
-			
+
+			// C 공격 판정
+			if(skillC.getProjectile().intersects(e)) {
+				e.hit(skillC.getDamage());
+				skillC.getProjectile().setHit();
+				break;
+			}
 		}	
 		
 	}

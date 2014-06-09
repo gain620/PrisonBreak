@@ -1,15 +1,27 @@
 package com.teamcriminals.Skill;
 
+import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Projectile.Projectile;
+
 public abstract class C extends Attack {
 	
-	private int bomb;
+	protected Character c;
+	protected Projectile p;
+	protected int bomb;
+	protected int maxBomb;
+	protected boolean use;
 	
-	public int getBomb() {
-		return this.bomb;
+	public C(Character c) {
+		this.c = c;
 	}
+
+	public Projectile getProjectile() { return p;}
+	public int getBomb() { return bomb; }
+	public int getMaxBomb() { return maxBomb; }
+	public boolean isUse() { return use; }
 	
-	public void setBomb(int bomb) {
-		this.bomb = bomb;
-	}
-	
+	public void setBomb(int bomb) { this.bomb = bomb; }
+	public void setMaxBomb(int maxBomb) { this.maxBomb = maxBomb; }
+	public void setUse(boolean b) { this.use = b; }
+
 }

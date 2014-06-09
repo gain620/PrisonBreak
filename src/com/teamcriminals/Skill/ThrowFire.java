@@ -14,7 +14,7 @@ public class ThrowFire extends X<FireBottle> {
 		cooldown = 13;
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
-		objDamage = 5;
+		damage = 5;
 	}
 	
 	@Override

@@ -11,9 +11,9 @@ import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Projectile.Projectile;
-import com.teamcriminals.Skill.Dash;
-import com.teamcriminals.Skill.Punch;
-import com.teamcriminals.Skill.WolfKing;
+import com.teamcriminals.Skill.Bottle;
+import com.teamcriminals.Skill.FireWorld;
+import com.teamcriminals.Skill.ThrowFire;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Fyro extends Character {
@@ -72,9 +72,9 @@ public class Fyro extends Character {
 	
 	// 객체 생성 전담
 	public void init() {
-		skillZ = new Punch();
-		skillX = new Dash(this);
-		skillC = new WolfKing();
+		skillZ = new Bottle();
+		skillX = new ThrowFire(this);
+		skillC = new FireWorld(this);
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
 	}
@@ -146,11 +146,13 @@ public class Fyro extends Character {
 					break;
 				}
 			}
-			
-			/*
-			 *  추가 구현
-			 */
-			
+
+			// C 공격 판정
+			if(skillC.getProjectile().intersects(e)) {
+				e.hit(skillC.getDamage());
+				skillC.getProjectile().setHit();
+				break;
+			}
 		}	
 		
 	}

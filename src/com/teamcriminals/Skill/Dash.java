@@ -19,7 +19,7 @@ public class Dash extends X<Butt> {
 		cooldown = 13;
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
-		objDamage = 5;
+		damage = 5;
 	}
 
 	@Override

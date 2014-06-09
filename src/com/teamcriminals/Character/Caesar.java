@@ -74,7 +74,7 @@ public class Caesar extends Character {
 	public void init() {
 		skillZ = new Punch();
 		skillX = new Dash(this);
-		skillC = new WolfKing();
+		skillC = new WolfKing(this);
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
 	}
@@ -147,12 +147,13 @@ public class Caesar extends Character {
 				}
 			}
 			
-			/*
-			 *  추가 구현
-			 */
-			
-		}	
-		
+			// C 공격 판정
+			if(skillC.getProjectile().intersects(e)) {
+				e.hit(skillC.getDamage());
+				skillC.getProjectile().setHit();
+				break;
+			}
+		}
 	}
 	
 	public void getNextPosition() {		
