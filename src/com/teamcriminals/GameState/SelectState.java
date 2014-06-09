@@ -22,7 +22,7 @@ public class SelectState extends GameState {
 	}
 
 	public void init() {
-		bg = new Background("/Background/menuState.png",0);
+		bg = new Background("/Background/menuState.png", 0);
 	}
 
 	public void update() {
@@ -58,12 +58,12 @@ public class SelectState extends GameState {
 
 	public void keyPressed(int k) {
 		if (k == KeyEvent.VK_RIGHT) {
-			currentSelection++;
+			++currentSelection;
 			if (currentSelection >= options.length) {
 				currentSelection = 0;
 			}
 		} else if (k == KeyEvent.VK_LEFT) {
-			currentSelection--;
+			--currentSelection;
 			if (currentSelection < 0) {
 				currentSelection = options.length - 1;
 			}
@@ -99,9 +99,5 @@ public class SelectState extends GameState {
 
 	}
 
-
-
-
-	
 	public void keyReleased(int k) {}
 }

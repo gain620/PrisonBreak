@@ -30,7 +30,7 @@ public abstract class Character extends MapObject {
 	
 	// Motion 관련
 	protected ArrayList<BufferedImage[]> sprites;
-	protected final int[] numFrames = {2, 4, 1, 1 , 2, 2, 2};
+	protected final int[] numFrames = {2, 4, 1, 1, 2, 2, 2};
 	
 	// Motion 리스트 (모션 추가해야됨)
 	public static final int IDLE = 0;
