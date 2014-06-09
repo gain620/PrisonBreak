@@ -12,13 +12,13 @@ import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Projectile.Projectile;
-import com.teamcriminals.Skill.Bottle;
-import com.teamcriminals.Skill.ThrowFire;
-import com.teamcriminals.Skill.FireWorld;
+import com.teamcriminals.Skill.Dash;
+import com.teamcriminals.Skill.Punch;
+import com.teamcriminals.Skill.WolfKing;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Fyro extends Character {
-
+	
 	public Fyro(TileMap tm) {
 		
 		super(tm);
@@ -32,8 +32,8 @@ public class Fyro extends Character {
 
 		width = 80;
 		height = 80;
-		cWidth = 35;
-		cHeight = 60;
+		cWidth = 45;
+		cHeight = 40;
 		
 		health = maxHealth = 100;
 		life = 3;
@@ -51,10 +51,10 @@ public class Fyro extends Character {
 		try {
 
 			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream("/Sprites/Character/Caesar.gif")
+				getClass().getResourceAsStream("/Sprites/Character/caesar.jpg")
 			);
 			
-			for(int i = 0; i < 8; i++) {
+			for(int i = 0; i < 7; i++) {
 
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				
@@ -78,9 +78,9 @@ public class Fyro extends Character {
 	
 	// 객체 생성 전담
 	public void init() {
-		skillZ = new Bottle();
-		skillX = new ThrowFire(this);
-		skillC = new FireWorld();
+		skillZ = new Punch();
+		skillX = new Dash(this);
+		skillC = new WolfKing();
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
 		ar = new Rectangle(0, 0, 0, 0);
@@ -99,7 +99,6 @@ public class Fyro extends Character {
 		if(faceRight)	dx = -1;
 		else	dx = 1;
 		dy = -3;
-		knockback = true;
 		fall = true;
 		jump = false;
 	}
@@ -165,15 +164,7 @@ public class Fyro extends Character {
 		
 	}
 	
-	public void getNextPosition() {
-		
-		if(knockback) {
-			dy += fallSpeed * 2;
-			if(!fall)
-				knockback = false;
-			return;
-		}
-		
+	public void getNextPosition() {		
 		double maxSpeed = this.maxSpeed;
 		
 		// 좌우이동
@@ -213,6 +204,8 @@ public class Fyro extends Character {
 		// 떨어질 때
 		if(fall) {
 			dy += fallSpeed;
+			if (dy > 0)
+				jump = false;
 			if(dy < 0 && !jump) 
 				dy += stopJumpSpeed;
 			if(dy > maxFallSpeed) 
@@ -228,7 +221,7 @@ public class Fyro extends Character {
 		collideTile();
 		setPosition(xTemp, yTemp);
 
-		if(dx == 0)
+		if(dx == 0)	// ???????????????? 왜 넣었을까
 			x = (int)x;
 		
 		// flinching 지속
@@ -257,19 +250,7 @@ public class Fyro extends Character {
 		}
 		
 		// 모션 설정
-		if(knockback) {
-			if(currentMotion != KNOCKBACK) {
-				setMotion(KNOCKBACK);
-			}
-		}
-		/* 모션을 더 만들어야함
-		else if(health == 0) {
-			if(currentMotion != DEAD) {
-				setMotion(DEAD);
-			}
-		}
-		*/
-		else if(Zattacking) {
+		if(Zattacking) {
 			if(currentMotion != ZATTACK) {
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
@@ -337,7 +318,7 @@ public class Fyro extends Character {
 		motion.update();
 				
 		// 위치 방향 결정
-		if(currentMotion != ZATTACK && currentMotion != XATTACK && currentMotion != CATTACK && !knockback) {
+		if(currentMotion != ZATTACK && currentMotion != XATTACK && currentMotion != CATTACK) {
 			if(right)
 				faceRight = true;
 			if(left)
@@ -351,7 +332,7 @@ public class Fyro extends Character {
 		
 		setMapPosition();
 		
-		if(flinching && !knockback) {
+		if(flinching) {
 			long elapsed = (System.nanoTime() - flinchCount) / 1000000;
 			if(elapsed / 100 % 2 == 0)
 				return;

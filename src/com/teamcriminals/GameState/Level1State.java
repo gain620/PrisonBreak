@@ -16,7 +16,6 @@ import com.teamcriminals.TileMap.Background;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Level1State extends GameState {
-	
 	private HUD hud;
 	private CharacterFactory cf;
 	private TileMap tilemap;

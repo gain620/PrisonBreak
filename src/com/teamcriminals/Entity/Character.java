@@ -27,7 +27,6 @@ public abstract class Character extends MapObject {
 	protected boolean Zattacking;
 	protected boolean Xattacking;
 	protected boolean Cattacking;
-	protected boolean knockback;
 	protected boolean flinching;
 	protected boolean dead;
 	
@@ -38,18 +37,16 @@ public abstract class Character extends MapObject {
 
 	// Motion 관련
 	protected ArrayList<BufferedImage[]> sprites;
-	protected final int[] numFrames = {2, 4, 1, 1, 1, 2, 2, 2};
+	protected final int[] numFrames = {2, 4, 1, 1 , 2, 2, 2};
 	
 	// Motion 리스트 (모션 추가해야됨)
 	public static final int IDLE = 0;
 	public static final int WALK = 1;
 	public static final int JUMP = 2;
 	public static final int FALL = 3;
-	public static final int KNOCKBACK = 4;
-	public static final int DEAD = 4;
-	public static final int ZATTACK = 5;
-	public static final int XATTACK = 6;
-	public static final int CATTACK = 7;
+	public static final int ZATTACK = 4;
+	public static final int XATTACK = 5;
+	public static final int CATTACK = 6;
 	
 	public Character(TileMap tm) {
 		super(tm);
@@ -66,7 +63,6 @@ public abstract class Character extends MapObject {
 	public boolean isZattacking()					{ return this.Zattacking;	}
 	public boolean isXattacking()					{ return this.Xattacking;	}
 	public boolean isCattacking()					{ return this.Cattacking;	}
-	public boolean isKnokback()						{ return this.knockback;	}
 	public boolean isFlinching()					{ return this.flinching;	}
 	public ArrayList<BufferedImage[]> getSprites() 	{ return this.sprites;		}
 	
@@ -78,22 +74,18 @@ public abstract class Character extends MapObject {
 	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ;				}	
 	public void setSkillX(X<?> skillX)				{ this.skillX = skillX;				}
 	public void setSkillC(C skillC)					{ this.skillC = skillC;				}
-	public void setKnokback(boolean b)				{ this.knockback = b;				}
 	public void setFlinching(boolean b)				{ this.flinching = b;				}
+	
 	public void setZattacking() {
-		if(knockback) return;
 		Zattacking = true;
 	}
 	public void setXattacking() {
-		if(knockback) return;
 		Xattacking = true;
 	}
 	public void setCattacking() {
-		if(knockback) return;
 		Cattacking = true;
 	}
 	public void setJump(boolean b) {
-		if(knockback) return;
 		jump = b;
 	}
 	public void setMotion(int i) {
