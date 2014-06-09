@@ -2,7 +2,6 @@ package com.teamcriminals.TileMap;
 
 import java.awt.Graphics2D;
 import java.awt.image.*;
-import java.io.File;
 
 import javax.imageio.ImageIO;
 

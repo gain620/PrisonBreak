@@ -3,10 +3,7 @@ package com.teamcriminals.Projectile;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-
 import com.teamcriminals.Entity.MapObject;
-import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Projectile extends MapObject{
@@ -16,56 +13,16 @@ public class Projectile extends MapObject{
 	protected BufferedImage[] sprites;
 	protected BufferedImage[] hitSprites;
 	
-	
 	public Projectile(TileMap tm, boolean right) {
-		
 		super(tm);
-		
-		moveSpeed = 3.8;
-		if(right)
-			dx = moveSpeed;
-		else
-			dx = -moveSpeed;
-		
-		width = 30;
-		height = 30;
-		cWidth = 14;
-		cHeight = 14;
-		
-		// 스프라이트 로드
-		try{
-			
-			BufferedImage spritesheet = ImageIO.read(
-					getClass().getResourceAsStream("/Sprites/Projectiles/Bat.gif")
-							);
-			
-			sprites = new BufferedImage[4];
-			for(int i = 0;i<sprites.length;i++)
-					
-			hitSprites = new BufferedImage[3];
-			for(int i = 0; i<hitSprites.length;i++)
-				hitSprites[i] = spritesheet.getSubimage(i * width, height, width, height);
-			
-			motion = new Motion();
-			motion.setFrames(sprites);
-			motion.setDelay(70);
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void setHit() {
-	
-		if(hit)
-			return;
-		
+		if(hit)	return;
 		hit  = true;
 		motion.setFrames(hitSprites);
 		motion.setDelay(70);
 		dx = 0;
-	
 	}
 	
 	public boolean shouldRemove(){
@@ -73,19 +30,13 @@ public class Projectile extends MapObject{
 	}
 	
 	public void update() {
-		
 		collideTile();
 		setPosition(xTemp, yTemp);
-		
-		
 		if(dx == 0 && !hit)
 			setHit();
-		
 		motion.update();
-		
 		if(hit && motion.hasPlayedOnce())
 			remove = true;
-		
 	}
 	
 	public void draw(Graphics2D g){

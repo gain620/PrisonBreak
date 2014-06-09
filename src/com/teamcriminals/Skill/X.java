@@ -16,64 +16,22 @@ public abstract class X<T> extends Attack {
 	protected boolean throwing;
 	
 	public X(Character c) {
-		
 		this.c = c;
-		
 	}
 
-	public int getObj() {
-		return obj;
-	}
-
-	public void setObj(int obj) {
-		this.obj = obj;
-	}
-
-	public int getMaxObj() {
-		return maxObj;
-	}
-
-	public void setMaxObj(int maxObj) {
-		this.maxObj = maxObj;
-	}
-
-	public int getObjUse() {
-		return objUse;
-	}
-
-	public void setObjUse(int objUse) {
-		this.objUse = objUse;
-	}
-
-	public int getObjDamage() {
-		return objDamage;
-	}
-
-	public void setObjDamage(int objDamage) {
-		this.objDamage = objDamage;
-	}
-
-	public ArrayList<T> getObjs() {
-		return objs;
-	}
-
-	public void setObjs(ArrayList<T> objs) {
-		this.objs = objs;
-	}
-
-	public boolean isThrowing() {
-		return throwing;
-	}
-
-	public void setThrowing(boolean throwing) {
-		this.throwing = throwing;
-	}
+	public int getObj() { return obj; }
+	public int getMaxObj() { return maxObj; }
+	public int getObjUse() { return objUse; }
+	public int getObjDamage() { return objDamage; }
+	public ArrayList<T> getObjs() { return objs; }
+	public boolean isThrowing() { return throwing; }
+	public int getCoolDown() { return this.cooldown; }
 	
-	public int getCoolDown() {
-		return this.cooldown;
-	}
-	
-	public void setCoolDown(int cooldown) {
-		this.cooldown = cooldown;
-	}
+	public void setObj(int obj) { this.obj = obj; }
+	public void setMaxObj(int maxObj) { this.maxObj = maxObj; }
+	public void setObjUse(int objUse) { this.objUse = objUse; }
+	public void setObjDamage(int objDamage) { this.objDamage = objDamage; }
+	public void setObjs(ArrayList<T> objs) { this.objs = objs; }
+	public void setThrowing(boolean throwing) { this.throwing = throwing; }
+	public void setCoolDown(int cooldown) { this.cooldown = cooldown; }
 }

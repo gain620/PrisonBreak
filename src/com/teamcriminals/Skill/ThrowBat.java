@@ -6,20 +6,23 @@ import java.util.ArrayList;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Projectile.Bat;
 
-public class ThrowBat extends X {
+public class ThrowBat extends X<Bat> {
 	
 	public ThrowBat(Character c) {
-		
 		super(c);
-		
+		init();
 		cooldown = 13;
-		
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
 		objDamage = 5;
-		objs = new ArrayList<Bat>();
 		
 	}
+	
+	@Override
+	public void init() {
+		objs = new ArrayList<Bat>();
+	}
+	
 
 	@Override
 	public void update() {
@@ -27,7 +30,7 @@ public class ThrowBat extends X {
 		obj +=1;
 		if(obj > maxObj)
 			obj = maxObj;
-		if(throwing && c.getCurrentMotion() != c.XATTACK) {
+		if(throwing && c.getCurrentMotion() != Character.XATTACK) {
 			if(obj > objUse) {
 				obj -= objUse;
 				
@@ -38,19 +41,18 @@ public class ThrowBat extends X {
 		}
 		
 		for(int i = 0; i < objs.size(); i++){
-			((Character) objs.get(i)).update();
-			if(((Bat) objs.get(i)).shouldRemove()){
+			objs.get(i).update();	// (Character)(objs.get(i)).update();였었던거
+			if(((Bat)objs.get(i)).shouldRemove()){
 				objs.remove(i);
 				i--;
 			}
 		}
 
 		if(throwing) {
-			if(c.getCurrentMotion() != c.XATTACK) {
-				c.setCurrentMotion(c.XATTACK);
-				c.getMotion().setFrames(c.getSprites().get(c.XATTACK));
+			if(c.getCurrentMotion() != Character.XATTACK) {
+				c.setCurrentMotion(Character.XATTACK);
+				c.getMotion().setFrames(c.getSprites().get(Character.XATTACK));
 				c.getMotion().setDelay(100);
-				c.setWidth(30);
 			}
 		}
 
@@ -64,15 +66,4 @@ public class ThrowBat extends X {
 						
 	}
 
-	@Override
-	public int attack() {
-		return 0;
-	}
-
-	@Override
-	public void init() {
-		
-	}
-
-	
 }
