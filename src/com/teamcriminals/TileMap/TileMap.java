@@ -134,6 +134,9 @@ public class TileMap {
 		int c = rc % numTilesAcross;
 		return tiles[r][c].getType();
 	}
+	
+	public int getNumRows() { return numRows; }
+	public int getNumCols() { return numCols; }
 
 	public void setTween(double d) {
 		tween = d;

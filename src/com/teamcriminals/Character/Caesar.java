@@ -236,7 +236,23 @@ public class Caesar extends Character {
 				flinching = false;
 			}
 		}
-
+		
+		// 공격 모션
+		if(currentMotion == ZATTACK){
+			if(motion.hasPlayedOnce()){
+				Zattacking = false;
+			}
+		}
+		if(currentMotion == XATTACK){
+			if(motion.hasPlayedOnce()){
+				Xattacking = false;
+			}
+		}
+		if(currentMotion == CATTACK){
+			if(motion.hasPlayedOnce()){
+				Cattacking = false;
+			}
+		}
 		
 		// 모션 설정
 		if(Zattacking) {

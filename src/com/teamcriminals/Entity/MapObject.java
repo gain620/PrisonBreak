@@ -159,7 +159,7 @@ public abstract class MapObject {
 				|| y + yMap - height > GamePanel.HEIGHT;
 	}
 
-	// 170번 라인 기준으로 이하 모두 충돌 함수 관련
+	// 162번 라인 기준으로 이하 모두 충돌 함수 관련
 
 	// 충돌 판정 함수(사각형 모양)
 	public boolean intersects(MapObject o) {
@@ -181,6 +181,12 @@ public abstract class MapObject {
 		int rightTile = (int) (x + cWidth / 2 - 1) / tileSize;
 		int topTile = (int) (y - cHeight / 2) / tileSize;
 		int bottomTile = (int) (y + cHeight / 2 - 1) / tileSize;
+		
+		if(topTile < 0 || bottomTile >= tileMap.getNumRows() ||
+				leftTile < 0 || rightTile >= tileMap.getNumCols()) {
+				topLeft = topRight = bottomLeft = bottomRight = false;
+				return;
+			}
 
 		int tl = tileMap.getType(topTile, leftTile);
 		int tr = tileMap.getType(topTile, rightTile);
@@ -207,6 +213,7 @@ public abstract class MapObject {
 		yTemp = y;
 
 		calculateCorners(x, yDest);
+		
 		if (dy < 0) {
 			if (topLeft || topRight) {
 				dy = 0;
@@ -226,6 +233,7 @@ public abstract class MapObject {
 		}
 
 		calculateCorners(xDest, y);
+		
 		if (dx < 0) {
 			if (topLeft || bottomLeft) {
 				dx = 0;
