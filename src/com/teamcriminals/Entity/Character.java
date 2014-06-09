@@ -40,21 +40,19 @@ public abstract class Character extends MapObject {
 	protected ArrayList<BufferedImage[]> sprites;
 	protected final int[] numFrames = {2, 4, 1, 1, 1, 2, 2, 2};
 	
-	// Motion 리스트
+	// Motion 리스트 (모션 추가해야됨)
 	public static final int IDLE = 0;
 	public static final int WALK = 1;
 	public static final int JUMP = 2;
 	public static final int FALL = 3;
 	public static final int KNOCKBACK = 4;
-	public static final int DEAD = 5;
-	public static final int ZATTACK = 6;
-	public static final int XATTACK = 7;
-	public static final int CATTACK = 8;
+	public static final int DEAD = 4;
+	public static final int ZATTACK = 5;
+	public static final int XATTACK = 6;
+	public static final int CATTACK = 7;
 	
 	public Character(TileMap tm) {
-	
 		super(tm);
-		
 	}
 
 	// Get 메소드
@@ -83,39 +81,29 @@ public abstract class Character extends MapObject {
 	public void setKnokback(boolean b)				{ this.knockback = b;				}
 	public void setFlinching(boolean b)				{ this.flinching = b;				}
 	public void setZattacking() {
-		
 		if(knockback) return;
 		Zattacking = true;
-		
 	}
 	public void setXattacking() {
-		
 		if(knockback) return;
 		Xattacking = true;
-		
 	}
 	public void setCattacking() {
-	
 		if(knockback) return;
 		Cattacking = true;
-	
 	}
-	public void setJumping() {
-		
+	public void setJump(boolean b) {
 		if(knockback) return;
-		jump = true;
-		
+		jump = b;
 	}
-
-	protected void setMotion(int i) {
-		
-		currentMotion = i - 1;
+	public void setMotion(int i) {
+		currentMotion = i;
 		motion.setFrames(sprites.get(currentMotion));
-		
 	}
 	
-	
+	// Get Set 말고는 그냥 abstract로 둘까?
 	public abstract void hit(int damage);
+	public abstract void reset();
 	public abstract void stop();
 	public abstract void dead();
 	public abstract void checkAttack(ArrayList<Enemy> enemy);
@@ -123,5 +111,4 @@ public abstract class Character extends MapObject {
 	public abstract void init();
 	public abstract void update();
 	public abstract void draw(Graphics2D g);
-	
 }

@@ -21,6 +21,7 @@ public class GameStateManager {
 	public static final int OPTONSTATE = 9;
 	
 	public GameStateManager() {
+		
 		gameStates = new ArrayList<GameState>();
 		
 		currentState = MENUSTATE;

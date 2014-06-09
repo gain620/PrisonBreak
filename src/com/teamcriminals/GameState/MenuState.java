@@ -71,6 +71,7 @@ public class MenuState extends GameState{
 		}
 	}
 
+	public void handleInput() {}
 	
 	public void keyPressed(int k) {
 		if( k == KeyEvent.VK_ENTER) {

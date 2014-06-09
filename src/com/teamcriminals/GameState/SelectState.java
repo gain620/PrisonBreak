@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import com.teamcriminals.Character.*;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 
@@ -29,6 +28,8 @@ public class SelectState extends GameState {
 	public void update() {
 
 	}
+	
+	public void handleInput() {}
 
 	public void draw(Graphics2D g) {
 		//화면정리(굳이 필요한 코드는 아님!~)
