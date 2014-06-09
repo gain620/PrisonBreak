@@ -51,7 +51,7 @@ public class Fyro extends Character {
 		try {
 
 			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream("/Sprites/Character/caesar.jpg")
+				getClass().getResourceAsStream("/Sprites/Character/fyro.jpg")
 			);
 			
 			for(int i = 0; i < 7; i++) {
