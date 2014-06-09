@@ -99,7 +99,6 @@ public class Caesar extends Character {
 		if(faceRight)	dx = -1;
 		else	dx = 1;
 		dy = -3;
-		knockback = true;
 		fall = true;
 		jump = false;
 	}
@@ -166,13 +165,6 @@ public class Caesar extends Character {
 	}
 	
 	public void getNextPosition() {
-		
-		if(knockback) {
-			dy += fallSpeed * 2;
-			if(!fall)
-				knockback = false;
-			return;
-		}
 		
 		double maxSpeed = this.maxSpeed;
 		
@@ -259,12 +251,7 @@ public class Caesar extends Character {
 		}
 		
 		// 모션 설정
-		if(knockback) {
-			if(currentMotion != KNOCKBACK) {
-				setMotion(KNOCKBACK);
-			}
-		}
-		else if(health == 0) {
+		if(health == 0) {
 			if(currentMotion != DEAD) {
 				setMotion(DEAD);
 			}
@@ -274,11 +261,6 @@ public class Caesar extends Character {
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(Xattacking) {
@@ -286,11 +268,6 @@ public class Caesar extends Character {
 				currentMotion = XATTACK;
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(Cattacking) {
@@ -298,11 +275,6 @@ public class Caesar extends Character {
 				currentMotion = CATTACK;
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(dy > 0) {
@@ -337,7 +309,7 @@ public class Caesar extends Character {
 		motion.update();
 				
 		// 위치 방향 결정
-		if(currentMotion != ZATTACK && currentMotion != XATTACK && currentMotion != CATTACK && !knockback) {
+		if(currentMotion != ZATTACK && currentMotion != XATTACK && currentMotion != CATTACK) {
 			if(right)
 				faceRight = true;
 			if(left)
@@ -351,7 +323,7 @@ public class Caesar extends Character {
 		
 		setMapPosition();
 		
-		if(flinching && !knockback) {
+		if(flinching) {
 			long elapsed = (System.nanoTime() - flinchCount) / 1000000;
 			if(elapsed / 100 % 2 == 0)
 				return;
