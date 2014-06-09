@@ -3,7 +3,7 @@ package com.teamcriminals.Skill;
 import java.awt.Graphics2D;
 
 import com.teamcriminals.Entity.Character;
-//import com.teamcriminals.Projectile.Wolf;
+import com.teamcriminals.Projectile.Wolf;
 
 public class WolfKing extends C {
 	
@@ -16,7 +16,7 @@ public class WolfKing extends C {
 	
 	@Override
 	public void init() {
-		//p = new Wolf(c.getTileMap(), c.isFaceRight());
+		p = new Wolf(c.getTileMap(), c.isFaceRight());
 	}
 	
 	public void reset() {

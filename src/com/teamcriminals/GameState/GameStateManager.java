@@ -2,7 +2,6 @@ package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
 
-
 public class GameStateManager {
 	
 	private GameState[] gameStates;

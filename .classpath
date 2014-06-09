@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/jars/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/jars/mp3spi1.9.5.jar"/>
-	<classpathentry kind="lib" path="lib/jars/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="C:/Users/유민성/git/PrisonBreak/lib/jars/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/유민성/git/PrisonBreak/lib/jars/mp3spi1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/유민성/git/PrisonBreak/lib/jars/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

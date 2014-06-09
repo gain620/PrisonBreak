@@ -58,38 +58,27 @@ public class SelectState extends GameState {
 
 	public void keyPressed(int k) {
 		if (k == KeyEvent.VK_RIGHT) {
-			++currentSelection;
-			if (currentSelection >= options.length) {
-				currentSelection = 0;
-			}
+			currentSelection = (currentSelection + 1) % options.length;
 		} else if (k == KeyEvent.VK_LEFT) {
-			--currentSelection;
-			if (currentSelection < 0) {
+			if (currentSelection == 0)
 				currentSelection = options.length - 1;
-			}
+			else
+				currentSelection -= 1;
 		}
 
 		if (k == KeyEvent.VK_ENTER) {			
 			if (currentSelection == 0) {
-				
-				gsm.setState(GameStateManager.LEVEL1STATE);
 				gsm.setCharacter(currentSelection);	// 캐릭터 정보 gsm에 저장
-				
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 1) {
-
-				gsm.setState(GameStateManager.LEVEL1STATE);
 				gsm.setCharacter(currentSelection);
-				
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 2) {
-
-				gsm.setState(GameStateManager.LEVEL1STATE);
 				gsm.setCharacter(currentSelection);
-				
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 3) {
-
-				gsm.setState(GameStateManager.LEVEL1STATE);
 				gsm.setCharacter(currentSelection);
-				
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			}
 		}
 		
