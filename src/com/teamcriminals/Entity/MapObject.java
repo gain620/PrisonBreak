@@ -53,8 +53,6 @@ public abstract class MapObject {
 		tileMap = tm;
 		tileSize = tm.getTileSize();
 	}
-
-	
 	
 	// Get 메소드
 	public int getX() {return (int) x;}
@@ -97,9 +95,6 @@ public abstract class MapObject {
 	public boolean isJump() {return jump;}
 	public boolean isFall() {return fall;}
 	
-	
-	
-	
 	// Set 메소드
 	public void setX(double x) {this.x = x;}
 	public void setY(double y) {this.y = y;}
@@ -140,8 +135,6 @@ public abstract class MapObject {
 	public void setDown(boolean b) {down = b;}
 	public void setJump(boolean b) {jump = b;}
 	public void setFall(boolean b) {fall = b;}
-
-	
 	
 	// 좌표 설정 함수들
 	public void setPosition(double x, double y) {
@@ -159,7 +152,6 @@ public abstract class MapObject {
 		yMap = tileMap.gety();
 	}
 
-	
 	// 맵 오브젝트가 스크린에 존재하는지 판정
 	public boolean onScreen() {
 		return x + xMap + width < 0 || x + xMap - width > GamePanel.WIDTH

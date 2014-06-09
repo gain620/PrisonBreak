@@ -10,6 +10,7 @@ public class ThrowFire extends X<FireBottle> {
 	
 	public ThrowFire(Character c) {
 		super(c);
+		init();
 		cooldown = 13;
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;

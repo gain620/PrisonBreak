@@ -1,7 +1,12 @@
 package com.teamcriminals.Skill;
 
 public abstract class Z extends Attack {
+
 	private static Attack STATUS;
+	
+	public Z() {
+		
+	}
 	
 	public static Attack getSTATUS() {
 		return STATUS;

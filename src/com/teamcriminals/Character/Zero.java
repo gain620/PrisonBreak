@@ -1,7 +1,6 @@
 package com.teamcriminals.Character;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -24,11 +23,6 @@ public class Zero extends Character {
 		super(tm);
 		
 		init();
-		
-		ar.width = 30;
-		ar.height = 20;
-		cr.width = 50;
-		cr.height = 40;
 
 		width = 80;
 		height = 80;
@@ -83,9 +77,6 @@ public class Zero extends Character {
 		skillC = new WolfKing();
 		sprites = new ArrayList<BufferedImage[]>();
 		motion = new Motion();
-		ar = new Rectangle(0, 0, 0, 0);
-		aur = new Rectangle((int)x - 15, (int)y - 45, 30, 30);
-		cr = new Rectangle(0, 0, 0, 0);
 	}
 	
 	// 공격당할 경우
@@ -255,11 +246,6 @@ public class Zero extends Character {
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(Xattacking) {
@@ -267,11 +253,6 @@ public class Zero extends Character {
 				currentMotion = XATTACK;
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(Cattacking) {
@@ -279,11 +260,6 @@ public class Zero extends Character {
 				currentMotion = CATTACK;
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
-				ar.y = (int)y - 6;
-				if(faceRight)
-					ar.x = (int)x + 10;
-				else
-					ar.x = (int)x - 40;
 			}
 		}
 		else if(dy > 0) {

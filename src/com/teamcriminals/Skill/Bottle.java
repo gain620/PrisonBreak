@@ -2,31 +2,16 @@ package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
 
-import com.teamcriminals.Item.Item_1;
-import com.teamcriminals.Item.Item_2;
-import com.teamcriminals.Item.Item_3;
+import com.teamcriminals.Item.*;
 
 public class Bottle extends Z {
 	
 	public Bottle() {
+		
 		setSTATUS(this);
-	}
-
-	public int attack() {
-		if(getSTATUS() != null) {
-			if(getSTATUS() == this) {
-				/*
-				 * 구현해야 할 부분
-				 */
-			}
-			else
-				getSTATUS().attack();
-		}
-		else {
-			init();
-			attack();
-		}
-		return 0;	
+		damage = 10;
+		range = 40;
+	
 	}
 
 	public void init() {
@@ -47,13 +32,23 @@ public class Bottle extends Z {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		if(getSTATUS() != null) {
+			if(getSTATUS() == this) {
+				/*
+				 * 구현해야 할 부분
+				 */
+			}
+			else
+				getSTATUS().update();
+		}
+		else {
+			init();
+			update();
+		}
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
 		
 	}
 	
