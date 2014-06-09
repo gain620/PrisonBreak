@@ -3,7 +3,7 @@ package com.teamcriminals.Skill;
 import java.awt.Graphics2D;
 
 import com.teamcriminals.Entity.Character;
-import com.teamcriminals.Projectile.Fire;
+//import com.teamcriminals.Projectile.Fire;
 
 public class FireWorld extends C {
 	
@@ -16,7 +16,7 @@ public class FireWorld extends C {
 	
 	@Override
 	public void init() {
-		p = new Fire(c.getTileMap(), c.isFaceRight());
+	//	p = new Fire(c.getTileMap(), c.isFaceRight());
 	}
 	
 	public void reset() {

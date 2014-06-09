@@ -148,11 +148,11 @@ public class Caesar extends Character {
 			}
 			
 			// C 공격 판정
-			if(skillC.getProjectile().intersects(e)) {
+			/*if(skillC.getProjectile().intersects(e)) {
 				e.hit(skillC.getDamage());
 				skillC.getProjectile().setHit();
 				break;
-			}
+			}*/
 		
 			// 피격 판정
 			if(intersects(e)) {

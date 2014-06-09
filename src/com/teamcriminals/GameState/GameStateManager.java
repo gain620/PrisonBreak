@@ -1,14 +1,15 @@
 package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
+
 
 public class GameStateManager {
 	
-	private ArrayList<GameState> gameStates;
+	private GameState[] gameStates;
 	private int currentState;
 	private int currentCharacter;	// 팩토리 연결하기 위해 캐릭터 변수 생성
 	
+	public static final int STATES = 16;
 	public static final int MENUSTATE = 0;
 	public static final int SELECTSTATE = 1;
 	public static final int LEVEL1STATE = 2;
@@ -19,21 +20,52 @@ public class GameStateManager {
 	public static final int CREDITSTATE = 7;
 	public static final int PAUSESTATE = 8;
 	public static final int OPTONSTATE = 9;
+	public static final int GAMEOVER = 10;
 	
 	public GameStateManager() {
 		
-		gameStates = new ArrayList<GameState>();
+		gameStates = new GameState[STATES];
 		
 		currentState = MENUSTATE;
-		gameStates.add(new MenuState(this));
-		gameStates.add(new SelectState(this));
-		gameStates.add(new Level1State(this));
+		
+		loadState(currentState);
 		
 	}
 	
+	private void loadState(int state) {
+		if(state == MENUSTATE) {
+			gameStates[state] = new MenuState(this);
+		}else if(state == SELECTSTATE) {
+			gameStates[state] = new SelectState(this);
+		}else if(state == LEVEL1STATE) {
+			gameStates[state] = new Level1State(this);
+		}else if(state == LEVEL2STATE) {
+			gameStates[state] = new Level2State(this);
+		}else if(state == LEVEL3STATE) {
+			gameStates[state] = new Level3State(this);
+		}else if(state == LEVEL4STATE) {
+			gameStates[state] = new Level4State(this);
+		}else if(state == LEVEL5STATE) {
+			gameStates[state] = new Level5State(this);
+		}else if(state == CREDITSTATE) {
+			gameStates[state] = new CreditState(this);
+		}else if(state == PAUSESTATE) {
+			gameStates[state] = new PauseState(this);
+		}else if(state == OPTONSTATE) {
+			gameStates[state] = new MenuState(this);
+		}else if(state == GAMEOVER) {
+			gameStates[state] = new GameOver(this);
+		}
+	}
+	
+	private void unloadState(int state) {
+		gameStates[state] = null;
+	}
+
 	public void setState(int state) {
+		unloadState(currentState);
 		currentState = state;
-		gameStates.get(currentState).init();
+		loadState(currentState);
 	}
 	
 	public int getCharacter() {	// 팩토리에서 이걸로 캐릭터 생성
@@ -45,19 +77,25 @@ public class GameStateManager {
 	}
 	
 	public void update(){
-		gameStates.get(currentState).update();
+		try{
+		gameStates[currentState].update();
+		}catch(Exception e) {
+		}
 	}
 	
 	public void draw(Graphics2D g) {
-		gameStates.get(currentState).draw(g);
+		try{
+		gameStates[currentState].draw(g);
+		}catch(Exception e) {
+		}
 	}
 	
 	public void KeyPressed(int k){
-		gameStates.get(currentState).keyPressed(k);
+		gameStates[currentState].keyPressed(k);
 	}
 	
 	public void KeyReleased(int k){
-		gameStates.get(currentState).keyReleased(k);
+		gameStates[currentState].keyReleased(k);
 	}
 	
 }

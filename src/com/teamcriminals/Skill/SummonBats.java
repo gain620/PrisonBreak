@@ -1,9 +1,8 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
-
 import com.teamcriminals.Entity.Character;
-import com.teamcriminals.Projectile.Bats;
+//mport com.teamcriminals.Projectile.Bats;
 
 public class SummonBats extends C {
 	
@@ -16,7 +15,7 @@ public class SummonBats extends C {
 	
 	@Override
 	public void init() {
-		p = new Bats(c.getTileMap(), c.isFaceRight());
+		//p = new Bats(c.getTileMap(), c.isFaceRight());
 	}
 	
 	public void reset() {
