@@ -3,13 +3,18 @@ package com.teamcriminals.Entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Skill.C;
 import com.teamcriminals.Skill.X;
 import com.teamcriminals.Skill.Z;
 import com.teamcriminals.TileMap.TileMap;
 
 public abstract class Character extends MapObject {
+	
+	// 사운드
+	protected HashMap<String, AudioPlayer> sfx;
 
 	// 캐릭터 속성
 	protected int health;

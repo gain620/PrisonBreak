@@ -3,9 +3,11 @@ package com.teamcriminals.Character;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.MapObject;
@@ -17,6 +19,7 @@ import com.teamcriminals.Skill.WolfKing;
 import com.teamcriminals.TileMap.TileMap;
 
 public class Caesar extends Character {
+	
 	
 	public Caesar(TileMap tm) {
 		
@@ -67,6 +70,9 @@ public class Caesar extends Character {
 		currentMotion = IDLE;
 		motion.setFrames(sprites.get(IDLE));
 		motion.setDelay(400);
+		
+		sfx = new HashMap<String, AudioPlayer>();
+		sfx.put("punch", new AudioPlayer ("/SFX/punch.mp3"));
 		
 	}
 	
@@ -230,27 +236,12 @@ public class Caesar extends Character {
 				flinching = false;
 			}
 		}
-		
-		// 공격 모션
-		if(currentMotion == ZATTACK){
-			if(motion.hasPlayedOnce()){
-				Zattacking = false;
-			}
-		}
-		if(currentMotion == XATTACK){
-			if(motion.hasPlayedOnce()){
-				Xattacking = false;
-			}
-		}
-		if(currentMotion == CATTACK){
-			if(motion.hasPlayedOnce()){
-				Cattacking = false;
-			}
-		}
+
 		
 		// 모션 설정
 		if(Zattacking) {
 			if(currentMotion != ZATTACK) {
+				sfx.get("punch").play();
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
