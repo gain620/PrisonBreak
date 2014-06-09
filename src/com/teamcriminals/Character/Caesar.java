@@ -81,7 +81,7 @@ public class Caesar extends Character {
 	
 	// 공격당할 경우
 	public void hit(int damage) {
-		if(flinching)	return;
+		if(flinching) return;
 		stop();
 		health -= damage;
 		if(health < 0)	health = 0;
@@ -153,7 +153,14 @@ public class Caesar extends Character {
 				skillC.getProjectile().setHit();
 				break;
 			}
-		}
+		
+			// 피격 판정
+			if(intersects(e)) {
+				hit(e.getDamgage());
+			}
+			
+		}	
+		
 	}
 	
 	public void getNextPosition() {		
@@ -219,7 +226,7 @@ public class Caesar extends Character {
 		// flinching 지속
 		if(flinching) {
 			flinchCount++;
-			if(flinchCount > 120) {
+			if(flinchCount > 80) {
 				flinching = false;
 			}
 		}

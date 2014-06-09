@@ -18,7 +18,7 @@ public class HUD {
 		
 		try {
 			hudImage = ImageIO.read(getClass().getResourceAsStream("/HUD/hud1.png"));
-			font = new Font("Arial", Font.PLAIN, 16);
+			font = new Font("Arial", Font.PLAIN, 14);
 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -30,7 +30,7 @@ public class HUD {
 		g.drawImage(hudImage, 0, 30, null);
 		g.setFont(font);
 		g.setColor(Color.white);
-		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 68, 50);
+		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 52, 50);
 		//g.drawString(testCharacter.getFire() / 100 + "/"	+ testCharacter.getMaxFire() / 100 , 58, 82);
 
 	}

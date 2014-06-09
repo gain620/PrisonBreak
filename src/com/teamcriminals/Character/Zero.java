@@ -153,6 +153,12 @@ public class Zero extends Character {
 				skillC.getProjectile().setHit();
 				break;
 			}
+			
+			// 피격 판정
+			if(intersects(e)) {
+				hit(e.getDamgage());
+			}
+			
 		}	
 		
 	}
@@ -220,7 +226,7 @@ public class Zero extends Character {
 		// flinching 지속
 		if(flinching) {
 			flinchCount++;
-			if(flinchCount > 120) {
+			if(flinchCount > 80) {
 				flinching = false;
 			}
 		}
