@@ -219,7 +219,7 @@ public class Caesar extends Character {
 		// flinching Áö¼Ó
 		if(flinching) {
 			flinchCount++;
-			if(flinchCount > 120) {
+			if(flinchCount > 80) {
 				flinching = false;
 			}
 		}
