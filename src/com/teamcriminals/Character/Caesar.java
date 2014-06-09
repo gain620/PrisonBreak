@@ -65,7 +65,7 @@ public class Caesar extends Character {
 		
 		currentMotion = IDLE;
 		motion.setFrames(sprites.get(IDLE));
-		motion.setDelay(400);	// 이건 딜레이 왜주는거임? 무슨의미지?
+		motion.setDelay(400);
 		
 	}
 

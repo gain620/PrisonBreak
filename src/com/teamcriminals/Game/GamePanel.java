@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import com.teamcriminals.Enemy.ZombieSoldier;
+import com.teamcriminals.Handlers.Keys;
 import com.teamcriminals.GameState.GameStateManager;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
@@ -93,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	private void update() {
 		gsm.update();
+		Keys.update();
+
 	}
 
 	private void draw() {
