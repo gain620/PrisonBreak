@@ -22,7 +22,7 @@ public class SelectState extends GameState {
 	}
 
 	public void init() {
-		bg = new Background("/Background/menuState.png",0);
+		bg = new Background("/Background/menuState.png", 0);
 	}
 
 	public void update() {
@@ -99,9 +99,5 @@ public class SelectState extends GameState {
 
 	}
 
-
-
-
-	
 	public void keyReleased(int k) {}
 }

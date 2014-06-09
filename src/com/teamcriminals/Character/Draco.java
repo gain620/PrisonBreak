@@ -128,13 +128,13 @@ public class Draco extends Character {
 						e.hit(skillZ.getDamage());
 					}
 				}
-			}
-			else {
-				if( e.getX() < x && 
-					e.getX() > x - skillZ.getRange() && 
-					e.getY() > y - height / 2 && 
-					e.getY() < y - height / 2) {
-					e.hit(skillZ.getDamage());
+				else {
+					if( e.getX() < x && 
+						e.getX() > x - skillZ.getRange() && 
+						e.getY() > y - height / 2 && 
+						e.getY() < y + height / 2) {
+						e.hit(skillZ.getDamage());
+					}
 				}
 			}
 			
