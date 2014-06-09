@@ -19,7 +19,7 @@ public class ZombieSoldier extends Enemy {
 	
 		// 적 속성 설정
 		moveSpeed = 0.5;
-		maxSpeed = 0.3;
+		maxSpeed = 0.6;
 		fallSpeed = 0.2;
 		
 		width = 30;
@@ -28,7 +28,8 @@ public class ZombieSoldier extends Enemy {
 		cHeight = 15;
 		
 		health = maxHealth = 5;
-		damage = 5;
+		damage = 10;
+		scorePoint = 10;
 		
 		// 스프라이트 불러오기
 		try{

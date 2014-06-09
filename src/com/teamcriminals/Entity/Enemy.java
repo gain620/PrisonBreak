@@ -11,6 +11,7 @@ public abstract class Enemy extends MapObject {
 	protected int maxHealth;
 	protected boolean dead;
 	protected int damage;
+	protected int scorePoint;
 	
 	// ±ôºý±ôºý
 	protected boolean flinch;
@@ -24,6 +25,8 @@ public abstract class Enemy extends MapObject {
 	public boolean isDead() {return dead;}
 	
 	public int getDamgage() {return damage;}
+	
+	public int getScorePoint() {return scorePoint;}
 	
 	public void hit(int damage) {
 		health -= damage;

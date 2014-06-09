@@ -10,14 +10,15 @@ import javax.imageio.ImageIO;
 public class HUD {
 	
 	private Character character;
-	private BufferedImage hudImage;
+	private BufferedImage hudImage1 , hudImage2;
 	private Font font;
 	
 	public HUD(Character character){
 		this.character = character;
 		
 		try {
-			hudImage = ImageIO.read(getClass().getResourceAsStream("/HUD/hud1.png"));
+			hudImage1 = ImageIO.read(getClass().getResourceAsStream("/HUD/hud1.png"));
+			hudImage2 = ImageIO.read(getClass().getResourceAsStream("/HUD/hud2.jpg"));
 			font = new Font("Arial", Font.PLAIN, 14);
 
 		}catch(Exception e) {
@@ -27,10 +28,12 @@ public class HUD {
 
 
 	public void draw(Graphics2D g) {
-		g.drawImage(hudImage, 0, 30, null);
+		g.drawImage(hudImage1, 0, 0, null);
+		g.drawImage(hudImage2, 520, 0, null);
 		g.setFont(font);
 		g.setColor(Color.white);
-		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 52, 50);
+		g.drawString(character.getHealth() + "/" + character.getMaxHealth(), 52, 20);
+		g.drawString(Integer.toString(character.score), 600, 20);
 		//g.drawString(testCharacter.getFire() / 100 + "/"	+ testCharacter.getMaxFire() / 100 , 58, 82);
 
 	}

@@ -13,6 +13,12 @@ import com.teamcriminals.TileMap.TileMap;
 
 public abstract class Character extends MapObject {
 	
+	// Score
+	protected int score;
+	public void earnScore(int scorePoint) {
+		this.score += scorePoint;
+	}
+	
 	// »ç¿îµå
 	protected HashMap<String, AudioPlayer> sfx;
 
@@ -54,6 +60,7 @@ public abstract class Character extends MapObject {
 	public int getHealth()							{ return this.health;		}
 	public int getMaxHealth()						{ return this.maxHealth;	}
 	public int getLife()							{ return this.life;			}
+	public int getScore()                           { return this.score;        }
 	public long getFlinchCount()					{ return this.flinchCount;	}
 	public Z getSkillZ()							{ return this.skillZ;		}
 	public X<?> getSkillX()							{ return this.skillX;		}

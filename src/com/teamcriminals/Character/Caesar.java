@@ -35,8 +35,8 @@ public class Caesar extends Character {
 		health = maxHealth = 100;
 		life = 3;
 
-		moveSpeed = 0.3;
-		maxSpeed = 1.6;
+		moveSpeed = 1.3;
+		maxSpeed = 2;
 		stopSpeed = 0.4;
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
@@ -73,6 +73,7 @@ public class Caesar extends Character {
 		
 		sfx = new HashMap<String, AudioPlayer>();
 		sfx.put("punch", new AudioPlayer ("/SFX/punch.mp3"));
+		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
 		
 	}
 	
@@ -136,7 +137,7 @@ public class Caesar extends Character {
 				}
 				else {
 					if( e.getX() < x && 
-						e.getX() > x - skillZ.getRange() && 
+						e.getX() > x - skillZ.getRange() -30 && 
 						e.getY() > y - height / 2 && 
 						e.getY() < y + height / 2) {
 						e.hit(skillZ.getDamage());
@@ -286,6 +287,7 @@ public class Caesar extends Character {
 		}
 		else if(dy < 0) {
 			if(currentMotion != JUMP) {
+				sfx.get("jump").play();
 				currentMotion = JUMP;
 				motion.setFrames(sprites.get(JUMP));
 				motion.setDelay(-1);
