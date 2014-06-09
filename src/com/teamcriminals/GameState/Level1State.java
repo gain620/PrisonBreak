@@ -56,7 +56,8 @@ public class Level1State extends GameState {
 		ZombieSoldier zs;
 		
 		Point[] points = new Point[] {
-				new Point(100, 200)
+				new Point(100, 200) ,
+				new Point(200, 100)
 		};
 		
 		for(int i = 0; i< points.length; i ++) {
@@ -122,6 +123,7 @@ public class Level1State extends GameState {
 					(int) tilemap.getx(),(int) tilemap.gety());
 			death.get(i).draw(g);
 		}
+		
 	}
 	
 	public void keyPressed(int k) {
