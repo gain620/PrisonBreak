@@ -43,7 +43,7 @@ public class Level1State extends GameState {
 		tilemap.setTween(0.07);
 
 		character = cf.setCharacter(gsm.getCharacter(), tilemap);
-		character.setPosition(60, 400);
+		character.setPosition(70, 400);
 		
 		hud = new HUD(character);
 		
@@ -132,7 +132,7 @@ public class Level1State extends GameState {
 
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ESCAPE)) gsm.setState(GameStateManager.MENUSTATE);//gsm.setPaused(true);
-		if(/*blockInput ||*/ character.getHealth() == 0) return;
+		if(/*blockInput ||*/ character.getHealth() <= 0) return;
 		character.setUp(Keys.keyState[Keys.UP]);
 		character.setLeft(Keys.keyState[Keys.LEFT]);
 		character.setDown(Keys.keyState[Keys.DOWN]);
@@ -155,7 +155,8 @@ public class Level1State extends GameState {
 		//if(k == KeyEvent.VK_Z) character.setPunch();
 		//if(k == KeyEvent.VK_X) character.setFiring();
 		if(k == KeyEvent.VK_ESCAPE) gsm.setState(GameStateManager.MENUSTATE);
-		 */
+		*/
+		 
 	}
 
 	public void keyReleased(int k) {
@@ -168,5 +169,6 @@ public class Level1State extends GameState {
 		//if(k == KeyEvent.VK_E) character.setGliding(false);
 		 */
 	}
+
 	
 }
