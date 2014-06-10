@@ -8,7 +8,7 @@ import java.util.HashMap;
 import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Character.CharacterFactory;
 import com.teamcriminals.Enemy.Core;
-import com.teamcriminals.Enemy.ZombieSoldier;
+import com.teamcriminals.Enemy.Mutant;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Death;
 import com.teamcriminals.Entity.Enemy;
@@ -23,6 +23,8 @@ public class Level1State extends GameState {
 	private TileMap tilemap;
 	private Background bg;
 	private Character character;
+	
+	//private ArrayList<ItemTest> item;
 
 	private ArrayList<Enemy> enemy;
 	private ArrayList<Death> death;
@@ -70,7 +72,7 @@ public class Level1State extends GameState {
 	private void populateEnemy() {
 		enemy = new ArrayList<Enemy>();
 
-		ZombieSoldier zs;
+		Mutant mutant;
 		Core core;
 
 		Point[] points = new Point[] { new Point(715, 420),
@@ -82,15 +84,16 @@ public class Level1State extends GameState {
 		};
 
 		for (int i = 0; i < points.length - 1; i++) {
-			zs = new ZombieSoldier(tilemap);
-			zs.setPosition(points[i].x, points[i].y);
-			enemy.add(zs);
+			mutant = new Mutant(tilemap);
+			mutant.setPosition(points[i].x, points[i].y);
+			enemy.add(mutant);
 		}
 		core = new Core(tilemap);
 		core.setPosition(points[points.length - 1].x,
 				points[points.length - 1].y);
 		enemy.add(core);
 	}
+	
 
 	public void update() {
 
@@ -155,6 +158,7 @@ public class Level1State extends GameState {
 					(int) tilemap.gety());
 			death.get(i).draw(g);
 		}
+		
 
 	}
 

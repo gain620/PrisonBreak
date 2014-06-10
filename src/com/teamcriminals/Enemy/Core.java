@@ -29,7 +29,7 @@ public class Core extends Enemy {
 		
 		health = maxHealth = 50;
 		damage = 25;
-		scorePoint = 20;
+		scorePoint = 40;
 		
 		// 스프라이트 불러오기
 		try{
@@ -56,7 +56,7 @@ public class Core extends Enemy {
 		
 		motion = new Motion();
 		motion.setFrames(sprites);
-		motion.setDelay(300);
+		motion.setDelay(120);
 		
 		right = true;
 		faceRight = true;
@@ -113,7 +113,7 @@ public class Core extends Enemy {
 		}
 		
 		// 모션 업데이트
-		
+		motion.update();
 		
 	}
 	

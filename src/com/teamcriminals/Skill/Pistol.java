@@ -10,7 +10,7 @@ public class Pistol extends Z {
 
 		setSTATUS(this);
 		damage = 10;
-		range = 40;
+		range = 80;
 	
 	}
 

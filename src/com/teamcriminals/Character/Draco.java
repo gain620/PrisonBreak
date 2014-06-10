@@ -3,9 +3,11 @@ package com.teamcriminals.Character;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Motion.Motion;
@@ -66,7 +68,9 @@ public class Draco extends Character {
 		motion.setFrames(sprites.get(IDLE));
 		motion.setDelay(400);
 		
-	}
+		sfx = new HashMap<String, AudioPlayer>();
+		sfx.put("sword", new AudioPlayer ("/SFX/sword.mp3"));
+		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));	}
 	
 	// 객체 생성 전담
 	public void init() {
@@ -238,9 +242,10 @@ public class Draco extends Character {
 		// 모션 설정
 		if(Zattacking) {
 			if(currentMotion != ZATTACK) {
+				sfx.get("sword").play();
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
-				motion.setDelay(50);
+				motion.setDelay(80);
 			}
 			else {
 				if(motion.hasPlayedOnce()){
@@ -281,6 +286,7 @@ public class Draco extends Character {
 		}
 		else if(dy < 0) {
 			if(currentMotion != JUMP) {
+				sfx.get("jump").play();
 				currentMotion = JUMP;
 				motion.setFrames(sprites.get(JUMP));
 				motion.setDelay(-1);
@@ -290,7 +296,7 @@ public class Draco extends Character {
 			if(currentMotion != WALK) {
 				currentMotion = WALK;
 				motion.setFrames(sprites.get(WALK));
-				motion.setDelay(40);
+				motion.setDelay(100);
 			}
 		}
 		else {

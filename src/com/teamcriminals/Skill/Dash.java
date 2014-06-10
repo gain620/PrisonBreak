@@ -20,7 +20,7 @@ public class Dash extends X {
 		cooldown = 13;
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
-		damage = 5;
+		damage = 20;
 	}
 	
 	@Override

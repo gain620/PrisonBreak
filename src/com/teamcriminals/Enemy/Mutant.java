@@ -22,24 +22,25 @@ public class Mutant extends Enemy {
 		maxSpeed = 0.3;
 		fallSpeed = 0.2;
 		
-		width = 30;
-		height = 30;
-		cWidth = 20;
-		cHeight = 15;
+		width = 80;
+		height = 80;
+		cWidth = 30;
+		cHeight = 45;
 		
-		health = maxHealth = 5;
-		damage = 5;
+		health = maxHealth = 10;
+		damage = 10;
+		scorePoint = 20;
 		
 		// 스프라이트 불러오기
 		try{
 			
 			BufferedImage spritesheet = ImageIO.read(
 					getClass().getResourceAsStream(
-							"/Sprites/Enemy/ZombieSoldier.gif"
+							"/Sprites/Enemy/mutant.png"
 							)
 							);
 			
-			sprites = new BufferedImage[3];
+			sprites = new BufferedImage[6];
 			for(int i = 0; i < sprites.length; i++) {
 				sprites[i] = spritesheet.getSubimage(
 						i * width , 0 , width, height
@@ -55,7 +56,7 @@ public class Mutant extends Enemy {
 		
 		motion = new Motion();
 		motion.setFrames(sprites);
-		motion.setDelay(300);
+		motion.setDelay(200);
 		
 		right = true;
 		faceRight = true;
@@ -112,15 +113,11 @@ public class Mutant extends Enemy {
 		}
 		
 		// 모션 업데이트
-		
+		motion.update();
 		
 	}
 	
-	public void draw(Graphics2D g) {
-		
-		// 맵 화면에 보이지 않을 경우 미리 그려주는 것을 방지하여, 메모리 관리
-		if(onScreen()) return ;
-		
+	public void draw(Graphics2D g) {	
 		setMapPosition();
 		
 		if(faceRight) {

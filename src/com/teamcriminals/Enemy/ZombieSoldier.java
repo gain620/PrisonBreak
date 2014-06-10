@@ -56,7 +56,7 @@ public class ZombieSoldier extends Enemy {
 		
 		motion = new Motion();
 		motion.setFrames(sprites);
-		motion.setDelay(300);
+		motion.setDelay(200);
 		
 		right = true;
 		faceRight = true;
@@ -113,7 +113,7 @@ public class ZombieSoldier extends Enemy {
 		}
 		
 		// 모션 업데이트
-		
+		motion.update();
 		
 	}
 	

@@ -3,9 +3,11 @@ package com.teamcriminals.Character;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Motion.Motion;
@@ -66,6 +68,11 @@ public class Fyro extends Character {
 		motion.setFrames(sprites.get(IDLE));
 		motion.setDelay(400);
 		
+		sfx = new HashMap<String, AudioPlayer>();
+		sfx.put("pistol", new AudioPlayer ("/SFX/punch.mp3"));
+		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
+		sfx.put("laser", new AudioPlayer("/SFX/dash.wav"));
+		sfx.put("minigun", new AudioPlayer("/SFX/jump.mp3"));
 	}
 	
 	// 객체 생성 전담
@@ -240,7 +247,7 @@ public class Fyro extends Character {
 			if(currentMotion != ZATTACK) {
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
-				motion.setDelay(50);
+				motion.setDelay(80);
 			}
 			else {
 				if(motion.hasPlayedOnce()){
@@ -281,6 +288,7 @@ public class Fyro extends Character {
 		}
 		else if(dy < 0) {
 			if(currentMotion != JUMP) {
+				sfx.get("jump").play();
 				currentMotion = JUMP;
 				motion.setFrames(sprites.get(JUMP));
 				motion.setDelay(-1);
@@ -290,7 +298,7 @@ public class Fyro extends Character {
 			if(currentMotion != WALK) {
 				currentMotion = WALK;
 				motion.setFrames(sprites.get(WALK));
-				motion.setDelay(40);
+				motion.setDelay(100);
 			}
 		}
 		else {

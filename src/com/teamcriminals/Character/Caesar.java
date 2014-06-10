@@ -72,6 +72,7 @@ public class Caesar extends Character {
 		sfx = new HashMap<String, AudioPlayer>();
 		sfx.put("punch", new AudioPlayer ("/SFX/punch.mp3"));
 		sfx.put("jump", new AudioPlayer("/SFX/jump.mp3"));
+		sfx.put("dash", new AudioPlayer("/SFX/dash.wav"));
 		
 	}
 	
@@ -249,7 +250,7 @@ public class Caesar extends Character {
 				sfx.get("punch").play();
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
-				motion.setDelay(50);
+				motion.setDelay(70);
 			}
 			else {
 				if(motion.hasPlayedOnce()){
@@ -259,6 +260,7 @@ public class Caesar extends Character {
 		}
 		else if(Xattacking) {
 			if(currentMotion != XATTACK) {
+				sfx.get("dash").play();
 				currentMotion = XATTACK;
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
@@ -300,7 +302,7 @@ public class Caesar extends Character {
 			if(currentMotion != WALK) {
 				currentMotion = WALK;
 				motion.setFrames(sprites.get(WALK));
-				motion.setDelay(40);
+				motion.setDelay(100);
 			}
 		}
 		else {
