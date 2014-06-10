@@ -300,11 +300,7 @@ public class Draco extends Character {
 			if(currentMotion != WALK) {
 				currentMotion = WALK;
 				motion.setFrames(sprites.get(WALK));
-<<<<<<< HEAD
 				motion.setDelay(100);
-=======
-				motion.setDelay(200);
->>>>>>> 26e333a3b3005ba04081ecce92665d45832e54d0
 			}
 		}
 		else {

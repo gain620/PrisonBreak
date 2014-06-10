@@ -20,6 +20,8 @@ public class GameStateManager {
 	public static final int PAUSESTATE = 8;
 	public static final int OPTONSTATE = 9;
 	public static final int GAMEOVER = 10;
+	public static final int STAGESELECT = 11;
+	public static final int CONTROLLER = 12;
 	
 	public GameStateManager() {
 		
@@ -51,9 +53,13 @@ public class GameStateManager {
 		}else if(state == PAUSESTATE) {
 			gameStates[state] = new PauseState(this);
 		}else if(state == OPTONSTATE) {
-			gameStates[state] = new MenuState(this);
+			gameStates[state] = new OptionState(this);
 		}else if(state == GAMEOVER) {
 			gameStates[state] = new GameOver(this);
+		}else if(state == STAGESELECT) {
+			gameStates[state] = new StageSelectState(this);
+		}else if(state == CONTROLLER) {
+			gameStates[state] = new ControllerState(this);
 		}
 	}
 	

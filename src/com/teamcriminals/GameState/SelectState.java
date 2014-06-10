@@ -66,7 +66,7 @@ public class SelectState extends GameState {
 				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 1) {
 				gsm.setCharacter(currentSelection);
-				gsm.setState(GameStateManager.LEVEL2STATE);
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 2) {
 				gsm.setCharacter(currentSelection);
 				gsm.setState(GameStateManager.LEVEL1STATE);

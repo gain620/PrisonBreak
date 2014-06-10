@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
+import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 
 public class MenuState extends GameState{
+	
 	
 	private Background bg;
 	
@@ -33,7 +36,6 @@ public class MenuState extends GameState{
 
 	
 	public void init() {
-		
 	}
 
 	

@@ -4,25 +4,22 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-
 import com.teamcriminals.TileMap.Background;
 
-public class OptionState  extends GameState  {
-
-	public OptionState(GameStateManager gsm) {
-		this.gsm = gsm;
-		init();
-	}
-	
+public class StageSelectState extends GameState {
 	private Background bg;
 
-	private String[] options = { "*", "*" };
+	private String[] options = { "Stage1", "Stage2", "Stage3" };
 
 	private int currentSelection = 0;
 
-	
+	public StageSelectState(GameStateManager gsm) {
+		this.gsm = gsm;
+		init();
+	}
+
 	public void init() {
-		bg = new Background("/Background/optionState.png", 0);
+		bg = new Background("/Background/SelectStage.png", 0);
 	}
 
 	public void update() {
@@ -34,21 +31,21 @@ public class OptionState  extends GameState  {
 		
 		for(int i = 0; i < options.length;i++){
 			if(i == currentSelection){
-				g.setColor(Color.BLACK);
+				g.setColor(Color.RED);
 			}else {
-				g.setColor(Color.WHITE);
+				g.setColor(Color.BLACK);
 			}
 			
 			g.setFont(new Font("Rosewood Std Regular", Font.PLAIN, 40));
-			g.drawString(options[i], 180, 285 + i*100);
+			g.drawString(options[i], 40 + i * 210, 400);
 		}
 
 	}
 
 	public void keyPressed(int k) {
-		if (k == KeyEvent.VK_DOWN) {
+		if (k == KeyEvent.VK_RIGHT) {
 			currentSelection = (currentSelection + 1) % options.length;
-		} else if (k == KeyEvent.VK_UP) {
+		} else if (k == KeyEvent.VK_LEFT) {
 			if (currentSelection == 0)
 				currentSelection = options.length - 1;
 			else
@@ -57,9 +54,12 @@ public class OptionState  extends GameState  {
 
 		if (k == KeyEvent.VK_ENTER) {			
 			if (currentSelection == 0) {
-				gsm.setState(GameStateManager.CONTROLLER);
+				gsm.setCharacter(currentSelection+1);	// 캐릭터 정보 gsm에 저장
+				gsm.setState(GameStateManager.LEVEL1STATE);
 			} else if (currentSelection == 1) {
-				gsm.setState(GameStateManager.STAGESELECT);
+				gsm.setState(GameStateManager.LEVEL2STATE);
+			} else if (currentSelection == 2) {
+				gsm.setState(GameStateManager.LEVEL3STATE);
 			}
 		}
 		
@@ -69,6 +69,6 @@ public class OptionState  extends GameState  {
 
 	}
 
-	
 	public void keyReleased(int k) {}
 }
+
