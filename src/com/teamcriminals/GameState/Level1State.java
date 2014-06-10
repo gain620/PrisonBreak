@@ -164,10 +164,14 @@ public class Level1State extends GameState {
 			character.setJump(true);
 		if (k == KeyEvent.VK_Z)
 			character.setZattacking();
-		if (k == KeyEvent.VK_X)
+		if (k == KeyEvent.VK_X) {
 			character.setXattacking();
-		if (k == KeyEvent.VK_C)
+			character.getSkillX().setThrowing(true);
+		}
+		if (k == KeyEvent.VK_C) {
 			character.setCattacking();
+			character.getSkillC().setUse(true);
+		}
 		if (k == KeyEvent.VK_ESCAPE)
 			gsm.setState(GameStateManager.MENUSTATE);
 	}
@@ -183,6 +187,10 @@ public class Level1State extends GameState {
 			character.setRight(false);
 		if (k == KeyEvent.VK_SPACE)
 			character.setJump(false);
+		if (k == KeyEvent.VK_X)
+			character.getSkillX().setThrowing(false);
+		if (k == KeyEvent.VK_C)
+			character.getSkillC().setUse(false);
 	}
 
 }

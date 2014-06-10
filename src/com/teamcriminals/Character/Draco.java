@@ -138,20 +138,23 @@ public class Draco extends Character {
 			
 			// X 공격 판정
 			if(Xattacking) {
-				if(skillX.getProjectile() != null) {
-					if(skillX.getProjectile().intersects(e)) {
+				for(int j = 0; j < skillX.getProjectile().size(); j++) {
+					if(skillX.getProjectile().get(j).intersects(e)) {
 						e.hit(skillX.getDamage());
-						skillX.getProjectile().setHit();
+						skillX.getProjectile().get(j).setHit();
+						break;
 					}
 				}
 			}
 
 			// C 공격 판정
 			if(Cattacking) {
-				if(skillC.getProjectile().intersects(e)) {
-					e.hit(skillC.getDamage());
-					skillC.getProjectile().setHit();
-					break;
+				for(int j = 0; j < skillC.getProjectile().size(); j++) {
+					if(skillC.getProjectile().get(j).intersects(e)) {
+						e.hit(skillC.getDamage());
+						skillC.getProjectile().get(j).setHit();
+						break;
+					}
 				}
 			}
 			
@@ -229,7 +232,8 @@ public class Draco extends Character {
 			}
 		}
 		
-		//skillX.update(); 이거 ㅡㅡ
+		skillX.update();
+		skillC.update();
 		
 		// 모션 설정
 		if(Zattacking) {
@@ -320,7 +324,8 @@ public class Draco extends Character {
 				return;
 		}
 		
-		//skillX.draw(g); 이거 ㅡㅡ
+		skillX.draw(g);
+		skillC.draw(g);
 		
 		if(faceRight) {
 			g.drawImage(

@@ -1,8 +1,10 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Projectile.Projectile;
 import com.teamcriminals.Projectile.Wolf;
 
 public class WolfKing extends C {
@@ -10,13 +12,14 @@ public class WolfKing extends C {
 	public WolfKing(Character c) {
 		super(c);
 		init();
-		bomb = maxBomb = 3;
+		maxBomb = 3;
 		damage = 100;
+		reset();
 	}
 	
 	@Override
 	public void init() {
-		p = new Wolf(c.getTileMap(), c.isFaceRight());
+		projectile = new ArrayList<Projectile>();
 	}
 	
 	public void reset() {
@@ -25,35 +28,24 @@ public class WolfKing extends C {
 
 	@Override
 	public void update() {
-		if(use && c.getCurrentMotion() != Character.CATTACK) {
-			if(bomb > 0 && p != null) {
-				--bomb;
-				p.setPosition(c.getX(), c.getY());
-				p.update();
+		if(use && c.getCurrentMotion() == Character.CATTACK) {
+			if(bomb > 0) {
+				bomb -= 1;
+				Projectile b = new Wolf(c.getTileMap(), c.isFaceRight());
+				b.setPosition(c.getX(), c.getY());
+				projectile.add(b);
 			}
-			else if(bomb> 0 && p == null) {
-				--bomb;
-				init();
-				p.setPosition(c.getX(), c.getY());
-				p.update();
-			}
-			else
-				return;
 		}
-		
-		if(use) {
-			if(c.getCurrentMotion() != Character.CATTACK) {
-				c.setCurrentMotion(Character.CATTACK);
-				c.getMotion().setFrames(c.getSprites().get(Character.CATTACK));
-				c.getMotion().setDelay(100);
-			}
+		for(int i = 0; i < projectile.size(); i++) {
+			projectile.get(i).update();
+			if(projectile.get(i).shouldRemove())
+				projectile.remove(i--);
 		}
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		p.draw(g);
-		if(p.shouldRemove())
-			p = null;
+		for(int i = 0; i < projectile.size(); i++)
+			projectile.get(i).draw(g);
 	}
 }

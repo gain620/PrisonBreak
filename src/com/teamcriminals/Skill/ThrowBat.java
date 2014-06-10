@@ -1,8 +1,11 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Projectile.Bat;
+import com.teamcriminals.Projectile.Projectile;
 
 public class ThrowBat extends X {
 	
@@ -13,42 +16,36 @@ public class ThrowBat extends X {
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
 		damage = 5;
-		
 	}
 	
 	@Override
 	public void init() {
-		projectile = new Bat(c.getTileMap(), c.isFaceRight());
+		projectile = new ArrayList<Projectile>();
 	}
 	
-
 	@Override
 	public void update() {
-
 		obj +=1;
 		if(obj > maxObj)
 			obj = maxObj;
-		if(throwing && c.getCurrentMotion() != Character.XATTACK) {
+		if(throwing && c.getCurrentMotion() == Character.XATTACK) {
 			if(obj >= objUse) {
 				obj -= objUse;
-				init();
-				projectile.setPosition(c.getX(), c.getY());
+				Projectile b = new Bat(c.getTileMap(), c.isFaceRight());
+				b.setPosition(c.getX(), c.getY());
+				projectile.add(b);
 			}
 		}
-		
-		projectile.update();
-		if(projectile.shouldRemove()) {
-			projectile = null;
+		for (int i = 0; i < projectile.size(); i++) {
+				projectile.get(i).update();
+			if (projectile.get(i).shouldRemove())
+				projectile.remove(i--);
 		}
-
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-
-		if(projectile != null)
-			projectile.draw(g);
-						
+		for (int i = 0; i < projectile.size(); i++)
+				projectile.get(i).draw(g);
 	}
-
 }
