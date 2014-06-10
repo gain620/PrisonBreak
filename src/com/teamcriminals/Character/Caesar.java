@@ -116,6 +116,7 @@ public class Caesar extends Character {
 		health = 0;
 		life--;
 		stop();
+
 	}
 
 	public void checkAttack(ArrayList<Enemy> enemy) {
