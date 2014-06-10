@@ -128,7 +128,7 @@ public class Zero extends Character {
 				}
 				else {
 					if( e.getX() < x && 
-						e.getX() > x - skillZ.getRange() -20 && 
+						e.getX() > x - skillZ.getRange() && 
 						e.getY() > y - height / 2 && 
 						e.getY() < y + height / 2) {
 						e.hit(skillZ.getDamage());
@@ -138,20 +138,23 @@ public class Zero extends Character {
 			
 			// X 공격 판정
 			if(Xattacking) {
-				if(skillX.getProjectile() != null) {
-					if(skillX.getProjectile().intersects(e)) {
+				for(int j = 0; j < skillX.getProjectile().size(); j++) {
+					if(skillX.getProjectile().get(j).intersects(e)) {
 						e.hit(skillX.getDamage());
-						skillX.getProjectile().setHit();
+						skillX.getProjectile().get(j).setHit();
+						break;
 					}
 				}
 			}
 
 			// C 공격 판정
 			if(Cattacking) {
-				if(skillC.getProjectile().intersects(e)) {
-					e.hit(skillC.getDamage());
-					skillC.getProjectile().setHit();
-					break;
+				for(int j = 0; j < skillC.getProjectile().size(); j++) {
+					if(skillC.getProjectile().get(j).intersects(e)) {
+						e.hit(skillC.getDamage());
+						skillC.getProjectile().get(j).setHit();
+						break;
+					}
 				}
 			}
 			
@@ -228,6 +231,9 @@ public class Zero extends Character {
 				flinching = false;
 			}
 		}
+		
+		skillX.update();
+		skillC.update();
 		
 		// 모션 설정
 		if(Zattacking) {
@@ -317,6 +323,9 @@ public class Zero extends Character {
 			if(elapsed / 100 % 2 == 0)
 				return;
 		}
+		
+		skillX.draw(g);
+		skillC.draw(g);
 		
 		if(faceRight) {
 			g.drawImage(

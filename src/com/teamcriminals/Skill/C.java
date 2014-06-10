@@ -1,12 +1,14 @@
 package com.teamcriminals.Skill;
 
+import java.util.ArrayList;
+
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Projectile.Projectile;
 
 public abstract class C extends Attack {
 	
 	protected Character c;
-	protected Projectile p;
+	protected ArrayList<Projectile> projectile;
 	protected int bomb;
 	protected int maxBomb;
 	protected boolean use;
@@ -15,7 +17,7 @@ public abstract class C extends Attack {
 		this.c = c;
 	}
 
-	public Projectile getProjectile() { return p;}
+	public ArrayList<Projectile> getProjectile() { return projectile;}
 	public int getBomb() { return bomb; }
 	public int getMaxBomb() { return maxBomb; }
 	public boolean isUse() { return use; }
