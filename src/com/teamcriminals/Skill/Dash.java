@@ -1,12 +1,10 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Projectile.Butt;
 
-public class Dash extends X<Butt> {
+public class Dash extends X {
 	
 	/*
 	 * 얘는 원거리가 아니라 대쉬하는거라 기존 스킬과는 좀 다르게 수정해야함
@@ -20,12 +18,14 @@ public class Dash extends X<Butt> {
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
 		damage = 5;
+		
 	}
-
+	
 	@Override
 	public void init() {
-		objs = new ArrayList<Butt>();
+		projectile = new Butt(c.getTileMap(), c.isFaceRight());
 	}
+	
 
 	@Override
 	public void update() {
@@ -34,35 +34,26 @@ public class Dash extends X<Butt> {
 		if(obj > maxObj)
 			obj = maxObj;
 		if(throwing && c.getCurrentMotion() != Character.XATTACK) {
-			if(obj > objUse) {
+			if(obj >= objUse) {
 				obj -= objUse;
-				
-				Butt b = new Butt(c.getTileMap(), c.isFaceRight());
-				b.setPosition(c.getX(), c.getY());
-				objs.add(b);
+				init();
+				projectile.setPosition(c.getX(), c.getY());
 			}
 		}
 		
-		for(int i = 0; i < objs.size(); i++){
-			objs.get(i).update();	// (Character)(objs.get(i)).update();였었던거
-			if(((Butt)objs.get(i)).shouldRemove()){
-				objs.remove(i);
-				i--;
-			}
+		projectile.update();
+		if(projectile.shouldRemove()) {
+			projectile = null;
 		}
 
-		if(throwing) {
-			if(c.getCurrentMotion() != Character.XATTACK) {
-				c.setCurrentMotion(Character.XATTACK);
-				c.getMotion().setFrames(c.getSprites().get(Character.XATTACK));
-				c.getMotion().setDelay(100);
-			}
-		}
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		for(int i = 0; i < objs.size(); i++)
-			((Butt)objs.get(i)).draw(g);
+
+		if(projectile != null)
+			projectile.draw(g);
+						
 	}
+
 }

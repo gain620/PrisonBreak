@@ -8,9 +8,7 @@ import javax.imageio.ImageIO;
 
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
-import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
-import com.teamcriminals.Projectile.Projectile;
 import com.teamcriminals.Skill.Knife;
 import com.teamcriminals.Skill.SummonBats;
 import com.teamcriminals.Skill.ThrowBat;
@@ -139,19 +137,22 @@ public class Draco extends Character {
 			}
 			
 			// X 공격 판정
-			for(int j = 0; j < skillX.getObjs().size(); j++) {
-				if(((MapObject)skillX.getObjs().get(i)).intersects(e)) {
-					e.hit(skillX.getDamage());
-					((Projectile)skillX.getObjs().get(j)).setHit();
-					break;
+			if(Xattacking) {
+				if(skillX.getProjectile() != null) {
+					if(skillX.getProjectile().intersects(e)) {
+						e.hit(skillX.getDamage());
+						skillX.getProjectile().setHit();
+					}
 				}
 			}
 
 			// C 공격 판정
-			if(skillC.getProjectile().intersects(e)) {
-				e.hit(skillC.getDamage());
-				skillC.getProjectile().setHit();
-				break;
+			if(Cattacking) {
+				if(skillC.getProjectile().intersects(e)) {
+					e.hit(skillC.getDamage());
+					skillC.getProjectile().setHit();
+					break;
+				}
 			}
 			
 			// 피격 판정
@@ -220,9 +221,6 @@ public class Draco extends Character {
 		collideTile();
 		setPosition(xTemp, yTemp);
 
-		if(dx == 0)	// ???????????????? 왜 넣었을까
-			x = (int)x;
-		
 		// flinching 지속
 		if(flinching) {
 			flinchCount++;
@@ -231,22 +229,7 @@ public class Draco extends Character {
 			}
 		}
 		
-		// 공격 모션
-		if(currentMotion == ZATTACK){
-			if(motion.hasPlayedOnce()){
-				Zattacking = false;
-			}
-		}
-		if(currentMotion == XATTACK){
-			if(motion.hasPlayedOnce()){
-				Xattacking = false;
-			}
-		}
-		if(currentMotion == CATTACK){
-			if(motion.hasPlayedOnce()){
-				Cattacking = false;
-			}
-		}
+		//skillX.update(); 이거 ㅡㅡ
 		
 		// 모션 설정
 		if(Zattacking) {
@@ -255,6 +238,11 @@ public class Draco extends Character {
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
 			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Zattacking = false;
+				}
+			}
 		}
 		else if(Xattacking) {
 			if(currentMotion != XATTACK) {
@@ -262,12 +250,22 @@ public class Draco extends Character {
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
 			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Xattacking = false;
+				}
+			}
 		}
 		else if(Cattacking) {
 			if(currentMotion != CATTACK) {
 				currentMotion = CATTACK;
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
+			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Cattacking = false;
+				}
 			}
 		}
 		else if(dy > 0) {
@@ -321,6 +319,8 @@ public class Draco extends Character {
 			if(elapsed / 100 % 2 == 0)
 				return;
 		}
+		
+		//skillX.draw(g); 이거 ㅡㅡ
 		
 		if(faceRight) {
 			g.drawImage(

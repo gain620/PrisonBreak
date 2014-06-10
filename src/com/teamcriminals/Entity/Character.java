@@ -30,7 +30,7 @@ public abstract class Character extends MapObject {
 	
 	// 캐릭터 스킬
 	protected Z skillZ;
-	protected X<?> skillX;
+	protected X skillX;
 	protected C skillC;
 	
 	// 캐릭터 상태
@@ -63,7 +63,7 @@ public abstract class Character extends MapObject {
 	public int getScore()                           { return this.score;        }
 	public long getFlinchCount()					{ return this.flinchCount;	}
 	public Z getSkillZ()							{ return this.skillZ;		}
-	public X<?> getSkillX()							{ return this.skillX;		}
+	public X getSkillX()							{ return this.skillX;		}
 	public C getSkillC()							{ return this.skillC;		}
 	public boolean isZattacking()					{ return this.Zattacking;	}
 	public boolean isXattacking()					{ return this.Xattacking;	}
@@ -77,7 +77,7 @@ public abstract class Character extends MapObject {
 	public void setLife(int life)					{ this.life = life;					}
 	public void setFlinchCount(long flinchCount)	{ this.flinchCount = flinchCount;	}
 	public void setSkillZ(Z skillZ)					{ this.skillZ = skillZ;				}	
-	public void setSkillX(X<?> skillX)				{ this.skillX = skillX;				}
+	public void setSkillX(X skillX)					{ this.skillX = skillX;				}
 	public void setSkillC(C skillC)					{ this.skillC = skillC;				}
 	public void setFlinching(boolean b)				{ this.flinching = b;				}
 	public void setZattacking()						{ this.Zattacking = true; }

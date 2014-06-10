@@ -8,9 +8,7 @@ import javax.imageio.ImageIO;
 
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
-import com.teamcriminals.Entity.MapObject;
 import com.teamcriminals.Motion.Motion;
-import com.teamcriminals.Projectile.Projectile;
 import com.teamcriminals.Skill.Bottle;
 import com.teamcriminals.Skill.FireWorld;
 import com.teamcriminals.Skill.ThrowFire;
@@ -139,19 +137,22 @@ public class Fyro extends Character {
 			}
 			
 			// X 공격 판정
-			for(int j = 0; j < skillX.getObjs().size(); j++) {
-				if(((MapObject)skillX.getObjs().get(i)).intersects(e)) {
-					e.hit(skillX.getDamage());
-					((Projectile)skillX.getObjs().get(j)).setHit();
-					break;
+			if(Xattacking) {
+				if(skillX.getProjectile() != null) {
+					if(skillX.getProjectile().intersects(e)) {
+						e.hit(skillX.getDamage());
+						skillX.getProjectile().setHit();
+					}
 				}
 			}
 
 			// C 공격 판정
-			if(skillC.getProjectile().intersects(e)) {
-				e.hit(skillC.getDamage());
-				skillC.getProjectile().setHit();
-				break;
+			if(Cattacking) {
+				if(skillC.getProjectile().intersects(e)) {
+					e.hit(skillC.getDamage());
+					skillC.getProjectile().setHit();
+					break;
+				}
 			}
 			
 			// 피격 판정
@@ -220,31 +221,11 @@ public class Fyro extends Character {
 		collideTile();
 		setPosition(xTemp, yTemp);
 
-		if(dx == 0)	// ???????????????? 왜 넣었을까
-			x = (int)x;
-		
 		// flinching 지속
 		if(flinching) {
 			flinchCount++;
 			if(flinchCount > 80) {
 				flinching = false;
-			}
-		}
-		
-		// 공격 모션
-		if(currentMotion == ZATTACK){
-			if(motion.hasPlayedOnce()){
-				Zattacking = false;
-			}
-		}
-		if(currentMotion == XATTACK){
-			if(motion.hasPlayedOnce()){
-				Xattacking = false;
-			}
-		}
-		if(currentMotion == CATTACK){
-			if(motion.hasPlayedOnce()){
-				Cattacking = false;
 			}
 		}
 		
@@ -255,6 +236,11 @@ public class Fyro extends Character {
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
 			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Zattacking = false;
+				}
+			}
 		}
 		else if(Xattacking) {
 			if(currentMotion != XATTACK) {
@@ -262,12 +248,22 @@ public class Fyro extends Character {
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
 			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Xattacking = false;
+				}
+			}
 		}
 		else if(Cattacking) {
 			if(currentMotion != CATTACK) {
 				currentMotion = CATTACK;
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
+			}
+			else {
+				if(motion.hasPlayedOnce()){
+					Cattacking = false;
+				}
 			}
 		}
 		else if(dy > 0) {
