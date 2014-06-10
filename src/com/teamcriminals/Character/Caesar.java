@@ -246,6 +246,7 @@ public class Caesar extends Character {
 		// 모션 설정
 		if(Zattacking) {
 			if(currentMotion != ZATTACK) {
+				sfx.get("punch").play();
 				currentMotion = ZATTACK;
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
@@ -289,6 +290,7 @@ public class Caesar extends Character {
 		}
 		else if(dy < 0) {
 			if(currentMotion != JUMP) {
+				sfx.get("jump").play();
 				currentMotion = JUMP;
 				motion.setFrames(sprites.get(JUMP));
 				motion.setDelay(-1);

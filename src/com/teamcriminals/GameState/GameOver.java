@@ -67,10 +67,6 @@ public class GameOver extends GameState {
 			}
 		}
 
-		if (k == KeyEvent.VK_ESCAPE) {
-			gsm.setState(GameStateManager.MENUSTATE);
-		}
-
 	}
 
 	public void keyReleased(int k) {
