@@ -130,7 +130,7 @@ public class Zero extends Character {
 				}
 				else {
 					if( e.getX() < x && 
-						e.getX() > x - skillZ.getRange() && 
+						e.getX() > x - skillZ.getRange() -20 && 
 						e.getY() > y - height / 2 && 
 						e.getY() < y + height / 2) {
 						e.hit(skillZ.getDamage());
