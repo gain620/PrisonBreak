@@ -1,12 +1,11 @@
 package com.teamcriminals.Skill;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Projectile.FireBottle;
 
-public class ThrowFire extends X<FireBottle> {
+public class ThrowFire extends X {
 	
 	public ThrowFire(Character c) {
 		super(c);
@@ -15,12 +14,14 @@ public class ThrowFire extends X<FireBottle> {
 		obj = maxObj = 60 * cooldown;
 		objUse = 60 * cooldown;
 		damage = 5;
+		
 	}
 	
 	@Override
 	public void init() {
-		objs = new ArrayList<FireBottle>();
+		projectile = new FireBottle(c.getTileMap(), c.isFaceRight());
 	}
+	
 
 	@Override
 	public void update() {
@@ -29,35 +30,26 @@ public class ThrowFire extends X<FireBottle> {
 		if(obj > maxObj)
 			obj = maxObj;
 		if(throwing && c.getCurrentMotion() != Character.XATTACK) {
-			if(obj > objUse) {
+			if(obj >= objUse) {
 				obj -= objUse;
-				
-				FireBottle b = new FireBottle(c.getTileMap(), c.isFaceRight());
-				b.setPosition(c.getX(), c.getY());
-				objs.add(b);
+				init();
+				projectile.setPosition(c.getX(), c.getY());
 			}
 		}
 		
-		for(int i = 0; i < objs.size(); i++){
-			objs.get(i).update();	// (Character)(objs.get(i)).update();였었던거
-			if(((FireBottle)objs.get(i)).shouldRemove()){
-				objs.remove(i);
-				i--;
-			}
+		projectile.update();
+		if(projectile.shouldRemove()) {
+			projectile = null;
 		}
 
-		if(throwing) {
-			if(c.getCurrentMotion() != Character.XATTACK) {
-				c.setCurrentMotion(Character.XATTACK);
-				c.getMotion().setFrames(c.getSprites().get(Character.XATTACK));
-				c.getMotion().setDelay(100);
-			}
-		}
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		for(int i = 0; i < objs.size(); i++)
-			((FireBottle)objs.get(i)).draw(g);
+
+		if(projectile != null)
+			projectile.draw(g);
+						
 	}
+
 }

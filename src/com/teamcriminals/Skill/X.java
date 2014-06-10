@@ -1,17 +1,16 @@
 package com.teamcriminals.Skill;
 
-import java.util.ArrayList;
-
 import com.teamcriminals.Entity.Character;
+import com.teamcriminals.Projectile.Projectile;
 
-public abstract class X<T> extends Attack {
+public abstract class X extends Attack {
 	
 	protected int cooldown;
 	protected Character c;
 	protected int obj;
 	protected int maxObj;
 	protected int objUse;
-	protected ArrayList<T> objs;
+	protected Projectile projectile;
 	protected boolean throwing;
 	
 	public X(Character c) {
@@ -21,14 +20,14 @@ public abstract class X<T> extends Attack {
 	public int getObj() { return obj; }
 	public int getMaxObj() { return maxObj; }
 	public int getObjUse() { return objUse; }
-	public ArrayList<T> getObjs() { return objs; }
+	public Projectile getProjectile() { return projectile; }
 	public boolean isThrowing() { return throwing; }
 	public int getCoolDown() { return this.cooldown; }
 	
 	public void setObj(int obj) { this.obj = obj; }
 	public void setMaxObj(int maxObj) { this.maxObj = maxObj; }
 	public void setObjUse(int objUse) { this.objUse = objUse; }
-	public void setObjs(ArrayList<T> objs) { this.objs = objs; }
+	public void setProjectile(Projectile p) { this.projectile = p; }
 	public void setThrowing(boolean throwing) { this.throwing = throwing; }
 	public void setCoolDown(int cooldown) { this.cooldown = cooldown; }
 }

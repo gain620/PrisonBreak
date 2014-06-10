@@ -83,7 +83,6 @@ public class FireBall extends MapObject {
 		collideTile();
 		setPosition(xTemp, yTemp);
 		
-		
 		if(dx == 0 && !hit) {
 			setHit();
 		}
