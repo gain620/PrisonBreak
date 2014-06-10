@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Character.CharacterFactory;
 import com.teamcriminals.Enemy.Core;
@@ -30,6 +29,9 @@ public class Level1State extends GameState {
 	private HashMap<String, AudioPlayer> sfx;
 
 	private AudioPlayer bgm;
+
+	// 이벤트 변수
+	private int eventCount;
 
 	public Level1State(GameStateManager gsm) {
 		this.gsm = gsm;
@@ -58,6 +60,7 @@ public class Level1State extends GameState {
 		sfx = new HashMap<String, AudioPlayer>();
 		sfx.put("squish", new AudioPlayer("/SFX/squish.mp3"));
 		sfx.put("zombiedie", new AudioPlayer("/SFX/zombiedie.mp3"));
+		sfx.put("death", new AudioPlayer("/SFX/death.mp3"));
 
 		bgm = new AudioPlayer("/Music/level1.mp3");
 		bgm.play();
@@ -78,17 +81,23 @@ public class Level1State extends GameState {
 
 		};
 
-		for (int i = 0; i < points.length-1; i++) {
+		for (int i = 0; i < points.length - 1; i++) {
 			zs = new ZombieSoldier(tilemap);
 			zs.setPosition(points[i].x, points[i].y);
 			enemy.add(zs);
 		}
 		core = new Core(tilemap);
-		core.setPosition(points[points.length-1].x, points[points.length-1].y);
+		core.setPosition(points[points.length - 1].x,
+				points[points.length - 1].y);
 		enemy.add(core);
 	}
 
 	public void update() {
+
+		// 사망(체력0되면 or 낙하사) & 게임오버 변환
+		if (character.getHealth() <= 0
+				|| character.getY() > tilemap.getHeight())
+			eventDead();
 
 		// 캐릭터업데이트
 		character.update();
@@ -146,9 +155,23 @@ public class Level1State extends GameState {
 					(int) tilemap.gety());
 			death.get(i).draw(g);
 		}
-		
-		
 
+	}
+
+	////////////// 특수 이벤트 판정 /////////////////
+
+	// 캐릭터 사망 이벤트
+	private void eventDead() {
+		eventCount++;
+		if (eventCount == 1) {
+			bgm.close();
+			character.stop();
+			sfx.get("death").play();
+		}
+		if (eventCount >= 200) {
+			bgm.close();
+			gsm.setState(GameStateManager.GAMEOVER);
+		}
 	}
 
 	public void keyPressed(int k) {
@@ -168,8 +191,11 @@ public class Level1State extends GameState {
 			character.setXattacking();
 		if (k == KeyEvent.VK_C)
 			character.setCattacking();
-		if (k == KeyEvent.VK_ESCAPE)
+		if (k == KeyEvent.VK_ESCAPE) {
+			bgm.close();
 			gsm.setState(GameStateManager.MENUSTATE);
+		}
+
 	}
 
 	public void keyReleased(int k) {

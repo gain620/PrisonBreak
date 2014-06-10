@@ -11,6 +11,7 @@ import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
 import com.teamcriminals.Entity.MapObject;
+import com.teamcriminals.GameState.GameStateManager;
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Projectile.Projectile;
 import com.teamcriminals.Skill.Dash;
@@ -118,6 +119,7 @@ public class Caesar extends Character {
 		health = 0;
 		life--;
 		stop();
+
 	}
 
 	public void checkAttack(ArrayList<Enemy> enemy) {

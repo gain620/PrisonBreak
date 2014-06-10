@@ -89,6 +89,9 @@ public class MenuState extends GameState{
 				currentChoice = 0;
 			}
 		}
+		if(k == KeyEvent.VK_ESCAPE) {
+			System.exit(0);
+		}
 	}
 
 	
