@@ -25,7 +25,7 @@ public class ZombieSoldier extends Enemy {
 		width = 30;
 		height = 30;
 		cWidth = 20;
-		cHeight = 15;
+		cHeight = 20;
 		
 		health = maxHealth = 5;
 		damage = 10;

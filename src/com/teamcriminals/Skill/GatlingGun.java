@@ -28,7 +28,7 @@ public class GatlingGun extends C {
 
 	@Override
 	public void update() {
-		if(use && c.getCurrentMotion() == Character.CATTACK) {
+		if(use && c.getCurrentMotion() != Character.CATTACK) {
 			if(bomb > 0) {
 				bomb -= 1;
 				Projectile b = new GoldenBullet(c.getTileMap(), c.isFaceRight());

@@ -28,7 +28,7 @@ public class LegShot extends X {
 		obj +=1;
 		if(obj > maxObj)
 			obj = maxObj;
-		if(throwing && c.getCurrentMotion() == Character.XATTACK) {
+		if(throwing && c.getCurrentMotion() != Character.XATTACK) {
 			if(obj >= objUse) {
 				obj -= objUse;
 				Projectile b = new SilverBullet(c.getTileMap(), c.isFaceRight());

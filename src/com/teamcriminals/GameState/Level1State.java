@@ -217,10 +217,13 @@ public class Level1State extends GameState {
 			character.setRight(false);
 		if (k == KeyEvent.VK_SPACE)
 			character.setJump(false);
-		if (k == KeyEvent.VK_X)
+		if (k == KeyEvent.VK_X) {
+			character.setXattacking();
 			character.getSkillX().setThrowing(false);
-		if (k == KeyEvent.VK_C)
+		}
+		if (k == KeyEvent.VK_C) {
+			character.setXattacking();
 			character.getSkillC().setUse(false);
+		}
 	}
-
 }

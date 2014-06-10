@@ -239,6 +239,25 @@ public class Zero extends Character {
 			}
 		}
 		
+		// 공격 모션
+		if (currentMotion == ZATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Zattacking = false;
+			}
+		}
+
+		if (currentMotion == XATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Xattacking = false;
+			}
+		}
+		
+		if (currentMotion == CATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Cattacking = false;
+			}
+		}
+		
 		skillX.update();
 		skillC.update();
 		
@@ -250,11 +269,6 @@ public class Zero extends Character {
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(100);
 			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Zattacking = false;
-				}
-			}
 		}
 		else if(Xattacking) {
 			if(currentMotion != XATTACK) {
@@ -262,11 +276,6 @@ public class Zero extends Character {
 				currentMotion = XATTACK;
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
-			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Xattacking = false;
-				}
 			}
 		}
 		else if(Cattacking) {
@@ -276,10 +285,12 @@ public class Zero extends Character {
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
 			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Cattacking = false;
-				}
+		}
+		else if(dy > 0) {
+			if(currentMotion != FALL) {
+				currentMotion = FALL;
+				motion.setFrames(sprites.get(FALL));
+				motion.setDelay(100);
 			}
 		}
 		else if(dy > 0) {
