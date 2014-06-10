@@ -232,6 +232,25 @@ public class Draco extends Character {
 			}
 		}
 		
+		// 공격 모션
+		if (currentMotion == ZATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Zattacking = false;
+			}
+		}
+
+		if (currentMotion == XATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Xattacking = false;
+			}
+		}
+		
+		if (currentMotion == CATTACK) {
+			if (motion.hasPlayedOnce()) {
+				Cattacking = false;
+			}
+		}
+		
 		skillX.update();
 		skillC.update();
 		
@@ -242,11 +261,6 @@ public class Draco extends Character {
 				motion.setFrames(sprites.get(ZATTACK));
 				motion.setDelay(50);
 			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Zattacking = false;
-				}
-			}
 		}
 		else if(Xattacking) {
 			if(currentMotion != XATTACK) {
@@ -254,22 +268,12 @@ public class Draco extends Character {
 				motion.setFrames(sprites.get(XATTACK));
 				motion.setDelay(100);
 			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Xattacking = false;
-				}
-			}
 		}
 		else if(Cattacking) {
 			if(currentMotion != CATTACK) {
 				currentMotion = CATTACK;
 				motion.setFrames(sprites.get(CATTACK));
 				motion.setDelay(100);
-			}
-			else {
-				if(motion.hasPlayedOnce()){
-					Cattacking = false;
-				}
 			}
 		}
 		else if(dy > 0) {
@@ -290,7 +294,7 @@ public class Draco extends Character {
 			if(currentMotion != WALK) {
 				currentMotion = WALK;
 				motion.setFrames(sprites.get(WALK));
-				motion.setDelay(40);
+				motion.setDelay(200);
 			}
 		}
 		else {

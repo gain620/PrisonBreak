@@ -22,8 +22,8 @@ public class Bat extends Projectile {
 		
 		width = 30;
 		height = 30;
-		cWidth = 14;
-		cHeight = 14;
+		cWidth = 30;
+		cHeight = 30;
 		
 		// 스프라이트 로드
 		try{
