@@ -10,11 +10,6 @@ import javax.imageio.ImageIO;
 import com.teamcriminals.Audio.AudioPlayer;
 import com.teamcriminals.Entity.Character;
 import com.teamcriminals.Entity.Enemy;
-<<<<<<< HEAD
-import com.teamcriminals.Entity.MapObject;
-import com.teamcriminals.GameState.GameStateManager;
-=======
->>>>>>> 8295c00858f57ea27f64e50ea2df2bf934e63b45
 import com.teamcriminals.Motion.Motion;
 import com.teamcriminals.Skill.Dash;
 import com.teamcriminals.Skill.Punch;
