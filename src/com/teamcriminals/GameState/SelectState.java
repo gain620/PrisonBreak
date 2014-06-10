@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-
-import com.teamcriminals.Game.GamePanel;
 import com.teamcriminals.TileMap.Background;
 
 public class SelectState extends GameState {

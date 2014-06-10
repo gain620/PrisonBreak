@@ -2,41 +2,45 @@ package com.teamcriminals.GameState;
 
 import java.awt.Graphics2D;
 
+import com.teamcriminals.Audio.AudioPlayer;
+import com.teamcriminals.TileMap.Background;
+
 public class GameOver extends GameState {
+	
+	private Background bg;
+    private AudioPlayer bgm;
+	private String[] options = { "Caesar", "Zero", "Fyro", "Draco" };
+
+	private int currentSelection = 0;
 	
 	public GameOver(GameStateManager gsm) {
 		this.gsm = gsm;
 		init();
 	}
 
-	@Override
+	
 	public void init() {
-		// TODO Auto-generated method stub
-
+		bg = new Background("/Background/gameover.png", 0);
 	}
 
-	@Override
+	
 	public void update() {
-		// TODO Auto-generated method stub
+
 
 	}
 
-	@Override
+	
 	public void draw(Graphics2D g) {
-		// TODO Auto-generated method stub
+
 
 	}
 
-	@Override
+	
 	public void keyPressed(int k) {
-		// TODO Auto-generated method stub
+
 
 	}
 
-	@Override
-	public void keyReleased(int k) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
+	public void keyReleased(int k) {}
 }

@@ -27,7 +27,7 @@ public class Core extends Enemy {
 		cWidth = 40;
 		cHeight = 40;
 		
-		health = maxHealth = 20;
+		health = maxHealth = 50;
 		damage = 25;
 		scorePoint = 20;
 		
